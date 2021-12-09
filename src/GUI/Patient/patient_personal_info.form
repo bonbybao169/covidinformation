@@ -91,12 +91,15 @@
     </Component>
     <Component class="javax.swing.JButton" name="jButton2">
       <Properties>
-        <Property name="text" type="java.lang.String" value="&lt;html&gt;&lt;body&gt;- L&#x1ecb;ch s&#x1eed; thanh to&#xe1;n, d&#x1b0; n&#x1ee3;&lt;/body&gt;&lt;/html&gt;"/>
+        <Property name="text" type="java.lang.String" value="&lt;html&gt;&lt;body style=&quot;text-align: center&quot;&gt;L&#x1ecb;ch s&#x1eed; thanh to&#xe1;n, d&#x1b0; n&#x1ee3;&lt;/body&gt;&lt;/html&gt;"/>
       </Properties>
+      <Events>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jButton2ActionPerformed"/>
+      </Events>
     </Component>
     <Component class="javax.swing.JButton" name="jButton3">
       <Properties>
-        <Property name="text" type="java.lang.String" value="&lt;html&gt;&lt;body&gt;- L&#x1ecb;ch s&#x1eed; ti&#xea;u th&#x1ee5; g&#xf3;i nhu y&#x1ebf;u ph&#x1ea9;m&lt;/body&gt;&lt;/html&gt;"/>
+        <Property name="text" type="java.lang.String" value="&lt;html&gt;&lt;body style=&quot;text-align: center&quot;&gt;L&#x1ecb;ch s&#x1eed; ti&#xea;u th&#x1ee5; g&#xf3;i nhu y&#x1ebf;u ph&#x1ea9;m&lt;/body&gt;&lt;/html&gt;"/>
       </Properties>
       <Events>
         <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jButton3ActionPerformed"/>
