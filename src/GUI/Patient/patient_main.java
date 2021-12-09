@@ -11,7 +11,8 @@ public class patient_main extends javax.swing.JFrame {
     }
 
     @SuppressWarnings("unchecked")
-
+    // <editor-fold defaultstate="collapsed" desc="Generated
+    // Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
         jButton1 = new javax.swing.JButton();
@@ -29,7 +30,7 @@ public class patient_main extends javax.swing.JFrame {
         setMinimumSize(new java.awt.Dimension(640, 360));
         setPreferredSize(new java.awt.Dimension(640, 360));
 
-        jButton1.setFont(new java.awt.Font("Segoe UI", 0, 14));
+        jButton1.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
         jButton1.setText("<html><body style=\"text-align: center\">Thông tin<br>cá nhân</body></html>");
         jButton1.setPreferredSize(new java.awt.Dimension(210, 50));
         jButton1.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -160,31 +161,45 @@ public class patient_main extends javax.swing.JFrame {
         jButton2.getAccessibleContext().setAccessibleDescription("");
 
         pack();
-    }
+    }// </editor-fold>//GEN-END:initComponents
 
-    private void jButton1MouseEntered(java.awt.event.MouseEvent evt) {
+    private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {// GEN-FIRST:event_jButton2ActionPerformed
+        // TODO add your handling code here:
+    }// GEN-LAST:event_jButton2ActionPerformed
+
+    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {// GEN-FIRST:event_jButton1ActionPerformed
+        // TODO add your handling code here:
+    }// GEN-LAST:event_jButton1ActionPerformed
+
+    private void jButton1MouseEntered(java.awt.event.MouseEvent evt) {// GEN-FIRST:event_jButton1MouseEntered
+        // TODO add your handling code here:
         jLabel1.setVisible(true);
-    }
+    }// GEN-LAST:event_jButton1MouseEntered
 
-    private void jButton1MouseExited(java.awt.event.MouseEvent evt) {
+    private void jButton1MouseExited(java.awt.event.MouseEvent evt) {// GEN-FIRST:event_jButton1MouseExited
+        // TODO add your handling code here:
         jLabel1.setVisible(false);
-    }
+    }// GEN-LAST:event_jButton1MouseExited
 
-    private void jButton2MouseEntered(java.awt.event.MouseEvent evt) {
+    private void jButton2MouseEntered(java.awt.event.MouseEvent evt) {// GEN-FIRST:event_jButton2MouseEntered
+        // TODO add your handling code here:
         jLabel2.setVisible(true);
-    }
+    }// GEN-LAST:event_jButton2MouseEntered
 
-    private void jButton2MouseExited(java.awt.event.MouseEvent evt) {
+    private void jButton2MouseExited(java.awt.event.MouseEvent evt) {// GEN-FIRST:event_jButton2MouseExited
+        // TODO add your handling code here:
         jLabel2.setVisible(false);
-    }
+    }// GEN-LAST:event_jButton2MouseExited
 
-    private void jButton3MouseEntered(java.awt.event.MouseEvent evt) {
+    private void jButton3MouseEntered(java.awt.event.MouseEvent evt) {// GEN-FIRST:event_jButton3MouseEntered
+        // TODO add your handling code here:
         jLabel3.setVisible(true);
-    }
+    }// GEN-LAST:event_jButton3MouseEntered
 
-    private void jButton3MouseExited(java.awt.event.MouseEvent evt) {
+    private void jButton3MouseExited(java.awt.event.MouseEvent evt) {// GEN-FIRST:event_jButton3MouseExited
+        // TODO add your handling code here:
         jLabel3.setVisible(false);
-    }
+    }// GEN-LAST:event_jButton3MouseExited
 
     public static void main(String args[]) {
         try {
@@ -214,6 +229,7 @@ public class patient_main extends javax.swing.JFrame {
         });
     }
 
+    // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton jButton1;
     private javax.swing.JButton jButton2;
     private javax.swing.JButton jButton3;
@@ -222,4 +238,5 @@ public class patient_main extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JPanel jPanel1;
+    // End of variables declaration//GEN-END:variables
 }
