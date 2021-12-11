@@ -1,6 +1,7 @@
 package GUI.Patient;
 
 public class patient_management_history extends javax.swing.JFrame {
+
     public patient_management_history() {
         initComponents();
         this.setLocationRelativeTo(null);

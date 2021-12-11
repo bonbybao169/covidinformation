@@ -10,20 +10,21 @@ import javax.imageio.ImageIO;
 import javax.swing.ImageIcon;
 
 public class patient_purchase_confirm extends javax.swing.JFrame {
-        public patient_purchase_confirm() {
-                try {
-                        img = ImageIO.read(new File("S:\\Pictures\\covid.jpg"));
-                        initComponents();
-                        Image dimg = img.getScaledInstance(jLabel2.getWidth(), jLabel2.getHeight(), Image.SCALE_SMOOTH);
-                        ImageIcon imageIcon = new ImageIcon(dimg);
-                        jLabel2.setIcon(imageIcon);
-                        this.setLocationRelativeTo(null);
-                } catch (IOException ex) {
-                        Logger.getLogger(patient_purchase_confirm.class.getName()).log(Level.SEVERE, null, ex);
-                }
-        }
 
-        @SuppressWarnings("unchecked")
+    public patient_purchase_confirm() {
+        try {
+            img = ImageIO.read(new File("S:\\Pictures\\covid.jpg"));
+            initComponents();
+            Image dimg = img.getScaledInstance(jLabel2.getWidth(), jLabel2.getHeight(), Image.SCALE_SMOOTH);
+            ImageIcon imageIcon = new ImageIcon(dimg);
+            jLabel2.setIcon(imageIcon);
+            this.setLocationRelativeTo(null);
+        } catch (IOException ex) {
+            Logger.getLogger(patient_purchase_confirm.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }
+
+    @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
@@ -82,6 +83,11 @@ public class patient_purchase_confirm extends javax.swing.JFrame {
         jButton1.setText("Mua");
 
         jButton2.setText("Back");
+        jButton2.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jButton2MouseClicked(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
@@ -161,35 +167,41 @@ public class patient_purchase_confirm extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-        public static void main(String args[]) {
-                try {
-                        for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager
-                                        .getInstalledLookAndFeels()) {
-                                if ("Nimbus".equals(info.getName())) {
-                                        javax.swing.UIManager.setLookAndFeel(info.getClassName());
-                                        break;
-                                }
-                        }
-                } catch (ClassNotFoundException ex) {
-                        java.util.logging.Logger.getLogger(patient_purchase_confirm.class.getName())
-                                        .log(java.util.logging.Level.SEVERE, null, ex);
-                } catch (InstantiationException ex) {
-                        java.util.logging.Logger.getLogger(patient_purchase_confirm.class.getName())
-                                        .log(java.util.logging.Level.SEVERE, null, ex);
-                } catch (IllegalAccessException ex) {
-                        java.util.logging.Logger.getLogger(patient_purchase_confirm.class.getName())
-                                        .log(java.util.logging.Level.SEVERE, null, ex);
-                } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-                        java.util.logging.Logger.getLogger(patient_purchase_confirm.class.getName())
-                                        .log(java.util.logging.Level.SEVERE, null, ex);
+    private void jButton2MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton2MouseClicked
+        // TODO add your handling code here:
+        super.dispose();
+        patient_purchase.main(null);
+    }//GEN-LAST:event_jButton2MouseClicked
+
+    public static void main(String args[]) {
+        try {
+            for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager
+                    .getInstalledLookAndFeels()) {
+                if ("Nimbus".equals(info.getName())) {
+                    javax.swing.UIManager.setLookAndFeel(info.getClassName());
+                    break;
                 }
-                
-                java.awt.EventQueue.invokeLater(new Runnable() {
-                        public void run() {
-                                new patient_purchase_confirm().setVisible(true);
-                        }
-                });
+            }
+        } catch (ClassNotFoundException ex) {
+            java.util.logging.Logger.getLogger(patient_purchase_confirm.class.getName())
+                    .log(java.util.logging.Level.SEVERE, null, ex);
+        } catch (InstantiationException ex) {
+            java.util.logging.Logger.getLogger(patient_purchase_confirm.class.getName())
+                    .log(java.util.logging.Level.SEVERE, null, ex);
+        } catch (IllegalAccessException ex) {
+            java.util.logging.Logger.getLogger(patient_purchase_confirm.class.getName())
+                    .log(java.util.logging.Level.SEVERE, null, ex);
+        } catch (javax.swing.UnsupportedLookAndFeelException ex) {
+            java.util.logging.Logger.getLogger(patient_purchase_confirm.class.getName())
+                    .log(java.util.logging.Level.SEVERE, null, ex);
         }
+
+        java.awt.EventQueue.invokeLater(new Runnable() {
+            public void run() {
+                new patient_purchase_confirm().setVisible(true);
+            }
+        });
+    }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton jButton1;
@@ -205,5 +217,5 @@ public class patient_purchase_confirm extends javax.swing.JFrame {
     private javax.swing.JPanel jPanel1;
     private javax.swing.JSpinner jSpinner1;
     // End of variables declaration//GEN-END:variables
-        BufferedImage img = null;
+    BufferedImage img = null;
 }

@@ -105,6 +105,11 @@ public class patient_basic_info extends javax.swing.JFrame {
         jLabel15.setPreferredSize(new java.awt.Dimension(80, 25));
 
         jButton1.setText("Back");
+        jButton1.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jButton1MouseClicked(evt);
+            }
+        });
         jButton1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButton1ActionPerformed(evt);
@@ -186,6 +191,12 @@ public class patient_basic_info extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
+    private void jButton1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton1MouseClicked
+        // TODO add your handling code here:
+        super.dispose();
+        patient_personal_info.main(null);
+    }//GEN-LAST:event_jButton1MouseClicked
+
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {// GEN-FIRST:event_jButton1ActionPerformed
         // TODO add your handling code here:
     }// GEN-LAST:event_jButton1ActionPerformed
@@ -211,7 +222,7 @@ public class patient_basic_info extends javax.swing.JFrame {
             java.util.logging.Logger.getLogger(patient_basic_info.class.getName()).log(java.util.logging.Level.SEVERE,
                     null, ex);
         }
-     
+
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
                 new patient_basic_info().setVisible(true);
