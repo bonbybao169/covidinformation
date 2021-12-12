@@ -10,20 +10,21 @@ import javax.imageio.ImageIO;
 import javax.swing.ImageIcon;
 
 public class patient_filter extends javax.swing.JFrame {
-        public patient_filter() {
-                try {
-                        img = ImageIO.read(new File("S:\\Pictures\\covid.jpg"));
-                        initComponents();
-                        Image dimg = img.getScaledInstance(jLabel2.getWidth(), jLabel2.getHeight(), Image.SCALE_SMOOTH);
-                        ImageIcon imageIcon = new ImageIcon(dimg);
-                        jLabel2.setIcon(imageIcon);
-                        this.setLocationRelativeTo(null);
-                } catch (IOException ex) {
-                        Logger.getLogger(patient_filter.class.getName()).log(Level.SEVERE, null, ex);
-                }
-        }
 
-        @SuppressWarnings("unchecked")
+    public patient_filter() {
+        try {
+            img = ImageIO.read(new File("S:\\Pictures\\covid.jpg"));
+            initComponents();
+            Image dimg = img.getScaledInstance(jLabel2.getWidth(), jLabel2.getHeight(), Image.SCALE_SMOOTH);
+            ImageIcon imageIcon = new ImageIcon(dimg);
+            jLabel2.setIcon(imageIcon);
+            this.setLocationRelativeTo(null);
+        } catch (IOException ex) {
+            Logger.getLogger(patient_filter.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }
+
+    @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
@@ -66,6 +67,11 @@ public class patient_filter extends javax.swing.JFrame {
         jLabel4.setText("Thời gian giới hạn:");
 
         jButton1.setText("OK");
+        jButton1.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jButton1MouseClicked(evt);
+            }
+        });
 
         jTextField2.setHorizontalAlignment(javax.swing.JTextField.CENTER);
         jTextField2.addActionListener(new java.awt.event.ActionListener() {
@@ -184,44 +190,50 @@ public class patient_filter extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-        private void jTextField2ActionPerformed(java.awt.event.ActionEvent evt) {// GEN-FIRST:event_jTextField2ActionPerformed
-                // TODO add your handling code here:
-        }// GEN-LAST:event_jTextField2ActionPerformed
+    private void jButton1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton1MouseClicked
+        // TODO add your handling code here:
+        super.dispose();
+        patient_purchase.main(null);
+    }//GEN-LAST:event_jButton1MouseClicked
 
-        private void jTextField3ActionPerformed(java.awt.event.ActionEvent evt) {// GEN-FIRST:event_jTextField3ActionPerformed
-                // TODO add your handling code here:
-        }// GEN-LAST:event_jTextField3ActionPerformed
+    private void jTextField2ActionPerformed(java.awt.event.ActionEvent evt) {// GEN-FIRST:event_jTextField2ActionPerformed
+        // TODO add your handling code here:
+    }// GEN-LAST:event_jTextField2ActionPerformed
 
-        public static void main(String args[]) {
+    private void jTextField3ActionPerformed(java.awt.event.ActionEvent evt) {// GEN-FIRST:event_jTextField3ActionPerformed
+        // TODO add your handling code here:
+    }// GEN-LAST:event_jTextField3ActionPerformed
 
-                try {
-                        for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager
-                                        .getInstalledLookAndFeels()) {
-                                if ("Nimbus".equals(info.getName())) {
-                                        javax.swing.UIManager.setLookAndFeel(info.getClassName());
-                                        break;
-                                }
-                        }
-                } catch (ClassNotFoundException ex) {
-                        java.util.logging.Logger.getLogger(patient_filter.class.getName())
-                                        .log(java.util.logging.Level.SEVERE, null, ex);
-                } catch (InstantiationException ex) {
-                        java.util.logging.Logger.getLogger(patient_filter.class.getName())
-                                        .log(java.util.logging.Level.SEVERE, null, ex);
-                } catch (IllegalAccessException ex) {
-                        java.util.logging.Logger.getLogger(patient_filter.class.getName())
-                                        .log(java.util.logging.Level.SEVERE, null, ex);
-                } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-                        java.util.logging.Logger.getLogger(patient_filter.class.getName())
-                                        .log(java.util.logging.Level.SEVERE, null, ex);
+    public static void main(String args[]) {
+
+        try {
+            for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager
+                    .getInstalledLookAndFeels()) {
+                if ("Nimbus".equals(info.getName())) {
+                    javax.swing.UIManager.setLookAndFeel(info.getClassName());
+                    break;
                 }
-
-                java.awt.EventQueue.invokeLater(new Runnable() {
-                        public void run() {
-                                new patient_filter().setVisible(true);
-                        }
-                });
+            }
+        } catch (ClassNotFoundException ex) {
+            java.util.logging.Logger.getLogger(patient_filter.class.getName())
+                    .log(java.util.logging.Level.SEVERE, null, ex);
+        } catch (InstantiationException ex) {
+            java.util.logging.Logger.getLogger(patient_filter.class.getName())
+                    .log(java.util.logging.Level.SEVERE, null, ex);
+        } catch (IllegalAccessException ex) {
+            java.util.logging.Logger.getLogger(patient_filter.class.getName())
+                    .log(java.util.logging.Level.SEVERE, null, ex);
+        } catch (javax.swing.UnsupportedLookAndFeelException ex) {
+            java.util.logging.Logger.getLogger(patient_filter.class.getName())
+                    .log(java.util.logging.Level.SEVERE, null, ex);
         }
+
+        java.awt.EventQueue.invokeLater(new Runnable() {
+            public void run() {
+                new patient_filter().setVisible(true);
+            }
+        });
+    }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton jButton1;
@@ -242,5 +254,5 @@ public class patient_filter extends javax.swing.JFrame {
     private javax.swing.JTextField jTextField6;
     private javax.swing.JTextField jTextField7;
     // End of variables declaration//GEN-END:variables
-        BufferedImage img = null;
+    BufferedImage img = null;
 }
