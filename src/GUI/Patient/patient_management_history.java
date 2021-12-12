@@ -1,12 +1,12 @@
 package GUI.Patient;
 
 public class patient_management_history extends javax.swing.JFrame {
-
+    
     public patient_management_history() {
         initComponents();
         this.setLocationRelativeTo(null);
     }
-
+    
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
@@ -36,6 +36,11 @@ public class patient_management_history extends javax.swing.JFrame {
         jLabel1.setText("Lịch sử được quản lý");
 
         jButton1.setText("Back");
+        jButton1.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jButton1MouseClicked(evt);
+            }
+        });
 
         jTable1.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
         jTable1.setModel(new javax.swing.table.DefaultTableModel(
@@ -130,6 +135,12 @@ public class patient_management_history extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
+    private void jButton1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton1MouseClicked
+        // TODO add your handling code here:
+        super.dispose();
+        patient_basic_info.main(null);
+    }//GEN-LAST:event_jButton1MouseClicked
+    
     public static void main(String args[]) {
         try {
             for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
@@ -151,7 +162,7 @@ public class patient_management_history extends javax.swing.JFrame {
             java.util.logging.Logger.getLogger(patient_management_history.class.getName())
                     .log(java.util.logging.Level.SEVERE, null, ex);
         }
-
+        
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
                 new patient_management_history().setVisible(true);

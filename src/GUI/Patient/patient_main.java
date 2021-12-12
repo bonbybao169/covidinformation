@@ -1,16 +1,16 @@
 package GUI.Patient;
 
 public class patient_main extends javax.swing.JFrame {
-    
+
     public patient_main() {
         initComponents();
         this.setLocationRelativeTo(null);
-        
+
         jLabel1.setVisible(false);
         jLabel2.setVisible(false);
         jLabel3.setVisible(false);
     }
-    
+
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
@@ -154,19 +154,19 @@ public class patient_main extends javax.swing.JFrame {
         super.dispose();
         patient_personal_info.main(null);
     }//GEN-LAST:event_jButton1MouseClicked
-    
+
     private void jButton2MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton2MouseClicked
         // TODO add your handling code here:
         super.dispose();
         patient_purchase.main(null);
     }//GEN-LAST:event_jButton2MouseClicked
-    
+
     private void jButton3MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton3MouseClicked
         // TODO add your handling code here:
         super.dispose();
         patient_payment_confirm.main(null);
     }//GEN-LAST:event_jButton3MouseClicked
-    
+
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {// GEN-FIRST:event_jButton2ActionPerformed
         // TODO add your handling code here:
     }// GEN-LAST:event_jButton2ActionPerformed

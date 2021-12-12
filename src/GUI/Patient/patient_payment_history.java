@@ -1,12 +1,12 @@
 package GUI.Patient;
 
 public class patient_payment_history extends javax.swing.JFrame {
-    
+
     public patient_payment_history() {
         initComponents();
         this.setLocationRelativeTo(null);
     }
-    
+
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
@@ -141,7 +141,7 @@ public class patient_payment_history extends javax.swing.JFrame {
         super.dispose();
         patient_personal_info.main(null);
     }//GEN-LAST:event_jButton1MouseClicked
-    
+
     public static void main(String args[]) {
         try {
             for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {

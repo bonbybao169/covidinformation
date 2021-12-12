@@ -1,12 +1,12 @@
 package GUI.Patient;
 
 public class patient_purchase extends javax.swing.JFrame {
-    
+
     public patient_purchase() {
         initComponents();
         this.setLocationRelativeTo(null);
     }
-    
+
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
@@ -193,25 +193,25 @@ public class patient_purchase extends javax.swing.JFrame {
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
-    
+
     private void jButton4MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton4MouseClicked
         // TODO add your handling code here:
         super.dispose();
         patient_purchase_confirm.main(null);
     }//GEN-LAST:event_jButton4MouseClicked
-    
+
     private void jButton2MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton2MouseClicked
         // TODO add your handling code here:
         super.dispose();
         patient_main.main(null);
     }//GEN-LAST:event_jButton2MouseClicked
-    
+
     private void jButton3MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton3MouseClicked
         // TODO add your handling code here:
         super.dispose();
         patient_filter.main(null);
     }//GEN-LAST:event_jButton3MouseClicked
-    
+
     private void jComboBox1ActionPerformed(java.awt.event.ActionEvent evt) {// GEN-FIRST:event_jComboBox1ActionPerformed
         // TODO add your handling code here:
     }// GEN-LAST:event_jComboBox1ActionPerformed
