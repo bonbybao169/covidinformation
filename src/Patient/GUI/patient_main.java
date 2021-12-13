@@ -1,4 +1,4 @@
-package GUI.Patient;
+package Patient.GUI;
 
 public class patient_main extends javax.swing.JFrame {
 

@@ -1,12 +1,12 @@
-package GUI.Patient;
+package Patient.GUI;
 
 public class patient_management_history extends javax.swing.JFrame {
-    
+
     public patient_management_history() {
         initComponents();
         this.setLocationRelativeTo(null);
     }
-    
+
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
@@ -140,7 +140,7 @@ public class patient_management_history extends javax.swing.JFrame {
         super.dispose();
         patient_basic_info.main(null);
     }//GEN-LAST:event_jButton1MouseClicked
-    
+
     public static void main(String args[]) {
         try {
             for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
@@ -162,7 +162,7 @@ public class patient_management_history extends javax.swing.JFrame {
             java.util.logging.Logger.getLogger(patient_management_history.class.getName())
                     .log(java.util.logging.Level.SEVERE, null, ex);
         }
-        
+
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
                 new patient_management_history().setVisible(true);

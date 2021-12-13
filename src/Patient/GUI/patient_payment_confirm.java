@@ -1,4 +1,4 @@
-package GUI.Patient;
+package Patient.GUI;
 
 public class patient_payment_confirm extends javax.swing.JFrame {
 

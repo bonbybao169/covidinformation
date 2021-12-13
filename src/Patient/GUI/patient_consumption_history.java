@@ -1,4 +1,4 @@
-package GUI.Patient;
+package Patient.GUI;
 
 public class patient_consumption_history extends javax.swing.JFrame {
 
