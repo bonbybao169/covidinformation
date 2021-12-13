@@ -2,3 +2,4 @@
 /nbproject/private/
 /nbproject/project.properties
 nbproject/project.properties
+src/DatabaseConnector/connect_db.java
