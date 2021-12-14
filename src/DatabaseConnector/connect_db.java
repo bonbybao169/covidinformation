@@ -10,11 +10,12 @@ public class connect_db {
 
     static final String JDBC_DRIVER = "com.mysql.cj.jdbc.Driver";
     static final String DB_URL = "jdbc:mysql://localhost/covid_management";
-    static final String user = ""; // add username của connection trong mysql vào đây
-    static final String pass = ""; // add password của connection trong mysql vào đây
-    static Connection conn = null;
+    static String user = ""; // add username của connection trong mysql vào đây
+    static String pass = ""; // add password của connection trong mysql vào đây
 
-    public static void main(String[] args) {
+    public static Connection createConnection() {
+        Connection conn = null;
+
         try {
 
             Class.forName(JDBC_DRIVER);
@@ -25,16 +26,8 @@ public class connect_db {
 
         } catch (SQLException | ClassNotFoundException e) {
             Logger.getLogger(connect_db.class.getName()).log(Level.SEVERE, null, e);
-        } finally {
-            if (conn != null) {
-                try {
-                    conn.close();
-                } catch (SQLException e) {
-                    Logger.getLogger(connect_db.class.getName()).log(Level.SEVERE, null, e);
-                }
-            }
-
         }
 
+        return conn;
     }
 }
