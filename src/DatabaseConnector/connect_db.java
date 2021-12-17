@@ -17,12 +17,11 @@ public class connect_db {
         Connection conn = null;
 
         try {
-
             Class.forName(JDBC_DRIVER);
             conn = DriverManager.getConnection(DB_URL, user, pass);
 
         } catch (SQLException | ClassNotFoundException e) {
-            Logger.getLogger(connect_db.class.getName()).log(Level.SEVERE, null, e);
+            e.printStackTrace();
         }
 
         return conn;

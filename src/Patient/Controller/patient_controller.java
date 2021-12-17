@@ -5,8 +5,7 @@ import Patient.Model.*;
 
 public class patient_controller {
 
-    patient_model model;
-
+//    patient_model model;
 //    public patient_model sendBasicInfo(String username) {
 //        return model.getPatientInfo(username);
 //    }

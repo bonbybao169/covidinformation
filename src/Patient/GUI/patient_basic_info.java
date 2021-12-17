@@ -1,26 +1,28 @@
 package Patient.GUI;
 
 import Patient.Controller.*;
+import Patient.Database.*;
 import Patient.Model.*;
 
 public class patient_basic_info extends javax.swing.JFrame {
 
-    patient_model model = new patient_model();
+    ViewPatientInfo view = new ViewPatientInfo();
     patient_controller control;
+    Patient patient = null;
 
     public patient_basic_info() {
         initComponents();
         this.setLocationRelativeTo(null);
 
-        model = model.getPatientInfo("123456789012");
+        patient = view.getPatientInfo("123456789012");
 
-        nameLabel.setText(model.name);
-        CCCDLabel.setText(model.CCCD);
-        addressLabel.setText(model.address);
-        stateLabel.setText(model.state);
-        isolationLabel.setText(model.isolationarea);
-        relatedLabel.setText(model.related);
-        DOBLabel.setText(model.DOB.toString());
+        nameLabel.setText(patient.getName());
+        CCCDLabel.setText(patient.getCCCD());
+        addressLabel.setText(patient.getAddress());
+        stateLabel.setText(patient.getState());
+        isolationLabel.setText(patient.getIsolation());
+        relatedLabel.setText(patient.getRelated());
+        DOBLabel.setText(patient.getDOB().toString());
     }
 
     @SuppressWarnings("unchecked")
@@ -82,37 +84,31 @@ public class patient_basic_info extends javax.swing.JFrame {
 
         nameLabel.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
         nameLabel.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        nameLabel.setText("Trần Lê Quốc Bảo");
         nameLabel.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
         nameLabel.setPreferredSize(new java.awt.Dimension(80, 25));
 
         CCCDLabel.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
         CCCDLabel.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        CCCDLabel.setText("1234567890");
         CCCDLabel.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
         CCCDLabel.setPreferredSize(new java.awt.Dimension(80, 25));
 
         DOBLabel.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
         DOBLabel.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        DOBLabel.setText("16/09/2001");
         DOBLabel.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
         DOBLabel.setPreferredSize(new java.awt.Dimension(80, 25));
 
         addressLabel.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
         addressLabel.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        addressLabel.setText("ABCXYZ");
         addressLabel.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
         addressLabel.setPreferredSize(new java.awt.Dimension(80, 25));
 
         stateLabel.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
         stateLabel.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        stateLabel.setText("F12");
         stateLabel.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
         stateLabel.setPreferredSize(new java.awt.Dimension(80, 25));
 
         isolationLabel.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
         isolationLabel.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        isolationLabel.setText("HCM");
         isolationLabel.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
         isolationLabel.setPreferredSize(new java.awt.Dimension(80, 25));
 
