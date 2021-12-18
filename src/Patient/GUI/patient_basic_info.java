@@ -6,15 +6,14 @@ import Patient.Model.*;
 
 public class patient_basic_info extends javax.swing.JFrame {
 
-    ViewPatientInfo view = new ViewPatientInfo();
-    patient_controller control;
+    patient_controller control = new patient_controller();
     Patient patient = null;
 
     public patient_basic_info() {
         initComponents();
         this.setLocationRelativeTo(null);
 
-        patient = view.getPatientInfo("123456789012");
+        patient = control.view_basic_info();
 
         nameLabel.setText(patient.getName());
         CCCDLabel.setText(patient.getCCCD());

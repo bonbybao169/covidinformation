@@ -1,12 +1,16 @@
 package Patient.Controller;
 
+import Patient.Database.ViewPatientInfo;
 import Patient.GUI.*;
 import Patient.Model.*;
 
 public class patient_controller {
 
-//    patient_model model;
-//    public patient_model sendBasicInfo(String username) {
-//        return model.getPatientInfo(username);
-//    }
+    public Patient view_basic_info() {
+        ViewPatientInfo view = new ViewPatientInfo();
+        Patient patient = null;
+
+        patient = view.getPatientInfo("123456789012");
+        return patient;
+    }
 }
