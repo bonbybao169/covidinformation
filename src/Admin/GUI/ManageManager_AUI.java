@@ -6,14 +6,24 @@ package Admin.GUI;
 
 import javax.swing.table.*;
 import javax.swing.*;
+import Admin.Controller.*;
+import java.util.*;
+import Manager.Model.*;
 public class ManageManager_AUI extends javax.swing.JFrame {
 
     /**
      * Creates new form ManageManager_AUI
      */
-    String SelectedUsername;
+    static DefaultTableModel model;
+    static String SelectedUsername;
+    static admin_controller con = new admin_controller();
     public ManageManager_AUI() {
         initComponents();
+        List<Manager> list = con.list_manager();
+        model = (DefaultTableModel) jTable1.getModel();
+        for(Manager element:list){
+            model.addRow(new Object[]{element.getName(), element.getState()});
+        }
     }
 
     /**
@@ -124,15 +134,17 @@ public class ManageManager_AUI extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-        System.out.println(SelectedUsername);
+        //AdminMenu_AUI.main(null);
     }//GEN-LAST:event_jButton1ActionPerformed
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
-        System.out.println(SelectedUsername);
+        super.dispose();
+        HistoryManager_AUI.main(null);
     }//GEN-LAST:event_jButton2ActionPerformed
 
     private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
-        // TODO add your handling code here:
+        super.dispose();
+        AdminMenu_AUI.main(null);
     }//GEN-LAST:event_jButton3ActionPerformed
 
     private void jTable1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jTable1MouseClicked
@@ -170,15 +182,6 @@ public class ManageManager_AUI extends javax.swing.JFrame {
                 ManageManager_AUI UI = new ManageManager_AUI();
                 UI.setVisible(true);
                 DefaultTableModel model = (DefaultTableModel) UI.jTable1.getModel();
-                model.addRow(new Object[]{"MG001", "Khóa"});
-                model.addRow(new Object[]{"MG002", "Khóa"});
-                model.addRow(new Object[]{"MG003", "Mở"});
-                model.addRow(new Object[]{"MG004", "Khóa"});
-                model.addRow(new Object[]{"MG005", "Mở"});
-                model.addRow(new Object[]{"MG006", "Mở"});
-                model.addRow(new Object[]{"MG007", "Mở"});
-                model.addRow(new Object[]{"MG008", "Mở"});
-                model.addRow(new Object[]{"MG009", "Khóa"});
             }
         });
     }

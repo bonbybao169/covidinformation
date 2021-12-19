@@ -6,7 +6,8 @@ package Admin.Database;
 
 import static DatabaseConnector.connect_db.createConnection;
 import java.sql.*;
-
+import Manager.Model.*;
+import java.util.*;
 /**
  *
  * @author ACER
@@ -16,6 +17,20 @@ public class Admin_Backend {
     static ResultSet rs;
     static Connection conn = createConnection();
     static PreparedStatement psm = null;
+    public List<Manager> ListManager(){
+        List<Manager> list= new ArrayList<Manager>();
+        try {
+            sql = "select username,state from covid_management.account where type=2;";
+            psm = conn.prepareStatement(sql);
+            rs = psm.executeQuery();
+            while (rs.next()) {
+                list.add(new Manager(rs.getString("username"), rs.getString("state")));
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return list;
+    }
     public void CreateManager(String username,String password){
         try {
             sql = "insert account values(?,?,2);";

@@ -4,15 +4,12 @@
  */
 package Admin.GUI;
 import Admin.Controller.*;
-/**
- *
- * @author ACER
- */
+
 public class CreateManager_AUI extends javax.swing.JFrame {
 
-    /**
-     * Creates new form CreateManager_AUI
-     */
+
+    static admin_controller con = new admin_controller();
+
     public CreateManager_AUI() {
         initComponents();
     }
@@ -158,7 +155,6 @@ public class CreateManager_AUI extends javax.swing.JFrame {
         username = jTextField1.getText();
         password = jTextField2.getText();
         if(username!=null&&password!=null){
-            admin_controller con = new admin_controller();
             con.create_manager(username, password);
         }
     }//GEN-LAST:event_jButton1ActionPerformed
