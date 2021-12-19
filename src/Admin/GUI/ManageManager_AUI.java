@@ -6,8 +6,8 @@ package Admin.GUI;
 
 import javax.swing.table.*;
 import javax.swing.*;
-import Admin.Controller.*;
 import java.util.*;
+import Admin.Controller.*;
 import Manager.Model.*;
 public class ManageManager_AUI extends javax.swing.JFrame {
 
@@ -147,7 +147,8 @@ public class ManageManager_AUI extends javax.swing.JFrame {
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
         super.dispose();
-        HistoryManager_AUI.main(null);
+        String[] arg = new String[] {SelectedUsername};
+        HistoryManager_AUI.main(arg);
     }//GEN-LAST:event_jButton2ActionPerformed
 
     private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed

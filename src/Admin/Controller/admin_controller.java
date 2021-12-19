@@ -20,7 +20,6 @@ public class admin_controller {
         return list;
     }
     public void lock_open_manager(String username,String state){
-        System.out.println(username+" "+state);
         if(username!=null){
             if(state.equals("OPEN")||state==null)
                 be.LockOrOpen(username,"LOCK");
@@ -28,7 +27,12 @@ public class admin_controller {
                 be.LockOrOpen(username,"OPEN");
         }
     }
+    public List<String[]> history_manager(String username){
+        List<String[]> list = null;
+        list = be.HistoryManager(username);
+        return list;
+    }
     public static void main(String args[]) {
-        //be.LockOrOpen("MN56789", "LOCK");
+        //be.HistoryManager("MN12345");
     }
 }

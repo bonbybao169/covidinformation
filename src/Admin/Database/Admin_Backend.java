@@ -56,4 +56,20 @@ public class Admin_Backend {
             e.printStackTrace();
         }
     }
+    public List<String[]> HistoryManager(String username){
+        List<String[]> list= new ArrayList<String[]>();
+        try {
+            sql = "select AccountID,Time from management_history where AccountID=?;";
+            psm = conn.prepareStatement(sql);
+            psm.setString(1, username);
+            rs = psm.executeQuery();
+            while (rs.next()) {
+                String[] temp = {rs.getString("AccountID"), rs.getString("Time")};
+                list.add(temp);
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return list;
+    }
 }

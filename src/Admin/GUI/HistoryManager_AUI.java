@@ -3,6 +3,12 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JFrame.java to edit this template
  */
 package Admin.GUI;
+
+import Admin.Controller.admin_controller;
+import javax.swing.*;
+import java.util.*;
+import javax.swing.table.*;
+
 /**
  *
  * @author ACER
@@ -12,8 +18,15 @@ public class HistoryManager_AUI extends javax.swing.JFrame {
     /**
      * Creates new form HistoryManager_AUI
      */
-    public HistoryManager_AUI() {
+    static DefaultTableModel model;
+    static admin_controller con = new admin_controller();
+    public HistoryManager_AUI(String SelectedUsername) {
         initComponents();
+        List<String[]> list = con.history_manager(SelectedUsername);
+        model = (DefaultTableModel) jTable1.getModel();
+        for(String[] element:list){
+            model.addRow(new Object[]{element[0], element[1]});
+        }
     }
 
     /**
@@ -38,14 +51,7 @@ public class HistoryManager_AUI extends javax.swing.JFrame {
 
         jTable1.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null},
-                {null, null},
-                {null, null},
-                {null, null},
-                {null, null},
-                {null, null},
-                {null, null},
-                {null, null}
+
             },
             new String [] {
                 "Thời gian", "Lịch sử hoạt động"
@@ -106,7 +112,8 @@ public class HistoryManager_AUI extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-        // TODO add your handling code here:
+        super.dispose();
+        ManageManager_AUI.main(null);
     }//GEN-LAST:event_jButton1ActionPerformed
 
     /**
@@ -139,7 +146,7 @@ public class HistoryManager_AUI extends javax.swing.JFrame {
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new HistoryManager_AUI().setVisible(true);
+                new HistoryManager_AUI(args[0]).setVisible(true);
             }
         });
     }
