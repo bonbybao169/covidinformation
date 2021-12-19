@@ -19,7 +19,16 @@ public class admin_controller {
         list = be.ListManager();
         return list;
     }
+    public void lock_open_manager(String username,String state){
+        System.out.println(username+" "+state);
+        if(username!=null){
+            if(state.equals("OPEN")||state==null)
+                be.LockOrOpen(username,"LOCK");
+            else if(state.equals("LOCK"))
+                be.LockOrOpen(username,"OPEN");
+        }
+    }
     public static void main(String args[]) {
-        System.out.println(be.ListManager());
+        //be.LockOrOpen("MN56789", "LOCK");
     }
 }

@@ -33,7 +33,7 @@ public class Admin_Backend {
     }
     public void CreateManager(String username,String password){
         try {
-            sql = "insert account values(?,?,2);";
+            sql = "insert account values(?,?,2,OPEN);";
             psm = conn.prepareStatement(sql);
             psm.setString(1, username);
             psm.setString(2, password);
@@ -43,5 +43,17 @@ public class Admin_Backend {
             e.printStackTrace();
         }
     }
-
+    public void LockOrOpen(String username,String state){
+    
+        try {
+            sql = "update account set state= ? where username = ?;";
+            psm = conn.prepareStatement(sql);
+            psm.setString(1, state);
+            psm.setString(2, username);
+            psm.executeUpdate();
+     
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+    }
 }

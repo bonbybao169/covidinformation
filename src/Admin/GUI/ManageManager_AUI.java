@@ -16,6 +16,7 @@ public class ManageManager_AUI extends javax.swing.JFrame {
      */
     static DefaultTableModel model;
     static String SelectedUsername;
+    static String SelectedState;
     static admin_controller con = new admin_controller();
     public ManageManager_AUI() {
         initComponents();
@@ -134,7 +135,14 @@ public class ManageManager_AUI extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-        //AdminMenu_AUI.main(null);
+        con.lock_open_manager(SelectedUsername, SelectedState);
+        List<Manager> list = con.list_manager();
+        model = (DefaultTableModel) jTable1.getModel();
+        model.setRowCount(0);
+        for(Manager element:list){
+            model.addRow(new Object[]{element.getName(), element.getState()});
+        }
+        //System.out.println(SelectedUsername+" "+SelectedState);
     }//GEN-LAST:event_jButton1ActionPerformed
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
@@ -150,6 +158,7 @@ public class ManageManager_AUI extends javax.swing.JFrame {
     private void jTable1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jTable1MouseClicked
         DefaultTableModel tableModel=(DefaultTableModel)jTable1.getModel();
         SelectedUsername = tableModel.getValueAt(jTable1.getSelectedRow(),0).toString();
+        SelectedState = tableModel.getValueAt(jTable1.getSelectedRow(),1).toString();
     }//GEN-LAST:event_jTable1MouseClicked
 
     /**
