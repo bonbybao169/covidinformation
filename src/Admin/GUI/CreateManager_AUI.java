@@ -2,8 +2,8 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JFrame.java to edit this template
  */
-package GUI.Admin;
-
+package Admin.GUI;
+import Admin.Controller.*;
 /**
  *
  * @author ACER
@@ -55,7 +55,7 @@ public class CreateManager_AUI extends javax.swing.JFrame {
 
         jLabel3.setText("Password:");
 
-        jTextField1.setText("Nhập username");
+        jTextField1.setToolTipText("Nhập username");
         jTextField1.setPreferredSize(new java.awt.Dimension(125, 25));
         jTextField1.setRequestFocusEnabled(false);
         jTextField1.setSelectionEnd(23);
@@ -66,7 +66,7 @@ public class CreateManager_AUI extends javax.swing.JFrame {
             }
         });
 
-        jTextField2.setText("Nhập password");
+        jTextField2.setToolTipText("Nhập password");
         jTextField2.setPreferredSize(new java.awt.Dimension(125, 25));
         jTextField2.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -154,7 +154,13 @@ public class CreateManager_AUI extends javax.swing.JFrame {
     }//GEN-LAST:event_jTextField1ActionPerformed
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-        // TODO add your handling code here:
+        String username,password;
+        username = jTextField1.getText();
+        password = jTextField2.getText();
+        if(username!=null&&password!=null){
+            admin_controller con = new admin_controller();
+            con.create_manager(username, password);
+        }
     }//GEN-LAST:event_jButton1ActionPerformed
 
     private void jTextField2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField2ActionPerformed
@@ -162,7 +168,8 @@ public class CreateManager_AUI extends javax.swing.JFrame {
     }//GEN-LAST:event_jTextField2ActionPerformed
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
-        // TODO add your handling code here:
+        super.dispose();
+        AdminMenu_AUI.main(null);
     }//GEN-LAST:event_jButton2ActionPerformed
 
     /**
