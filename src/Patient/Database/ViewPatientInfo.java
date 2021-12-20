@@ -1,6 +1,6 @@
 package Patient.Database;
 
-import Patient.Model.*;
+import Patient.Model.Patient;
 import static DatabaseConnector.connect_db.createConnection;
 import java.sql.*;
 
@@ -29,5 +29,4 @@ public class ViewPatientInfo {
 
         return temp;
     }
-
 }
