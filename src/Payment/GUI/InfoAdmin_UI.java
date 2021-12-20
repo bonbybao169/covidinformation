@@ -2,19 +2,25 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JFrame.java to edit this template
  */
-package GUI.Payment;
+package Payment.GUI;
 
 /**
  *
  * @author ACER
  */
+import Payment.Controller.*;
+import java.util.*;
 public class InfoAdmin_UI extends javax.swing.JFrame {
 
     /**
      * Creates new form InfoAdmin_UI
      */
+    static payment_controller con = new payment_controller();
     public InfoAdmin_UI() {
         initComponents();
+        List<String[]> list=con.info_admin();
+        jLabel4.setText(list.get(0)[0]);
+        jLabel5.setText(list.get(0)[1]);
     }
 
     /**
@@ -109,7 +115,8 @@ public class InfoAdmin_UI extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-        // TODO add your handling code here:
+        super.dispose();
+        AdminMenu_UI.main(null);
     }//GEN-LAST:event_jButton1ActionPerformed
 
     /**

@@ -75,6 +75,9 @@
         </Property>
         <Property name="text" type="java.lang.String" value="Xem th&#xf4;ng tin t&#xe0;i kho&#x1ea3;n"/>
       </Properties>
+      <Events>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jButton1ActionPerformed"/>
+      </Events>
     </Component>
     <Component class="javax.swing.JButton" name="jButton2">
       <Properties>
@@ -94,6 +97,9 @@
         </Property>
         <Property name="text" type="java.lang.String" value="Th&#xea;m t&#xe0;i kho&#x1ea3;n ng&#x1b0;&#x1edd;i &#x111;&#x1b0;&#x1ee3;c qu&#x1ea3;n l&#xfd; m&#x1edb;i"/>
       </Properties>
+      <Events>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jButton3ActionPerformed"/>
+      </Events>
     </Component>
   </SubComponents>
 </Form>
