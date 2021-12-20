@@ -43,7 +43,13 @@ public class admin_controller {
     public void update_hospital(String ID, String Name, int MaxCapicity, int PresentCapicity){
         be.UpdateHospital(ID,Name,MaxCapicity,PresentCapicity);
     }
+    public List<String[]> find_hospital(String ID){
+        List<String[]> list = null;
+        list = be.FindHospital(ID);
+        return list;
+        
+    }
     public static void main(String args[]) {
-        be.CreateManager("MN15973","covid");
+        //be.FindHospital("HP001");
     }
 }

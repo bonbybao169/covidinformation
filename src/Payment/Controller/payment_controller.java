@@ -15,6 +15,11 @@ public class payment_controller {
         list = be.InfoAdmin();
         return list;
     }
+    public List<String[]> list_payment(){
+        List<String[]> list = null;
+        list = be.ListPayment();
+        return list;
+    }
     public static void main(String args[]) {
         
     }

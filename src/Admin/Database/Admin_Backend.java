@@ -112,4 +112,20 @@ public class Admin_Backend {
             e.printStackTrace();
         }
     }
+    public List<String[]> FindHospital(String ID){
+        List<String[]> list= new ArrayList<String[]>();
+        try {
+            sql = "select * from isolation_area where ID=?;";
+            psm = conn.prepareStatement(sql);
+            psm.setString(1, ID);
+            rs = psm.executeQuery();
+            while (rs.next()) {
+                String[] temp = {rs.getString("ID"), rs.getString("Name"), rs.getString("MaxCapicity"), rs.getString("PresentCapicity")}; 
+                list.add(temp);
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return list;
+    }
 }
