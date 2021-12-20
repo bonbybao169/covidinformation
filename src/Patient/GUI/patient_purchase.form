@@ -106,11 +106,17 @@
     <Component class="javax.swing.JComboBox" name="sortComboBox">
       <Properties>
         <Property name="model" type="javax.swing.ComboBoxModel" editor="org.netbeans.modules.form.editors2.ComboBoxModelEditor">
-          <StringArray count="4">
+          <StringArray count="10">
             <StringItem index="0" value="ID (a-z)"/>
             <StringItem index="1" value="ID (z-a)"/>
             <StringItem index="2" value="T&#xea;n g&#xf3;i (a-z)"/>
             <StringItem index="3" value="T&#xea;n g&#xf3;i (z-a)"/>
+            <StringItem index="4" value="M&#x1ee9;c gi&#x1edb;i h&#x1ea1;n (a-z)"/>
+            <StringItem index="5" value="M&#x1ee9;c gi&#x1edb;i h&#x1ea1;n (z-a)"/>
+            <StringItem index="6" value="Th&#x1edd;i gian gi&#x1edb;i h&#x1ea1;n (a-z)"/>
+            <StringItem index="7" value="Th&#x1edd;i gian gi&#x1edb;i h&#x1ea1;n (z-a)"/>
+            <StringItem index="8" value="&#x110;&#x1a1;n gi&#xe1; (a-z)"/>
+            <StringItem index="9" value="&#x110;&#x1a1;n gi&#xe1; (z-a)"/>
           </StringArray>
         </Property>
       </Properties>
@@ -219,6 +225,9 @@
       <Properties>
         <Property name="text" type="java.lang.String" value="S&#x1eaf;p x&#x1ebf;p"/>
       </Properties>
+      <Events>
+        <EventHandler event="mouseClicked" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="sortButtonMouseClicked"/>
+      </Events>
     </Component>
   </SubComponents>
 </Form>

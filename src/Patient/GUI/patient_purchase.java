@@ -48,7 +48,7 @@ public class patient_purchase extends javax.swing.JFrame {
         jLabel1.setFont(new java.awt.Font("Segoe UI Black", 0, 18)); // NOI18N
         jLabel1.setText("Gói nhu yếu phẩm");
 
-        sortComboBox.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "ID (a-z)", "ID (z-a)", "Tên gói (a-z)", "Tên gói (z-a)" }));
+        sortComboBox.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "ID (a-z)", "ID (z-a)", "Tên gói (a-z)", "Tên gói (z-a)", "Mức giới hạn (a-z)", "Mức giới hạn (z-a)", "Thời gian giới hạn (a-z)", "Thời gian giới hạn (z-a)", "Đơn giá (a-z)", "Đơn giá (z-a)" }));
 
         searchTextField.setToolTipText("Nhập tên gói muốn tìm kiếm");
 
@@ -115,6 +115,11 @@ public class patient_purchase extends javax.swing.JFrame {
         });
 
         sortButton.setText("Sắp xếp");
+        sortButton.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                sortButtonMouseClicked(evt);
+            }
+        });
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -212,6 +217,107 @@ public class patient_purchase extends javax.swing.JFrame {
             }
         }
     }//GEN-LAST:event_searchButtonMouseClicked
+
+    private void sortButtonMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_sortButtonMouseClicked
+        // TODO add your handling code here:
+        String filter = sortComboBox.getSelectedItem().toString();
+
+        switch (filter) {
+            case "ID (a-z)" -> {
+                list = control.view_essential_package_id_asc();
+
+                model = (DefaultTableModel) jTable1.getModel();
+                model.setRowCount(0);
+                for (EssentialPackage e : list) {
+                    model.addRow(new Object[]{e.getEPID(), e.getEPName(), e.getLimitPeople(), e.getLimitDate(), e.getPrice()});
+                }
+            }
+            case "ID (z-a)" -> {
+                list = control.view_essential_package_id_desc();
+
+                model = (DefaultTableModel) jTable1.getModel();
+                model.setRowCount(0);
+                for (EssentialPackage e : list) {
+                    model.addRow(new Object[]{e.getEPID(), e.getEPName(), e.getLimitPeople(), e.getLimitDate(), e.getPrice()});
+                }
+            }
+            case "Tên gói (a-z)" -> {
+                list = control.view_essential_package_name_asc();
+
+                model = (DefaultTableModel) jTable1.getModel();
+                model.setRowCount(0);
+                for (EssentialPackage e : list) {
+                    model.addRow(new Object[]{e.getEPID(), e.getEPName(), e.getLimitPeople(), e.getLimitDate(), e.getPrice()});
+                }
+            }
+            case "Tên gói (z-a)" -> {
+                list = control.view_essential_package_name_desc();
+
+                model = (DefaultTableModel) jTable1.getModel();
+                model.setRowCount(0);
+                for (EssentialPackage e : list) {
+                    model.addRow(new Object[]{e.getEPID(), e.getEPName(), e.getLimitPeople(), e.getLimitDate(), e.getPrice()});
+                }
+            }
+            case "Mức giới hạn (a-z)" -> {
+                list = control.view_essential_package_limit_people_asc();
+
+                model = (DefaultTableModel) jTable1.getModel();
+                model.setRowCount(0);
+                for (EssentialPackage e : list) {
+                    model.addRow(new Object[]{e.getEPID(), e.getEPName(), e.getLimitPeople(), e.getLimitDate(), e.getPrice()});
+                }
+            }
+            case "Mức giới hạn (z-a)" -> {
+                list = control.view_essential_package_limit_people_desc();
+
+                model = (DefaultTableModel) jTable1.getModel();
+                model.setRowCount(0);
+                for (EssentialPackage e : list) {
+                    model.addRow(new Object[]{e.getEPID(), e.getEPName(), e.getLimitPeople(), e.getLimitDate(), e.getPrice()});
+                }
+            }
+            case "Thời gian giới hạn (a-z)" -> {
+                list = control.view_essential_package_limit_time_asc();
+
+                model = (DefaultTableModel) jTable1.getModel();
+                model.setRowCount(0);
+                for (EssentialPackage e : list) {
+                    model.addRow(new Object[]{e.getEPID(), e.getEPName(), e.getLimitPeople(), e.getLimitDate(), e.getPrice()});
+                }
+            }
+            case "Thời gian giới hạn (z-a)" -> {
+                list = control.view_essential_package_limit_time_desc();
+
+                model = (DefaultTableModel) jTable1.getModel();
+                model.setRowCount(0);
+                for (EssentialPackage e : list) {
+                    model.addRow(new Object[]{e.getEPID(), e.getEPName(), e.getLimitPeople(), e.getLimitDate(), e.getPrice()});
+                }
+            }
+            case "Đơn giá (a-z)" -> {
+                list = control.view_essential_package_price_asc();
+
+                model = (DefaultTableModel) jTable1.getModel();
+                model.setRowCount(0);
+                for (EssentialPackage e : list) {
+                    model.addRow(new Object[]{e.getEPID(), e.getEPName(), e.getLimitPeople(), e.getLimitDate(), e.getPrice()});
+                }
+            }
+            case "Đơn giá (z-a)" -> {
+                list = control.view_essential_package_price_desc();
+
+                model = (DefaultTableModel) jTable1.getModel();
+                model.setRowCount(0);
+                for (EssentialPackage e : list) {
+                    model.addRow(new Object[]{e.getEPID(), e.getEPName(), e.getLimitPeople(), e.getLimitDate(), e.getPrice()});
+                }
+            }
+            default -> {
+            }
+        }
+
+    }//GEN-LAST:event_sortButtonMouseClicked
 
     public static void main(String args[]) {
         try {
