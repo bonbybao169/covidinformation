@@ -157,6 +157,8 @@ public class CreateManager_AUI extends javax.swing.JFrame {
         if(username!=null&&password!=null){
             con.create_manager(username, password);
         }
+        super.dispose();
+        AdminMenu_AUI.main(null);
     }//GEN-LAST:event_jButton1ActionPerformed
 
     private void jTextField2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField2ActionPerformed
