@@ -8,13 +8,22 @@ package Admin.GUI;
  *
  * @author ACER
  */
+import Admin.Controller.admin_controller;
+
 public class UpdateHostpital_AUI extends javax.swing.JFrame {
 
     /**
      * Creates new form UpdateHostpital
      */
-    public UpdateHostpital_AUI() {
+    static admin_controller con = new admin_controller();
+
+    public UpdateHostpital_AUI(String[] components) {
         initComponents();
+        System.out.println(components[1]);
+        jLabel6.setText(components[0]);
+        jTextField1.setText(components[1]);
+        jTextField2.setText(components[2]);
+        jTextField3.setText(components[3]);
     }
 
     /**
@@ -79,6 +88,11 @@ public class UpdateHostpital_AUI extends javax.swing.JFrame {
 
         jButton2.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
         jButton2.setText("Back");
+        jButton2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton2ActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -144,8 +158,20 @@ public class UpdateHostpital_AUI extends javax.swing.JFrame {
     }//GEN-LAST:event_jTextField3ActionPerformed
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-        // TODO add your handling code here:
+        if(jTextField1.getText().equals("")==false&&jTextField3.getText().equals("")==false){
+            String Name = jTextField1.getText();
+            int MaxCapicity = Integer.parseInt(jTextField2.getText());
+            int PresentCapicity = Integer.parseInt(jTextField3.getText());
+            con.update_hospital(jLabel6.getText(), Name, MaxCapicity, PresentCapicity);
+        }
+        super.dispose();
+        ManageHospital_AUI.main(null);
     }//GEN-LAST:event_jButton1ActionPerformed
+
+    private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
+        super.dispose();
+        ManageHospital_AUI.main(null);
+    }//GEN-LAST:event_jButton2ActionPerformed
 
     /**
      * @param args the command line arguments
@@ -178,7 +204,7 @@ public class UpdateHostpital_AUI extends javax.swing.JFrame {
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new UpdateHostpital_AUI().setVisible(true);
+                new UpdateHostpital_AUI(args).setVisible(true);
             }
         });
     }

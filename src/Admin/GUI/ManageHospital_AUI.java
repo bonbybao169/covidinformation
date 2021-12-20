@@ -11,7 +11,7 @@ import Admin.Controller.*;
 
 public class ManageHospital_AUI extends javax.swing.JFrame {
 
-    static String SelectedID;
+    static String SelectedID,SelectedName,SelectedMaxCapicity,SelectedPresentCapicity;
     static DefaultTableModel model;
     static admin_controller con = new admin_controller();
     public ManageHospital_AUI() {
@@ -147,7 +147,7 @@ public class ManageHospital_AUI extends javax.swing.JFrame {
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
         super.dispose();
-        String[] arg = new String[] {SelectedID};
+        String[] arg = new String[] {SelectedID,SelectedName,SelectedMaxCapicity,SelectedPresentCapicity};
         UpdateHostpital_AUI.main(arg);
     }//GEN-LAST:event_jButton2ActionPerformed
 
@@ -159,6 +159,9 @@ public class ManageHospital_AUI extends javax.swing.JFrame {
     private void jTable1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jTable1MouseClicked
         DefaultTableModel tableModel=(DefaultTableModel)jTable1.getModel();
         SelectedID = tableModel.getValueAt(jTable1.getSelectedRow(),0).toString();
+        SelectedName = tableModel.getValueAt(jTable1.getSelectedRow(),1).toString();
+        SelectedMaxCapicity = tableModel.getValueAt(jTable1.getSelectedRow(),2).toString(); 
+        SelectedPresentCapicity = tableModel.getValueAt(jTable1.getSelectedRow(),3).toString(); 
     }//GEN-LAST:event_jTable1MouseClicked
 
     /**

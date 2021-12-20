@@ -40,6 +40,9 @@ public class admin_controller {
     public void add_hospital(String ID, String Name, int MaxCapicity, int PresentCapicity){
         be.AddHospital(ID,Name,MaxCapicity,PresentCapicity);
     }
+    public void update_hospital(String ID, String Name, int MaxCapicity, int PresentCapicity){
+        be.UpdateHospital(ID,Name,MaxCapicity,PresentCapicity);
+    }
     public static void main(String args[]) {
         //be.HistoryManager("MN12345");
     }

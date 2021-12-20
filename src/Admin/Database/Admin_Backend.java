@@ -99,4 +99,17 @@ public class Admin_Backend {
             e.printStackTrace();
         }
     }
+    public void UpdateHospital(String ID, String Name, int MaxCapicity, int PresentCapicity ){
+        try {
+            sql = "update isolation_area set Name=?, MaxCapicity=?, PresentCapicity=? where ID=?;";
+            psm = conn.prepareStatement(sql);
+            psm.setString(1, Name);
+            psm.setInt(2, MaxCapicity);
+            psm.setInt(3, PresentCapicity);
+            psm.setString(4,ID);
+            psm.executeUpdate();
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+    }
 }
