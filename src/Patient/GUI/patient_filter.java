@@ -8,8 +8,13 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.imageio.ImageIO;
 import javax.swing.ImageIcon;
+import Patient.Controller.patient_controller;
+import java.text.ParseException;
 
 public class patient_filter extends javax.swing.JFrame {
+
+    patient_controller control = new patient_controller();
+    public static boolean filtered = false;
 
     public patient_filter() {
         try {
@@ -30,25 +35,29 @@ public class patient_filter extends javax.swing.JFrame {
 
         jScrollPane1 = new javax.swing.JScrollPane();
         jTextArea1 = new javax.swing.JTextArea();
+        jFormattedTextField2 = new javax.swing.JFormattedTextField();
         jPanel1 = new javax.swing.JPanel();
         jLabel1 = new javax.swing.JLabel();
         jLabel3 = new javax.swing.JLabel();
         jLabel4 = new javax.swing.JLabel();
-        jButton1 = new javax.swing.JButton();
-        jTextField2 = new javax.swing.JTextField();
-        jTextField4 = new javax.swing.JTextField();
-        jTextField5 = new javax.swing.JTextField();
-        jTextField6 = new javax.swing.JTextField();
-        jTextField7 = new javax.swing.JTextField();
+        confirmButton = new javax.swing.JButton();
+        priceToTextField = new javax.swing.JTextField();
+        limitPeopleFromTextField = new javax.swing.JTextField();
+        limitPeopleToTextField = new javax.swing.JTextField();
         jLabel5 = new javax.swing.JLabel();
         jLabel6 = new javax.swing.JLabel();
         jLabel7 = new javax.swing.JLabel();
-        jTextField3 = new javax.swing.JTextField();
+        priceFromTextField = new javax.swing.JTextField();
         jLabel2 = new javax.swing.JLabel();
+        limitTimeFromTextField = new javax.swing.JTextField();
+        limitTimeToTextField = new javax.swing.JTextField();
+        errorLabel = new javax.swing.JLabel();
 
         jTextArea1.setColumns(20);
         jTextArea1.setRows(5);
         jScrollPane1.setViewportView(jTextArea1);
+
+        jFormattedTextField2.setText("jFormattedTextField2");
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("Lọc");
@@ -66,29 +75,36 @@ public class patient_filter extends javax.swing.JFrame {
         jLabel4.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
         jLabel4.setText("Thời gian giới hạn:");
 
-        jButton1.setText("OK");
-        jButton1.addMouseListener(new java.awt.event.MouseAdapter() {
+        confirmButton.setText("OK");
+        confirmButton.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
-                jButton1MouseClicked(evt);
+                confirmButtonMouseClicked(evt);
             }
         });
 
-        jTextField2.setHorizontalAlignment(javax.swing.JTextField.CENTER);
-        jTextField2.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jTextField2ActionPerformed(evt);
+        priceToTextField.setHorizontalAlignment(javax.swing.JTextField.CENTER);
+        priceToTextField.setToolTipText("Allow only number");
+        priceToTextField.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                priceToTextFieldKeyPressed(evt);
             }
         });
 
-        jTextField4.setHorizontalAlignment(javax.swing.JTextField.CENTER);
+        limitPeopleFromTextField.setHorizontalAlignment(javax.swing.JTextField.CENTER);
+        limitPeopleFromTextField.setToolTipText("Allow only number");
+        limitPeopleFromTextField.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                limitPeopleFromTextFieldKeyPressed(evt);
+            }
+        });
 
-        jTextField5.setHorizontalAlignment(javax.swing.JTextField.CENTER);
-
-        jTextField6.setHorizontalAlignment(javax.swing.JTextField.CENTER);
-        jTextField6.setToolTipText("YYYY-MM-DD");
-
-        jTextField7.setHorizontalAlignment(javax.swing.JTextField.CENTER);
-        jTextField7.setToolTipText("YYYY-MM-DD");
+        limitPeopleToTextField.setHorizontalAlignment(javax.swing.JTextField.CENTER);
+        limitPeopleToTextField.setToolTipText("Allow only number");
+        limitPeopleToTextField.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                limitPeopleToTextFieldKeyPressed(evt);
+            }
+        });
 
         jLabel5.setFont(new java.awt.Font("Segoe UI", 0, 30)); // NOI18N
         jLabel5.setText("-");
@@ -99,14 +115,36 @@ public class patient_filter extends javax.swing.JFrame {
         jLabel7.setFont(new java.awt.Font("Segoe UI", 0, 30)); // NOI18N
         jLabel7.setText("-");
 
-        jTextField3.setHorizontalAlignment(javax.swing.JTextField.CENTER);
-        jTextField3.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jTextField3ActionPerformed(evt);
+        priceFromTextField.setHorizontalAlignment(javax.swing.JTextField.CENTER);
+        priceFromTextField.setToolTipText("Allow only number");
+        priceFromTextField.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                priceFromTextFieldKeyPressed(evt);
             }
         });
 
         jLabel2.setText("jLabel2");
+
+        limitTimeFromTextField.setHorizontalAlignment(javax.swing.JTextField.CENTER);
+        limitTimeFromTextField.setText("YYYY-MM-DD");
+        limitTimeFromTextField.setToolTipText("");
+        limitTimeFromTextField.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                limitTimeFromTextFieldMouseClicked(evt);
+            }
+        });
+
+        limitTimeToTextField.setHorizontalAlignment(javax.swing.JTextField.CENTER);
+        limitTimeToTextField.setText("YYYY-MM-DD");
+        limitTimeToTextField.setToolTipText("Allow only number");
+        limitTimeToTextField.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                limitTimeToTextFieldMouseClicked(evt);
+            }
+        });
+
+        errorLabel.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
+        errorLabel.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
@@ -117,7 +155,7 @@ public class patient_filter extends javax.swing.JFrame {
                 .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addGap(20, 20, 20)
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -126,9 +164,9 @@ public class patient_filter extends javax.swing.JFrame {
                             .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 112, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addGap(132, 132, 132)
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addComponent(jTextField3)
-                            .addComponent(jTextField4)
-                            .addComponent(jTextField6, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addComponent(priceFromTextField, javax.swing.GroupLayout.DEFAULT_SIZE, 100, Short.MAX_VALUE)
+                            .addComponent(limitPeopleFromTextField)
+                            .addComponent(limitTimeFromTextField, javax.swing.GroupLayout.Alignment.TRAILING))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                             .addComponent(jLabel6)
@@ -136,12 +174,14 @@ public class patient_filter extends javax.swing.JFrame {
                             .addComponent(jLabel5))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addComponent(jTextField2, javax.swing.GroupLayout.DEFAULT_SIZE, 100, Short.MAX_VALUE)
-                            .addComponent(jTextField5)
-                            .addComponent(jTextField7, javax.swing.GroupLayout.Alignment.LEADING)))
+                            .addComponent(priceToTextField, javax.swing.GroupLayout.DEFAULT_SIZE, 100, Short.MAX_VALUE)
+                            .addComponent(limitPeopleToTextField)
+                            .addComponent(limitTimeToTextField, javax.swing.GroupLayout.Alignment.LEADING)))
                     .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(jButton1)))
+                        .addGap(0, 0, Short.MAX_VALUE)
+                        .addComponent(errorLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 191, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(confirmButton)))
                 .addGap(20, 20, 20))
         );
         jPanel1Layout.setVerticalGroup(
@@ -152,23 +192,25 @@ public class patient_filter extends javax.swing.JFrame {
                 .addGap(25, 25, 25)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel1)
-                    .addComponent(jTextField3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jTextField2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(priceFromTextField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(priceToTextField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel5, javax.swing.GroupLayout.PREFERRED_SIZE, 12, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(27, 27, 27)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel3)
-                    .addComponent(jTextField4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jTextField5, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(limitPeopleFromTextField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(limitPeopleToTextField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel6, javax.swing.GroupLayout.PREFERRED_SIZE, 11, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(25, 25, 25)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel4)
-                    .addComponent(jTextField6, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel7, javax.swing.GroupLayout.PREFERRED_SIZE, 15, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jTextField7, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(limitTimeFromTextField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(limitTimeToTextField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 33, Short.MAX_VALUE)
-                .addComponent(jButton1)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(errorLabel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(confirmButton, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addGap(15, 15, 15))
         );
 
@@ -192,19 +234,70 @@ public class patient_filter extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void jButton1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton1MouseClicked
-        // TODO add your handling code here:
-        super.dispose();
-        patient_purchase.main(null);
-    }//GEN-LAST:event_jButton1MouseClicked
+    private void confirmButtonMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_confirmButtonMouseClicked
 
-    private void jTextField2ActionPerformed(java.awt.event.ActionEvent evt) {// GEN-FIRST:event_jTextField2ActionPerformed
         // TODO add your handling code here:
-    }// GEN-LAST:event_jTextField2ActionPerformed
+        if (limitTimeFromTextField.getText().equals("") && limitTimeToTextField.getText().equals("")) {
+            control.filter_essential_package(limitPeopleFromTextField.getText(), limitPeopleToTextField.getText(), limitTimeFromTextField.getText(), limitTimeToTextField.getText(), priceFromTextField.getText(), priceToTextField.getText());
+            filtered = true;
 
-    private void jTextField3ActionPerformed(java.awt.event.ActionEvent evt) {// GEN-FIRST:event_jTextField3ActionPerformed
+            super.dispose();
+            patient_purchase.main(null);
+        } else {
+            errorLabel.setText("Delete YYYY-MM-DD");
+        }
+
+    }//GEN-LAST:event_confirmButtonMouseClicked
+
+    private void priceFromTextFieldKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_priceFromTextFieldKeyPressed
         // TODO add your handling code here:
-    }// GEN-LAST:event_jTextField3ActionPerformed
+        char c = evt.getKeyChar();
+        if (Character.isLetter(c)) {
+            priceFromTextField.setEditable(false);
+        } else {
+            priceFromTextField.setEditable(true);
+        }
+    }//GEN-LAST:event_priceFromTextFieldKeyPressed
+
+    private void priceToTextFieldKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_priceToTextFieldKeyPressed
+        // TODO add your handling code here:
+        char c = evt.getKeyChar();
+        if (Character.isLetter(c)) {
+            priceToTextField.setEditable(false);
+        } else {
+            priceToTextField.setEditable(true);
+        }
+    }//GEN-LAST:event_priceToTextFieldKeyPressed
+
+    private void limitPeopleFromTextFieldKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_limitPeopleFromTextFieldKeyPressed
+        // TODO add your handling code here:
+        char c = evt.getKeyChar();
+        if (Character.isLetter(c)) {
+            limitPeopleFromTextField.setEditable(false);
+        } else {
+            limitPeopleFromTextField.setEditable(true);
+        }
+    }//GEN-LAST:event_limitPeopleFromTextFieldKeyPressed
+
+    private void limitPeopleToTextFieldKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_limitPeopleToTextFieldKeyPressed
+        // TODO add your handling code here:
+        char c = evt.getKeyChar();
+        if (Character.isLetter(c)) {
+            limitPeopleToTextField.setEditable(false);
+        } else {
+            limitPeopleToTextField.setEditable(true);
+        }
+    }//GEN-LAST:event_limitPeopleToTextFieldKeyPressed
+
+    private void limitTimeFromTextFieldMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_limitTimeFromTextFieldMouseClicked
+        // TODO add your handling code here:
+        limitTimeFromTextField.setText("");
+    }//GEN-LAST:event_limitTimeFromTextFieldMouseClicked
+
+    private void limitTimeToTextFieldMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_limitTimeToTextFieldMouseClicked
+        // TODO add your handling code here:
+        limitTimeToTextField.setText("");
+    }//GEN-LAST:event_limitTimeToTextFieldMouseClicked
 
     public static void main(String args[]) {
 
@@ -238,7 +331,9 @@ public class patient_filter extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton jButton1;
+    private javax.swing.JButton confirmButton;
+    private javax.swing.JLabel errorLabel;
+    private javax.swing.JFormattedTextField jFormattedTextField2;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
@@ -249,12 +344,12 @@ public class patient_filter extends javax.swing.JFrame {
     private javax.swing.JPanel jPanel1;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JTextArea jTextArea1;
-    private javax.swing.JTextField jTextField2;
-    private javax.swing.JTextField jTextField3;
-    private javax.swing.JTextField jTextField4;
-    private javax.swing.JTextField jTextField5;
-    private javax.swing.JTextField jTextField6;
-    private javax.swing.JTextField jTextField7;
+    private javax.swing.JTextField limitPeopleFromTextField;
+    private javax.swing.JTextField limitPeopleToTextField;
+    private javax.swing.JTextField limitTimeFromTextField;
+    private javax.swing.JTextField limitTimeToTextField;
+    private javax.swing.JTextField priceFromTextField;
+    private javax.swing.JTextField priceToTextField;
     // End of variables declaration//GEN-END:variables
     BufferedImage img = null;
 }

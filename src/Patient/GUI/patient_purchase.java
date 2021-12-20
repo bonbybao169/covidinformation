@@ -15,11 +15,20 @@ public class patient_purchase extends javax.swing.JFrame {
         initComponents();
         this.setLocationRelativeTo(null);
 
-        list = control.view_essential_package();
+        if (patient_filter.filtered == false) {
+            list = control.view_essential_package();
 
-        model = (DefaultTableModel) jTable1.getModel();
-        for (EssentialPackage e : list) {
-            model.addRow(new Object[]{e.getEPID(), e.getEPName(), e.getLimitPeople(), e.getLimitDate(), e.getPrice()});
+            model = (DefaultTableModel) jTable1.getModel();
+            for (EssentialPackage e : list) {
+                model.addRow(new Object[]{e.getEPID(), e.getEPName(), e.getLimitPeople(), e.getLimitDate(), e.getPrice()});
+            }
+        } else {
+            list = control.view_filtered_EP();
+
+            model = (DefaultTableModel) jTable1.getModel();
+            for (EssentialPackage e : list) {
+                model.addRow(new Object[]{e.getEPID(), e.getEPName(), e.getLimitPeople(), e.getLimitDate(), e.getPrice()});
+            }
         }
     }
 
