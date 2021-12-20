@@ -14,8 +14,8 @@ public class admin_controller {
     public void create_manager(String username,String password) {
         be.CreateManager(username,password);
     }
-    public List<Manager> list_manager(){
-        List<Manager> list = null;
+    public List<String[]> list_manager(){
+        List<String[]> list = null;
         list = be.ListManager();
         return list;
     }
@@ -30,6 +30,11 @@ public class admin_controller {
     public List<String[]> history_manager(String username){
         List<String[]> list = null;
         list = be.HistoryManager(username);
+        return list;
+    }
+    public List<String[]> find_manager(String username){
+        List<String[]> list = null;
+        list = be.FindManager(username);
         return list;
     }
     public List<String[]> list_hospital(){

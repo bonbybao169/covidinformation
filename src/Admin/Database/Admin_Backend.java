@@ -17,14 +17,15 @@ public class Admin_Backend {
     static ResultSet rs;
     static Connection conn = createConnection();
     static PreparedStatement psm = null;
-    public List<Manager> ListManager(){
-        List<Manager> list= new ArrayList<Manager>();
+    public List<String[]> ListManager(){
+        List<String[]> list= new ArrayList<String[]>();
         try {
             sql = "select username,state from covid_management.account where type=2;";
             psm = conn.prepareStatement(sql);
             rs = psm.executeQuery();
             while (rs.next()) {
-                list.add(new Manager(rs.getString("username"), rs.getString("state")));
+                String[] temp = {rs.getString("username"), rs.getString("state")};
+                list.add(temp);
             }
         } catch (SQLException e) {
             e.printStackTrace();
@@ -64,6 +65,22 @@ public class Admin_Backend {
             rs = psm.executeQuery();
             while (rs.next()) {
                 String[] temp = {rs.getString("AccountID"), rs.getString("Time")};
+                list.add(temp);
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return list;
+    }
+    public List<String[]> FindManager(String username){
+        List<String[]> list= new ArrayList<String[]>();
+        try {
+            sql = "select Username,state from covid_management.account where type=2 and username = ?;";
+            psm = conn.prepareStatement(sql);
+            psm.setString(1, username);
+            rs = psm.executeQuery();
+            while (rs.next()) {
+                String[] temp = {rs.getString("Username"), rs.getString("state")};
                 list.add(temp);
             }
         } catch (SQLException e) {
