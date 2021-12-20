@@ -1,14 +1,14 @@
 package Patient.GUI;
 
 import Patient.Controller.patient_controller;
-import Patient.Model.ConsumptionHistory;
+import Patient.Model.ManagementHistory;
 import java.util.ArrayList;
 import javax.swing.table.DefaultTableModel;
 
 public class patient_management_history extends javax.swing.JFrame {
 
     patient_controller control = new patient_controller();
-    ArrayList<ConsumptionHistory> list = null;
+    ArrayList<ManagementHistory> list = null;
     DefaultTableModel model;
 
     public patient_management_history() {
@@ -18,7 +18,7 @@ public class patient_management_history extends javax.swing.JFrame {
         list = control.view_management_history();
 
         model = (DefaultTableModel) jTable1.getModel();
-        for (ConsumptionHistory e : list) {
+        for (ManagementHistory e : list) {
             model.addRow(new Object[]{e.getTime(), e.getContent()});
         }
     }

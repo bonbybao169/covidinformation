@@ -1,6 +1,6 @@
 package Patient.Database;
 
-import Patient.Model.ConsumptionHistory;
+import Patient.Model.ManagementHistory;
 import static DatabaseConnector.connect_db.createConnection;
 import java.sql.*;
 import java.util.ArrayList;
@@ -12,9 +12,9 @@ public class ViewManagementHistory {
     Connection conn = createConnection();
     PreparedStatement psm = null;
 
-    public ArrayList<ConsumptionHistory> getManagementHistory(String username) {
-        ConsumptionHistory temp = null;
-        ArrayList<ConsumptionHistory> list = new ArrayList<ConsumptionHistory>();
+    public ArrayList<ManagementHistory> getManagementHistory(String username) {
+        ManagementHistory temp = null;
+        ArrayList<ManagementHistory> list = new ArrayList<ManagementHistory>();
 
         try {
             sql = "Select * from management_history where AccountID = ?";
@@ -23,7 +23,7 @@ public class ViewManagementHistory {
             rs = psm.executeQuery();
 
             while (rs.next()) {
-                temp = new ConsumptionHistory(rs.getString("AccountID"), rs.getString("Content"), rs.getDate("Time"));
+                temp = new ManagementHistory(rs.getString("AccountID"), rs.getString("Content"), rs.getDate("Time"));
                 list.add(temp);
             }
         } catch (SQLException e) {

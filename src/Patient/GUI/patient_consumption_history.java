@@ -1,10 +1,28 @@
 package Patient.GUI;
 
+import Patient.Controller.patient_controller;
+import Patient.Model.ConsumptionHistory;
+import java.util.ArrayList;
+import javax.swing.table.DefaultTableModel;
+
 public class patient_consumption_history extends javax.swing.JFrame {
+
+    patient_controller control = new patient_controller();
+    ArrayList<ConsumptionHistory> list = null;
+    DefaultTableModel model;
+    String s;
 
     public patient_consumption_history() {
         initComponents();
         this.setLocationRelativeTo(null);
+
+        list = control.view_consumption_history();
+
+        model = (DefaultTableModel) jTable1.getModel();
+        for (ConsumptionHistory e : list) {
+            s = "Đã tiêu thụ " + e.getQuantity() + " " + e.getEPName();
+            model.addRow(new Object[]{e.getTime(), s});
+        }
     }
 
     @SuppressWarnings("unchecked")
@@ -33,31 +51,7 @@ public class patient_consumption_history extends javax.swing.JFrame {
         jTable1.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
         jTable1.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null},
-                {null, null},
-                {null, null},
-                {null, null},
-                {null, null},
-                {null, null},
-                {null, null},
-                {null, null},
-                {null, null},
-                {null, null},
-                {null, null},
-                {null, null},
-                {null, null},
-                {null, null},
-                {null, null},
-                {null, null},
-                {null, null},
-                {null, null},
-                {null, null},
-                {null, null},
-                {null, null},
-                {null, null},
-                {null, null},
-                {null, null},
-                {null, null}
+
             },
             new String [] {
                 "Thời gian", "Lịch sử"
