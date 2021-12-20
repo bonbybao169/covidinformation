@@ -49,4 +49,13 @@ public class patient_controller {
 
         return list;
     }
+
+    public ArrayList<EssentialPackage> view_essential_package_by_name(String epname) {
+        ViewEPByName view = new ViewEPByName();
+        ArrayList<EssentialPackage> list = null;
+
+        list = view.getEssentialPackageByName(epname);
+
+        return list;
+    }
 }

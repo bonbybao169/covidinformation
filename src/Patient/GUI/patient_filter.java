@@ -85,8 +85,10 @@ public class patient_filter extends javax.swing.JFrame {
         jTextField5.setHorizontalAlignment(javax.swing.JTextField.CENTER);
 
         jTextField6.setHorizontalAlignment(javax.swing.JTextField.CENTER);
+        jTextField6.setToolTipText("YYYY-MM-DD");
 
         jTextField7.setHorizontalAlignment(javax.swing.JTextField.CENTER);
+        jTextField7.setToolTipText("YYYY-MM-DD");
 
         jLabel5.setFont(new java.awt.Font("Segoe UI", 0, 30)); // NOI18N
         jLabel5.setText("-");
