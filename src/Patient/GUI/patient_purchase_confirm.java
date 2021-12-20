@@ -13,7 +13,7 @@ public class patient_purchase_confirm extends javax.swing.JFrame {
 
     public patient_purchase_confirm() {
         try {
-            img = ImageIO.read(new File("S:\\Pictures\\covid.jpg"));
+            img = ImageIO.read(new File("src/Image/covid.jpg"));
             initComponents();
             Image dimg = img.getScaledInstance(jLabel2.getWidth(), jLabel2.getHeight(), Image.SCALE_SMOOTH);
             ImageIcon imageIcon = new ImageIcon(dimg);

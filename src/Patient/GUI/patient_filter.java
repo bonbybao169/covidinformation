@@ -18,7 +18,7 @@ public class patient_filter extends javax.swing.JFrame {
 
     public patient_filter() {
         try {
-            img = ImageIO.read(new File("S:\\Pictures\\covid.jpg"));
+            img = ImageIO.read(new File("src/Image/covid.jpg"));
             initComponents();
             Image dimg = img.getScaledInstance(jLabel2.getWidth(), jLabel2.getHeight(), Image.SCALE_SMOOTH);
             ImageIcon imageIcon = new ImageIcon(dimg);
@@ -30,7 +30,8 @@ public class patient_filter extends javax.swing.JFrame {
     }
 
     @SuppressWarnings("unchecked")
-    // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
+    // <editor-fold defaultstate="collapsed" desc="Generated
+    // Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
         jScrollPane1 = new javax.swing.JScrollPane();
@@ -149,96 +150,131 @@ public class patient_filter extends javax.swing.JFrame {
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
-            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGap(20, 20, 20)
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 112, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jLabel4)
-                            .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 112, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGap(132, 132, 132)
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addComponent(priceFromTextField, javax.swing.GroupLayout.DEFAULT_SIZE, 100, Short.MAX_VALUE)
-                            .addComponent(limitPeopleFromTextField)
-                            .addComponent(limitTimeFromTextField, javax.swing.GroupLayout.Alignment.TRAILING))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addComponent(jLabel6)
-                            .addComponent(jLabel7)
-                            .addComponent(jLabel5))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addComponent(priceToTextField, javax.swing.GroupLayout.DEFAULT_SIZE, 100, Short.MAX_VALUE)
-                            .addComponent(limitPeopleToTextField)
-                            .addComponent(limitTimeToTextField, javax.swing.GroupLayout.Alignment.LEADING)))
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGap(0, 0, Short.MAX_VALUE)
-                        .addComponent(errorLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 191, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(confirmButton)))
-                .addGap(20, 20, 20))
-        );
+                jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                        .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
+                                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 60,
+                                        javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                        .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
+                                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                        .addGroup(jPanel1Layout.createSequentialGroup()
+                                                .addGap(20, 20, 20)
+                                                .addGroup(jPanel1Layout
+                                                        .createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                                        .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE,
+                                                                112, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                                        .addComponent(jLabel4)
+                                                        .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE,
+                                                                112, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                                .addGap(132, 132, 132)
+                                                .addGroup(jPanel1Layout
+                                                        .createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING,
+                                                                false)
+                                                        .addComponent(priceFromTextField,
+                                                                javax.swing.GroupLayout.DEFAULT_SIZE, 100,
+                                                                Short.MAX_VALUE)
+                                                        .addComponent(limitPeopleFromTextField)
+                                                        .addComponent(limitTimeFromTextField,
+                                                                javax.swing.GroupLayout.Alignment.TRAILING))
+                                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                                .addGroup(jPanel1Layout
+                                                        .createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                                                        .addComponent(jLabel6)
+                                                        .addComponent(jLabel7)
+                                                        .addComponent(jLabel5))
+                                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                                .addGroup(jPanel1Layout
+                                                        .createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                                                        .addComponent(priceToTextField,
+                                                                javax.swing.GroupLayout.DEFAULT_SIZE, 100,
+                                                                Short.MAX_VALUE)
+                                                        .addComponent(limitPeopleToTextField)
+                                                        .addComponent(limitTimeToTextField,
+                                                                javax.swing.GroupLayout.Alignment.LEADING)))
+                                        .addGroup(jPanel1Layout.createSequentialGroup()
+                                                .addGap(0, 0, Short.MAX_VALUE)
+                                                .addComponent(errorLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 191,
+                                                        javax.swing.GroupLayout.PREFERRED_SIZE)
+                                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                                .addComponent(confirmButton)))
+                                .addGap(20, 20, 20)));
         jPanel1Layout.setVerticalGroup(
-            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel1Layout.createSequentialGroup()
-                .addGap(10, 10, 10)
-                .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 53, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(25, 25, 25)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel1)
-                    .addComponent(priceFromTextField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(priceToTextField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel5, javax.swing.GroupLayout.PREFERRED_SIZE, 12, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(27, 27, 27)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel3)
-                    .addComponent(limitPeopleFromTextField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(limitPeopleToTextField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel6, javax.swing.GroupLayout.PREFERRED_SIZE, 11, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(25, 25, 25)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel4)
-                    .addComponent(jLabel7, javax.swing.GroupLayout.PREFERRED_SIZE, 15, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(limitTimeFromTextField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(limitTimeToTextField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 33, Short.MAX_VALUE)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(errorLabel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(confirmButton, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                .addGap(15, 15, 15))
-        );
+                jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                        .addGroup(jPanel1Layout.createSequentialGroup()
+                                .addGap(10, 10, 10)
+                                .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 53,
+                                        javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(25, 25, 25)
+                                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                                        .addComponent(jLabel1)
+                                        .addComponent(priceFromTextField, javax.swing.GroupLayout.PREFERRED_SIZE,
+                                                javax.swing.GroupLayout.DEFAULT_SIZE,
+                                                javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addComponent(priceToTextField, javax.swing.GroupLayout.PREFERRED_SIZE,
+                                                javax.swing.GroupLayout.DEFAULT_SIZE,
+                                                javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addComponent(jLabel5, javax.swing.GroupLayout.PREFERRED_SIZE, 12,
+                                                javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addGap(27, 27, 27)
+                                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                                        .addComponent(jLabel3)
+                                        .addComponent(limitPeopleFromTextField, javax.swing.GroupLayout.PREFERRED_SIZE,
+                                                javax.swing.GroupLayout.DEFAULT_SIZE,
+                                                javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addComponent(limitPeopleToTextField, javax.swing.GroupLayout.PREFERRED_SIZE,
+                                                javax.swing.GroupLayout.DEFAULT_SIZE,
+                                                javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addComponent(jLabel6, javax.swing.GroupLayout.PREFERRED_SIZE, 11,
+                                                javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addGap(25, 25, 25)
+                                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                                        .addComponent(jLabel4)
+                                        .addComponent(jLabel7, javax.swing.GroupLayout.PREFERRED_SIZE, 15,
+                                                javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addComponent(limitTimeFromTextField, javax.swing.GroupLayout.PREFERRED_SIZE,
+                                                javax.swing.GroupLayout.DEFAULT_SIZE,
+                                                javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addComponent(limitTimeToTextField, javax.swing.GroupLayout.PREFERRED_SIZE,
+                                                javax.swing.GroupLayout.DEFAULT_SIZE,
+                                                javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 33,
+                                        Short.MAX_VALUE)
+                                .addGroup(jPanel1Layout
+                                        .createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                        .addComponent(errorLabel, javax.swing.GroupLayout.DEFAULT_SIZE,
+                                                javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                        .addComponent(confirmButton, javax.swing.GroupLayout.DEFAULT_SIZE,
+                                                javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                                .addGap(15, 15, 15)));
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addContainerGap(50, Short.MAX_VALUE)
-                .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, 508, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(50, Short.MAX_VALUE))
-        );
+                layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                        .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                                .addContainerGap(50, Short.MAX_VALUE)
+                                .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, 508,
+                                        javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addContainerGap(50, Short.MAX_VALUE)));
         layout.setVerticalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addContainerGap(25, Short.MAX_VALUE)
-                .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, 290, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(25, Short.MAX_VALUE))
-        );
+                layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                        .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                                .addContainerGap(25, Short.MAX_VALUE)
+                                .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, 290,
+                                        javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addContainerGap(25, Short.MAX_VALUE)));
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void confirmButtonMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_confirmButtonMouseClicked
+    private void confirmButtonMouseClicked(java.awt.event.MouseEvent evt) {// GEN-FIRST:event_confirmButtonMouseClicked
 
         // TODO add your handling code here:
         if (limitTimeFromTextField.getText().equals("") && limitTimeToTextField.getText().equals("")) {
-            control.filter_essential_package(limitPeopleFromTextField.getText(), limitPeopleToTextField.getText(), limitTimeFromTextField.getText(), limitTimeToTextField.getText(), priceFromTextField.getText(), priceToTextField.getText());
+            control.filter_essential_package(limitPeopleFromTextField.getText(), limitPeopleToTextField.getText(),
+                    limitTimeFromTextField.getText(), limitTimeToTextField.getText(), priceFromTextField.getText(),
+                    priceToTextField.getText());
             filtered = true;
 
             super.dispose();
@@ -247,9 +283,9 @@ public class patient_filter extends javax.swing.JFrame {
             errorLabel.setText("Delete YYYY-MM-DD");
         }
 
-    }//GEN-LAST:event_confirmButtonMouseClicked
+    }// GEN-LAST:event_confirmButtonMouseClicked
 
-    private void priceFromTextFieldKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_priceFromTextFieldKeyPressed
+    private void priceFromTextFieldKeyPressed(java.awt.event.KeyEvent evt) {// GEN-FIRST:event_priceFromTextFieldKeyPressed
         // TODO add your handling code here:
         char c = evt.getKeyChar();
         if (Character.isLetter(c)) {
@@ -257,9 +293,9 @@ public class patient_filter extends javax.swing.JFrame {
         } else {
             priceFromTextField.setEditable(true);
         }
-    }//GEN-LAST:event_priceFromTextFieldKeyPressed
+    }// GEN-LAST:event_priceFromTextFieldKeyPressed
 
-    private void priceToTextFieldKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_priceToTextFieldKeyPressed
+    private void priceToTextFieldKeyPressed(java.awt.event.KeyEvent evt) {// GEN-FIRST:event_priceToTextFieldKeyPressed
         // TODO add your handling code here:
         char c = evt.getKeyChar();
         if (Character.isLetter(c)) {
@@ -267,9 +303,9 @@ public class patient_filter extends javax.swing.JFrame {
         } else {
             priceToTextField.setEditable(true);
         }
-    }//GEN-LAST:event_priceToTextFieldKeyPressed
+    }// GEN-LAST:event_priceToTextFieldKeyPressed
 
-    private void limitPeopleFromTextFieldKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_limitPeopleFromTextFieldKeyPressed
+    private void limitPeopleFromTextFieldKeyPressed(java.awt.event.KeyEvent evt) {// GEN-FIRST:event_limitPeopleFromTextFieldKeyPressed
         // TODO add your handling code here:
         char c = evt.getKeyChar();
         if (Character.isLetter(c)) {
@@ -277,9 +313,9 @@ public class patient_filter extends javax.swing.JFrame {
         } else {
             limitPeopleFromTextField.setEditable(true);
         }
-    }//GEN-LAST:event_limitPeopleFromTextFieldKeyPressed
+    }// GEN-LAST:event_limitPeopleFromTextFieldKeyPressed
 
-    private void limitPeopleToTextFieldKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_limitPeopleToTextFieldKeyPressed
+    private void limitPeopleToTextFieldKeyPressed(java.awt.event.KeyEvent evt) {// GEN-FIRST:event_limitPeopleToTextFieldKeyPressed
         // TODO add your handling code here:
         char c = evt.getKeyChar();
         if (Character.isLetter(c)) {
@@ -287,17 +323,17 @@ public class patient_filter extends javax.swing.JFrame {
         } else {
             limitPeopleToTextField.setEditable(true);
         }
-    }//GEN-LAST:event_limitPeopleToTextFieldKeyPressed
+    }// GEN-LAST:event_limitPeopleToTextFieldKeyPressed
 
-    private void limitTimeFromTextFieldMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_limitTimeFromTextFieldMouseClicked
+    private void limitTimeFromTextFieldMouseClicked(java.awt.event.MouseEvent evt) {// GEN-FIRST:event_limitTimeFromTextFieldMouseClicked
         // TODO add your handling code here:
         limitTimeFromTextField.setText("");
-    }//GEN-LAST:event_limitTimeFromTextFieldMouseClicked
+    }// GEN-LAST:event_limitTimeFromTextFieldMouseClicked
 
-    private void limitTimeToTextFieldMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_limitTimeToTextFieldMouseClicked
+    private void limitTimeToTextFieldMouseClicked(java.awt.event.MouseEvent evt) {// GEN-FIRST:event_limitTimeToTextFieldMouseClicked
         // TODO add your handling code here:
         limitTimeToTextField.setText("");
-    }//GEN-LAST:event_limitTimeToTextFieldMouseClicked
+    }// GEN-LAST:event_limitTimeToTextFieldMouseClicked
 
     public static void main(String args[]) {
 
