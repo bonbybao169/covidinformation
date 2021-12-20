@@ -26,9 +26,17 @@ public class patient_controller {
     public ArrayList<ConsumptionHistory> view_consumption_history() {
         ViewConsumptionHistory view = new ViewConsumptionHistory();
         ArrayList<ConsumptionHistory> list = null;
-        String s;
 
         list = view.getConsumptionHistory("111111111111");
+
+        return list;
+    }
+
+    public ArrayList<PaymentHistory> view_payment_history() {
+        ViewPaymentHistory view = new ViewPaymentHistory();
+        ArrayList<PaymentHistory> list = null;
+
+        list = view.getPaymentHistory("111111111111");
 
         return list;
     }

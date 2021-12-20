@@ -1,10 +1,30 @@
 package Patient.GUI;
 
+import Patient.Controller.patient_controller;
+import Patient.Model.PaymentHistory;
+import java.util.ArrayList;
+import javax.swing.table.DefaultTableModel;
+
 public class patient_payment_history extends javax.swing.JFrame {
+
+    patient_controller control = new patient_controller();
+    ArrayList<PaymentHistory> list = null;
+    DefaultTableModel model;
+    String s;
 
     public patient_payment_history() {
         initComponents();
         this.setLocationRelativeTo(null);
+
+        list = control.view_payment_history();
+
+        model = (DefaultTableModel) jTable1.getModel();
+        for (PaymentHistory e : list) {
+            s = e.getContent() + ": - " + e.getCash();
+            model.addRow(new Object[]{e.getTime(), s});
+        }
+
+        debtTextField.setText((int) list.get(list.size() - 1).getDebt() + "");
     }
 
     @SuppressWarnings("unchecked")
@@ -16,7 +36,7 @@ public class patient_payment_history extends javax.swing.JFrame {
         jScrollPane1 = new javax.swing.JScrollPane();
         jTable1 = new javax.swing.JTable();
         jLabel2 = new javax.swing.JLabel();
-        jLabel3 = new javax.swing.JLabel();
+        debtTextField = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("Lịch sử thanh toán");
@@ -35,31 +55,7 @@ public class patient_payment_history extends javax.swing.JFrame {
         jTable1.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
         jTable1.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null},
-                {null, null},
-                {null, null},
-                {null, null},
-                {null, null},
-                {null, null},
-                {null, null},
-                {null, null},
-                {null, null},
-                {null, null},
-                {null, null},
-                {null, null},
-                {null, null},
-                {null, null},
-                {null, null},
-                {null, null},
-                {null, null},
-                {null, null},
-                {null, null},
-                {null, null},
-                {null, null},
-                {null, null},
-                {null, null},
-                {null, null},
-                {null, null}
+
             },
             new String [] {
                 "Thời gian", "Lịch sử"
@@ -95,8 +91,8 @@ public class patient_payment_history extends javax.swing.JFrame {
         jLabel2.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
         jLabel2.setText("Dư nợ hiện tại:");
 
-        jLabel3.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
-        jLabel3.setText("10000");
+        debtTextField.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+        debtTextField.setText("10000");
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -112,7 +108,7 @@ public class patient_payment_history extends javax.swing.JFrame {
                     .addGroup(layout.createSequentialGroup()
                         .addComponent(jLabel2)
                         .addGap(5, 5, 5)
-                        .addComponent(jLabel3)
+                        .addComponent(debtTextField)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addComponent(jButton1))
                     .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 689, Short.MAX_VALUE))
@@ -129,7 +125,7 @@ public class patient_payment_history extends javax.swing.JFrame {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jButton1)
                     .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 26, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel3))
+                    .addComponent(debtTextField))
                 .addGap(15, 15, 15))
         );
 
@@ -171,10 +167,10 @@ public class patient_payment_history extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JLabel debtTextField;
     private javax.swing.JButton jButton1;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
-    private javax.swing.JLabel jLabel3;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JTable jTable1;
     // End of variables declaration//GEN-END:variables
