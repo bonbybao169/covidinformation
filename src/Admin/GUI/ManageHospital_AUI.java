@@ -6,12 +6,21 @@ package Admin.GUI;
 
 import javax.swing.table.*;
 import javax.swing.*;
+import java.util.*;
+import Admin.Controller.*;
+
 public class ManageHospital_AUI extends javax.swing.JFrame {
 
     static String SelectedID;
-    
+    static DefaultTableModel model;
+    static admin_controller con = new admin_controller();
     public ManageHospital_AUI() {
         initComponents();
+        List<String[]> list = con.list_hospital();
+        model = (DefaultTableModel) jTable1.getModel();
+        for(String[] element:list){
+            model.addRow(new Object[]{element[0], element[1],element[2],element[3]});
+        }
     }
 
     /**
@@ -132,15 +141,19 @@ public class ManageHospital_AUI extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-        // TODO add your handling code here:
+        super.dispose();
+        AddHospital_AUI.main(null);
     }//GEN-LAST:event_jButton1ActionPerformed
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
-        System.out.println(SelectedID);
+        super.dispose();
+        String[] arg = new String[] {SelectedID};
+        UpdateHostpital_AUI.main(arg);
     }//GEN-LAST:event_jButton2ActionPerformed
 
     private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
-        // TODO add your handling code here:
+        super.dispose();
+        AdminMenu_AUI.main(null);
     }//GEN-LAST:event_jButton3ActionPerformed
 
     private void jTable1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jTable1MouseClicked
@@ -180,16 +193,6 @@ public class ManageHospital_AUI extends javax.swing.JFrame {
             public void run() {
                 ManageHospital_AUI UI = new ManageHospital_AUI();
                 UI.setVisible(true);
-                DefaultTableModel model = (DefaultTableModel) UI.jTable1.getModel();
-                model.addRow(new Object[]{"ID001", "A", 30,40});
-                model.addRow(new Object[]{"ID002", "B", 30,40});
-                model.addRow(new Object[]{"ID003", "C", 30,40});
-                model.addRow(new Object[]{"ID004", "D", 30,40});
-                model.addRow(new Object[]{"ID005", "E", 30,40});
-                model.addRow(new Object[]{"ID006", "F", 30,40});
-                model.addRow(new Object[]{"ID007", "G", 30,40});
-                model.addRow(new Object[]{"ID008", "H", 30,40});
-                model.addRow(new Object[]{"ID009", "I", 30,40});
             }
             
         });

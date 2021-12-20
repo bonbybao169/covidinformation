@@ -44,7 +44,6 @@ public class Admin_Backend {
         }
     }
     public void LockOrOpen(String username,String state){
-    
         try {
             sql = "update account set state= ? where username = ?;";
             psm = conn.prepareStatement(sql);
@@ -71,5 +70,33 @@ public class Admin_Backend {
             e.printStackTrace();
         }
         return list;
+    }
+    public List<String[]> ListHospital(){
+        List<String[]> list= new ArrayList<String[]>();
+        try {
+            sql = "select * from isolation_area;";
+            psm = conn.prepareStatement(sql);
+            rs = psm.executeQuery();
+            while (rs.next()) {
+                String[] temp = {rs.getString("ID"), rs.getString("Name"), rs.getString("MaxCapicity"), rs.getString("PresentCapicity")}; 
+                list.add(temp);
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return list;
+    }
+    public void AddHospital(String ID, String Name, int MaxCapicity, int PresentCapicity){
+        try {
+            sql = "insert isolation_area values (?,?,?,?);";
+            psm = conn.prepareStatement(sql);
+            psm.setString(1, ID);
+            psm.setString(2, Name);
+            psm.setInt(3,MaxCapicity);
+            psm.setInt(4,PresentCapicity);
+            psm.executeUpdate();
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
     }
 }

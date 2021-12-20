@@ -32,6 +32,14 @@ public class admin_controller {
         list = be.HistoryManager(username);
         return list;
     }
+    public List<String[]> list_hospital(){
+        List<String[]> list = null;
+        list = be.ListHospital();
+        return list;
+    }
+    public void add_hospital(String ID, String Name, int MaxCapicity, int PresentCapicity){
+        be.AddHospital(ID,Name,MaxCapicity,PresentCapicity);
+    }
     public static void main(String args[]) {
         //be.HistoryManager("MN12345");
     }
