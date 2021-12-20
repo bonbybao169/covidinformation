@@ -40,4 +40,13 @@ public class patient_controller {
 
         return list;
     }
+
+    public ArrayList<EssentialPackage> view_essential_package() {
+        ViewEssentialPackage view = new ViewEssentialPackage();
+        ArrayList<EssentialPackage> list = null;
+
+        list = view.getEssentialPackage();
+
+        return list;
+    }
 }
