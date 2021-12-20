@@ -33,7 +33,7 @@ public class Admin_Backend {
     }
     public void CreateManager(String username,String password){
         try {
-            sql = "insert account values(?,?,2,OPEN);";
+            sql = "insert account values(?,?,2,'OPEN');";
             psm = conn.prepareStatement(sql);
             psm.setString(1, username);
             psm.setString(2, password);

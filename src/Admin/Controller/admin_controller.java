@@ -44,6 +44,6 @@ public class admin_controller {
         be.UpdateHospital(ID,Name,MaxCapicity,PresentCapicity);
     }
     public static void main(String args[]) {
-        //be.HistoryManager("MN12345");
+        be.CreateManager("MN15973","covid");
     }
 }

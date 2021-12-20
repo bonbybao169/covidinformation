@@ -154,7 +154,7 @@ public class CreateManager_AUI extends javax.swing.JFrame {
         String username,password;
         username = jTextField1.getText();
         password = jTextField2.getText();
-        if(username!=null&&password!=null){
+        if(username.equals("")==false&&password.equals("")==false){
             con.create_manager(username, password);
         }
         super.dispose();

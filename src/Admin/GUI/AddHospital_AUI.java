@@ -160,11 +160,13 @@ public class AddHospital_AUI extends javax.swing.JFrame {
     }//GEN-LAST:event_jButton2ActionPerformed
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-        String ID = jTextField4.getText();
-        String Name = jTextField1.getText();
-        int MaxCapicity = Integer.parseInt(jTextField2.getText());
-        int PresentCapicity = Integer.parseInt(jTextField3.getText());
-        con.add_hospital(ID, Name, MaxCapicity, PresentCapicity);
+        if(jTextField1.getText().equals("")==false&&jTextField2.getText().equals("")==false&&jTextField3.getText().equals("")==false&&jTextField4.getText().equals("")==false){
+            String ID = jTextField4.getText();
+            String Name = jTextField1.getText();
+            int MaxCapicity = Integer.parseInt(jTextField2.getText());
+            int PresentCapicity = Integer.parseInt(jTextField3.getText());
+            con.add_hospital(ID, Name, MaxCapicity, PresentCapicity);
+        }
         super.dispose();
         ManageHospital_AUI.main(null);
     }//GEN-LAST:event_jButton1ActionPerformed
