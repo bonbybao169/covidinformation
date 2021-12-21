@@ -20,6 +20,11 @@ public class payment_controller {
         list = be.ListPayment();
         return list;
     }
+    public List<String[]> find_payment(String CCCD){
+        List<String[]> list = null;
+        list = be.FindPayment(CCCD);
+        return list;
+    }
     public static void main(String args[]) {
         
     }
