@@ -25,8 +25,7 @@ public class UpdateConsumptionHistory {
             psm.setInt(3, quantity);
             date = Date.valueOf(java.time.LocalDate.now());
             psm.setDate(4, date);
-            System.out.println("Im in ch bf ex");
-            psm.executeUpdate();
+            int executeUpdate = psm.executeUpdate();
             conn.close();
             psm.close();
         } catch (SQLException e) {

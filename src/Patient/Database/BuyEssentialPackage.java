@@ -15,14 +15,13 @@ public class BuyEssentialPackage {
     PreparedStatement psm = null;
 
     public void buyEssentialPackagesByID(Float newDebt, String mpID) {
-
         try {
             sql = "UPDATE mp_infor SET Debt = ? WHERE CCCD = ?";
             psm = conn.prepareStatement(sql);
             psm.setFloat(1, newDebt);
             psm.setString(2, mpID);
-            System.out.println("Im in buy bf ex");
-            psm.executeUpdate();
+
+            int executeUpdate = psm.executeUpdate();
             conn.close();
             psm.close();
         } catch (SQLException e) {

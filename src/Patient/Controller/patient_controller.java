@@ -199,13 +199,6 @@ public class patient_controller {
             limitTimeTo = "2030-01-01";
         }
 
-        System.out.println("timeF: " + limitTimeFrom);
-        System.out.println("timeT: " + limitTimeTo);
-        System.out.println("priceF: " + priceF);
-        System.out.println("priceT: " + priceT);
-        System.out.println("peopleF: " + limitPF);
-        System.out.println("peopleT: " + limitPT);
-
         this.list = view.filterEP(limitPF, limitPT, java.sql.Date.valueOf(limitTimeFrom), java.sql.Date.valueOf(limitTimeTo), priceF, priceT);
     }
 
