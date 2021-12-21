@@ -47,10 +47,10 @@ public class patient_purchase extends javax.swing.JFrame {
         filterButton = new javax.swing.JButton();
         buyButton = new javax.swing.JButton();
         sortButton = new javax.swing.JButton();
+        errorLabel = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("Gói nhu yếu phẩm");
-        setPreferredSize(new java.awt.Dimension(640, 360));
 
         jLabel1.setFont(new java.awt.Font("Segoe UI Black", 0, 18)); // NOI18N
         jLabel1.setText("Gói nhu yếu phẩm");
@@ -128,6 +128,9 @@ public class patient_purchase extends javax.swing.JFrame {
             }
         });
 
+        errorLabel.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+        errorLabel.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -136,6 +139,8 @@ public class patient_purchase extends javax.swing.JFrame {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                         .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(errorLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 249, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addComponent(filterButton)
                         .addGap(15, 15, 15)
                         .addComponent(buyButton)
@@ -173,11 +178,13 @@ public class patient_purchase extends javax.swing.JFrame {
                 .addGap(20, 20, 20)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 192, Short.MAX_VALUE)
                 .addGap(22, 22, 22)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(backButton)
-                    .addComponent(filterButton)
-                    .addComponent(buyButton))
-                .addGap(15, 15, 15))
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                        .addComponent(backButton)
+                        .addComponent(filterButton)
+                        .addComponent(buyButton))
+                    .addComponent(errorLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 27, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addContainerGap())
         );
 
         pack();
@@ -186,10 +193,15 @@ public class patient_purchase extends javax.swing.JFrame {
     private void buyButtonMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_buyButtonMouseClicked
         // TODO add your handling code here:
         int selectedRow = jTable1.getSelectedRow();
-        IDToConfirm = jTable1.getModel().getValueAt(selectedRow, 0).toString();
 
-        super.dispose();
-        patient_purchase_confirm.main(null);
+        if (selectedRow == -1) {
+            errorLabel.setText("Please choose package!");
+        } else {
+            IDToConfirm = jTable1.getModel().getValueAt(selectedRow, 0).toString();
+
+            super.dispose();
+            patient_purchase_confirm.main(null);
+        }
     }//GEN-LAST:event_buyButtonMouseClicked
 
     private void backButtonMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_backButtonMouseClicked
@@ -360,6 +372,7 @@ public class patient_purchase extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton backButton;
     private javax.swing.JButton buyButton;
+    private javax.swing.JLabel errorLabel;
     private javax.swing.JButton filterButton;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JScrollPane jScrollPane1;

@@ -2,6 +2,7 @@ package Patient.GUI;
 
 import Patient.Controller.patient_controller;
 import Patient.Model.EssentialPackage;
+import Patient.Model.Patient;
 import java.awt.Image;
 import java.awt.image.BufferedImage;
 import java.io.File;
@@ -17,6 +18,7 @@ public class patient_purchase_confirm extends javax.swing.JFrame {
     patient_controller control = new patient_controller();
     DefaultTableModel model;
     static EssentialPackage ep = null;
+    static Patient pa;
 
     public patient_purchase_confirm() {
 
@@ -98,6 +100,11 @@ public class patient_purchase_confirm extends javax.swing.JFrame {
         totalPriceLabel.setHorizontalTextPosition(javax.swing.SwingConstants.RIGHT);
 
         buyConfirmButton.setText("Mua");
+        buyConfirmButton.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                buyConfirmButtonMouseClicked(evt);
+            }
+        });
 
         backButton.setText("Back");
         backButton.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -202,6 +209,14 @@ public class patient_purchase_confirm extends javax.swing.JFrame {
         float totalPrice = (int) quantityEPSpinner.getValue() * ep.getPrice();
         totalPriceLabel.setText(String.valueOf(totalPrice));
     }//GEN-LAST:event_quantityEPSpinnerStateChanged
+
+    private void buyConfirmButtonMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_buyConfirmButtonMouseClicked
+        // TODO add your handling code here:
+        control.addConsumptionHistory(ep.getEPID(), (int) quantityEPSpinner.getValue());
+        pa = control.view_basic_info();
+        float newDebt = pa.getDebt() + Float.valueOf(totalPriceLabel.getText());
+        control.buyEssentialPackage(newDebt);
+    }//GEN-LAST:event_buyConfirmButtonMouseClicked
 
     public static void main(String args[]) {
         try {

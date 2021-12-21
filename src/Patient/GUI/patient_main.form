@@ -128,7 +128,7 @@
     <Component class="javax.swing.JLabel" name="jLabel1">
       <Properties>
         <Property name="horizontalAlignment" type="int" value="2"/>
-        <Property name="text" type="java.lang.String" value="&lt;html&gt;&lt;body&gt;- Xem th&#xf4;ng tin c&#x1a1; b&#x1ea3;n&lt;br&gt;- L&#x1ecb;ch s&#x1eed; &#x111;&#x1b0;&#x1ee3;c qu&#x1ea3;n l&#xfd;&lt;br&gt;- Xem d&#x1b0; n&#x1ee3;&lt;br&gt;- L&#x1ecb;ch s&#x1eed; thanh to&#xe1;n&lt;/body&gt;&lt;/html&gt;"/>
+        <Property name="text" type="java.lang.String" value="&lt;html&gt;&lt;body&gt;- Xem th&#xf4;ng tin c&#x1a1; b&#x1ea3;n&lt;br&gt;- L&#x1ecb;ch s&#x1eed; &#x111;&#x1b0;&#x1ee3;c qu&#x1ea3;n l&#xfd;&lt;br&gt;- L&#x1ecb;ch s&#x1eed; ti&#xea;u th&#x1ee5; g&#xf3;i nhu y&#x1ebf;u ph&#x1ea9;m&lt;br&gt;-  Xem d&#x1b0; n&#x1ee3;&lt;br&gt;- L&#x1ecb;ch s&#x1eed; thanh to&#xe1;n&lt;/body&gt;&lt;/html&gt;"/>
         <Property name="border" type="javax.swing.border.Border" editor="org.netbeans.modules.form.editors2.BorderEditor">
           <Border info="org.netbeans.modules.form.compat2.border.LineBorderInfo">
             <LineBorder/>
