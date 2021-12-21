@@ -8,7 +8,6 @@ import javax.swing.table.*;
 import javax.swing.*;
 import java.util.*;
 import Admin.Controller.*;
-import Manager.Model.*;
 public class ManageManager_AUI extends javax.swing.JFrame {
 
     /**

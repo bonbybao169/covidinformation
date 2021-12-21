@@ -4,17 +4,13 @@
  */
 package Payment.GUI;
 
-/**
- *
- * @author ACER
- */
+import Payment.Controller.*;
 public class AddAccount_UI extends javax.swing.JFrame {
 
-    /**
-     * Creates new form AddAccount_UI
-     */
-    public AddAccount_UI() {
+    static payment_controller con = new payment_controller();
+    public AddAccount_UI(String args[]) {
         initComponents();
+        jLabel4.setText(args[0]);
     }
 
     /**
@@ -56,6 +52,11 @@ public class AddAccount_UI extends javax.swing.JFrame {
 
         jButton2.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
         jButton2.setText("Back");
+        jButton2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton2ActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -107,8 +108,17 @@ public class AddAccount_UI extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-        // TODO add your handling code here:
+        if(jTextField1.getText().equals("")==false){
+            con.add_payaccount(jLabel4.getText(),Integer.parseInt(jTextField1.getText()));
+        }
+        super.dispose();
+        ListPatient_UI.main(null);
     }//GEN-LAST:event_jButton1ActionPerformed
+
+    private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
+        super.dispose();
+        ListPatient_UI.main(null);
+    }//GEN-LAST:event_jButton2ActionPerformed
 
     /**
      * @param args the command line arguments
@@ -140,7 +150,7 @@ public class AddAccount_UI extends javax.swing.JFrame {
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new AddAccount_UI().setVisible(true);
+                new AddAccount_UI(args).setVisible(true);
             }
         });
     }

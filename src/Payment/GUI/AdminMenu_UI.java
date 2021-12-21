@@ -107,7 +107,7 @@ public class AdminMenu_UI extends javax.swing.JFrame {
 
     private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
         super.dispose();
-        AddAccount_UI.main(null);
+        ListPatient_UI.main(null);
     }//GEN-LAST:event_jButton3ActionPerformed
 
     /**

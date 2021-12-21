@@ -151,8 +151,7 @@ public class InfoAdmin_UI extends javax.swing.JFrame {
             public void run() {
                 InfoAdmin_UI UI = new InfoAdmin_UI();
                 UI.setVisible(true);
-                UI.jLabel4.setText("Manager111");
-                UI.jLabel5.setText("10.000.000.000");
+
             }
         });
     }

@@ -25,6 +25,19 @@ public class payment_controller {
         list = be.FindPayment(CCCD);
         return list;
     }
+    public List<String[]> list_patient(){
+        List<String[]> list = null;
+        list = be.ListPatient();
+        return list;
+    }
+    public List<String[]> find_patient(String CCCD){
+        List<String[]> list = null;
+        list = be.FindPatient(CCCD);
+        return list;
+    }
+    public void add_payaccount(String CCCD,int balance){
+        be.AddPayAccount(CCCD,balance);
+    }
     public static void main(String args[]) {
         
     }
