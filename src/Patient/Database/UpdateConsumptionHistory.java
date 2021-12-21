@@ -28,8 +28,11 @@ public class UpdateConsumptionHistory {
             date = Date.valueOf(java.time.LocalDate.now());
             psm.setDate(4, date);
             rs = psm.executeQuery();
+            conn.close();
+            psm.close();
         } catch (SQLException e) {
             e.printStackTrace();
         }
+
     }
 }

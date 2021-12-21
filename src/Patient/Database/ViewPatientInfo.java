@@ -23,6 +23,8 @@ public class ViewPatientInfo {
             while (rs.next()) {
                 temp = new Patient(rs.getString("Name"), rs.getString("CCCD"), rs.getString("Address"), rs.getString("State"), rs.getString("At_IsolationArea"), rs.getString("Related"), rs.getDate("Birthday"), rs.getFloat("Debt"));
             }
+            conn.close();
+            psm.close();
         } catch (SQLException e) {
             e.printStackTrace();
         }

@@ -26,6 +26,8 @@ public class ViewManagementHistory {
                 temp = new ManagementHistory(rs.getString("AccountID"), rs.getString("Content"), rs.getDate("Time"));
                 list.add(temp);
             }
+            conn.close();
+            psm.close();
         } catch (SQLException e) {
             e.printStackTrace();
         }

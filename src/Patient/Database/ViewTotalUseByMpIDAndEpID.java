@@ -15,22 +15,19 @@ public class ViewTotalUseByMpIDAndEpID {
 
     public int viewTotalUse(String mpID, String epID) {
         int total = 0;
-        System.out.println("I'm in DB.");
 
         try {
-            sql = "select sum(quantity) as total from consumption_history ch join essentials_package ep on ch.EPID = ep.ID where ch.Time BETWEEN ep.Startingdate AND ep.ExpiredDate AND ch.mpid = ? and ch.epid = ? group by mpid";
+            sql = "select sum(quantity) from consumption_history ch join essentials_package ep on ch.EPID = ep.ID where ch.Time BETWEEN ep.Startingdate AND ep.ExpiredDate AND ch.mpid = ? and ch.epid = ? group by mpid";
             psm = conn.prepareStatement(sql);
             psm.setString(1, mpID);
             psm.setString(2, epID);
             rs = psm.executeQuery();
-            System.out.println("Hello");
 
             while (rs.next()) {
-                total = rs.getInt("total");
+                total = rs.getInt(1);
             }
-
-            System.out.println("ID: " + total);
-
+            conn.close();
+            psm.close();
         } catch (SQLException e) {
             e.printStackTrace();
         }

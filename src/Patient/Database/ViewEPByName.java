@@ -29,6 +29,9 @@ public class ViewEPByName {
                 temp = new EssentialPackage(rs.getString("ID"), rs.getString("Name"), rs.getInt("LimitPerPeople"), rs.getDate("ExpiredDate"), rs.getFloat("Price"));
                 list.add(temp);
             }
+
+            conn.close();
+            psm.close();
         } catch (SQLException e) {
             e.printStackTrace();
         }

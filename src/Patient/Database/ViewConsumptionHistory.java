@@ -29,6 +29,8 @@ public class ViewConsumptionHistory {
                 temp = new ConsumptionHistory(rs.getString("MPID"), rs.getString("epid"), rs.getString("name"), rs.getString("Quantity"), rs.getDate("Time"));
                 list.add(temp);
             }
+            conn.close();
+            psm.close();
         } catch (SQLException e) {
             e.printStackTrace();
         }
