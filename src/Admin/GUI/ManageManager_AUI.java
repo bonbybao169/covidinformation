@@ -24,6 +24,7 @@ public class ManageManager_AUI extends javax.swing.JFrame {
         for(String[] element:list){
             model.addRow(new Object[]{element[0], element[1]});
         }
+        SelectedUsername="";SelectedState="";
     }
 
     /**
@@ -140,7 +141,7 @@ public class ManageManager_AUI extends javax.swing.JFrame {
                         .addComponent(jLabel1)
                         .addGap(169, 169, 169))
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                        .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, 75, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, 114, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(jButton4, javax.swing.GroupLayout.PREFERRED_SIZE, 73, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(28, 28, 28)

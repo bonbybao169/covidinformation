@@ -21,6 +21,7 @@ public class ManageHospital_AUI extends javax.swing.JFrame {
         for(String[] element:list){
             model.addRow(new Object[]{element[0], element[1],element[2],element[3]});
         }
+        SelectedID="";SelectedName="";SelectedMaxCapicity="";SelectedPresentCapicity="";
     }
 
     /**
@@ -138,7 +139,7 @@ public class ManageHospital_AUI extends javax.swing.JFrame {
                         .addGap(20, 20, 20)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                             .addGroup(layout.createSequentialGroup()
-                                .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, 83, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, 110, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                 .addComponent(jButton4, javax.swing.GroupLayout.PREFERRED_SIZE, 73, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addGap(28, 28, 28)
