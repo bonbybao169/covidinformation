@@ -63,6 +63,15 @@ public class patient_controller {
         return list;
     }
 
+    public EssentialPackage view_essential_package_by_id(String epID) {
+        EssentialPackage ep = null;
+        ViewEPByID view = new ViewEPByID();
+
+        ep = view.getEssentialPackageByID(epID);
+
+        return ep;
+    }
+
     public ArrayList<EssentialPackage> view_essential_package_id_asc() {
         ViewEPIDASC view = new ViewEPIDASC();
 
@@ -207,5 +216,13 @@ public class patient_controller {
         }
 
         return this.list;
+    }
+
+    public int getTotalUse(String epID) {
+        ViewTotalUseByMpIDAndEpID view = new ViewTotalUseByMpIDAndEpID();
+        System.out.println("I'm in control.");
+
+        int total = view.viewTotalUse("111111111111", epID);
+        return total;
     }
 }

@@ -10,6 +10,7 @@ public class patient_purchase extends javax.swing.JFrame {
     patient_controller control = new patient_controller();
     ArrayList<EssentialPackage> list = null;
     DefaultTableModel model;
+    public static String IDToConfirm;
 
     public patient_purchase() {
         initComponents();
@@ -187,6 +188,9 @@ public class patient_purchase extends javax.swing.JFrame {
 
     private void buyButtonMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_buyButtonMouseClicked
         // TODO add your handling code here:
+        int selectedRow = jTable1.getSelectedRow();
+        IDToConfirm = jTable1.getModel().getValueAt(selectedRow, 0).toString();
+
         super.dispose();
         patient_purchase_confirm.main(null);
     }//GEN-LAST:event_buyButtonMouseClicked

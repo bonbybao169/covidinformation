@@ -6,33 +6,37 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
-import java.util.ArrayList;
+import java.sql.Date;
 
-public class ViewEPByName {
+public class BuyEssentialPackage {
 
     String sql;
     ResultSet rs;
     Connection conn = createConnection();
     PreparedStatement psm = null;
 
-    public ArrayList<EssentialPackage> getEssentialPackageByName(String epname) {
+    public void buyEssentialPackagesByID(String mpID, String epID, int quantity) {
         EssentialPackage temp = null;
-        ArrayList<EssentialPackage> list = new ArrayList<EssentialPackage>();
+        Date date;
 
         try {
-            sql = "SELECT * FROM essentials_package where Name LIKE ?";
+            UpdateConsumptionHistory ush = new UpdateConsumptionHistory();
+            ush.updateConsumptionHistory(mpID, epID, quantity);
+
+            sql = "insert into consumption_history(MPID, EPID, Quantity, Time) values (?,?,?,?)";
             psm = conn.prepareStatement(sql);
-            psm.setString(1, "%" + epname + "%");
+            psm.setString(1, "111111111111");
+            psm.setString(2, epID);
+            psm.setInt(3, quantity);
+            date = Date.valueOf(java.time.LocalDate.now());
+            psm.setDate(4, date);
             rs = psm.executeQuery();
 
             while (rs.next()) {
                 temp = new EssentialPackage(rs.getString("ID"), rs.getString("Name"), rs.getInt("LimitPerPeople"), rs.getDate("ExpiredDate"), rs.getFloat("Price"));
-                list.add(temp);
             }
         } catch (SQLException e) {
             e.printStackTrace();
         }
-
-        return list;
     }
 }
