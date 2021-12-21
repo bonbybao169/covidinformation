@@ -37,7 +37,6 @@ public class patient_purchase extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        jLabel3 = new javax.swing.JLabel();
         jLabel1 = new javax.swing.JLabel();
         sortComboBox = new javax.swing.JComboBox<>();
         searchTextField = new javax.swing.JTextField();
@@ -48,8 +47,6 @@ public class patient_purchase extends javax.swing.JFrame {
         filterButton = new javax.swing.JButton();
         buyButton = new javax.swing.JButton();
         sortButton = new javax.swing.JButton();
-
-        jLabel3.setText("jLabel3");
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("Gói nhu yếu phẩm");
@@ -155,7 +152,7 @@ public class patient_purchase extends javax.swing.JFrame {
                                 .addComponent(searchTextField, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addGap(5, 5, 5)
                                 .addComponent(searchButton))
-                            .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 470, Short.MAX_VALUE))))
+                            .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 600, Short.MAX_VALUE))))
                 .addGap(20, 20, 20))
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
@@ -174,7 +171,7 @@ public class patient_purchase extends javax.swing.JFrame {
                     .addComponent(searchButton)
                     .addComponent(sortButton))
                 .addGap(20, 20, 20)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 151, Short.MAX_VALUE)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 192, Short.MAX_VALUE)
                 .addGap(22, 22, 22)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(backButton)
@@ -365,7 +362,6 @@ public class patient_purchase extends javax.swing.JFrame {
     private javax.swing.JButton buyButton;
     private javax.swing.JButton filterButton;
     private javax.swing.JLabel jLabel1;
-    private javax.swing.JLabel jLabel3;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JTable jTable1;
     private javax.swing.JButton searchButton;

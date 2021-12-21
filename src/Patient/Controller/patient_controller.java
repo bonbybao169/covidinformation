@@ -220,7 +220,6 @@ public class patient_controller {
 
     public int getTotalUse(String epID) {
         ViewTotalUseByMpIDAndEpID view = new ViewTotalUseByMpIDAndEpID();
-        System.out.println("I'm in control.");
 
         int total = view.viewTotalUse("111111111111", epID);
         return total;

@@ -31,11 +31,12 @@ public class patient_purchase_confirm extends javax.swing.JFrame {
             ep = control.view_essential_package_by_id(patient_purchase.IDToConfirm);
             nameEPLabel.setText(ep.getEPName());
 
-            System.out.println("I'm in View. ID: " + patient_purchase.IDToConfirm);
-
             int total = control.getTotalUse(patient_purchase.IDToConfirm);
             int quantityLeft = ep.getLimitPeople() - total;
             quantityLeftLabel.setText(String.valueOf(quantityLeft));
+
+            quantityEPSpinner.setModel(new javax.swing.SpinnerNumberModel(0, 0, quantityLeft, 1));
+
         } catch (IOException ex) {
             Logger.getLogger(patient_purchase_confirm.class.getName()).log(Level.SEVERE, null, ex);
         }
@@ -105,6 +106,7 @@ public class patient_purchase_confirm extends javax.swing.JFrame {
             }
         });
 
+        quantityEPSpinner.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
         quantityEPSpinner.addChangeListener(new javax.swing.event.ChangeListener() {
             public void stateChanged(javax.swing.event.ChangeEvent evt) {
                 quantityEPSpinnerStateChanged(evt);
