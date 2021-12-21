@@ -102,4 +102,52 @@ public class Payment_Backend {
             e.printStackTrace();
         }
     }
+    public boolean CheckAdmin(){
+        try {
+            int temp=0;
+            sql = "select count(*) from account where Type=1;";
+            psm = conn.prepareStatement(sql);
+            rs = psm.executeQuery();
+            rs.next();
+            temp = rs.getInt(1);
+            if(temp==1)
+                return true;
+            else 
+                return false;
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return false;
+    }
+    public void CreateAdmin(String username, String password){
+         try {
+            sql = "insert payaccount values(?,?,0,1);";
+            psm = conn.prepareStatement(sql);
+            psm.setString(1, username);
+            psm.setString(2, password);
+            psm.executeUpdate();
+   
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+    }
+    public boolean Login(String username, String password){
+        try {
+            int temp=0;
+            sql = "select count(*) as total from payaccount where ID= ? and Password= ? and Password is not NULL; ";
+            psm = conn.prepareStatement(sql);
+            psm.setString(1, username);
+            psm.setString(2, password);
+            rs = psm.executeQuery();
+            rs.next();
+            temp = rs.getInt(1);
+            if(temp==1)
+                return true;
+            else 
+                return false;
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return false;
+    }
 }
