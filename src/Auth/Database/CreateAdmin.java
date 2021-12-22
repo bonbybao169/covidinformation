@@ -18,10 +18,13 @@ public class CreateAdmin {
             rs = psm.executeQuery();
             rs.next();
             int total = rs.getInt(1);
+            conn.close();
+            psm.close();
             if(total==1)
                 return true;
             else 
                 return false;
+
                
         }catch (SQLException e) {
             e.printStackTrace();
@@ -30,11 +33,13 @@ public class CreateAdmin {
     }
     public void CreateAdmin(String username,String password){
         try {
-            sql = "insert account values(?,?,1,'OPEN')";
+            sql = "insert account values(?,?,1,'OPEN');";
             psm = conn.prepareStatement(sql);
             psm.setString(1, username);
             psm.setString(2, password);
-            rs = psm.executeQuery();
+            psm.executeUpdate();
+            conn.close();
+            psm.close();
         }catch (SQLException e) {
             e.printStackTrace();
         }

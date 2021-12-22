@@ -1,13 +1,16 @@
 package Auth.GUI;
+
 import Auth.Controller.auth_controller;
+
 public class CreateAdmin_UI extends javax.swing.JFrame {
+
     auth_controller control = new auth_controller();
 
     public CreateAdmin_UI() {
-        if(control.checkAdmin()==false){
+        if (control.checkAdmin() == false) {
             initComponents();
             this.setLocationRelativeTo(null);
-        }else{
+        } else {
             Login_UI.main(null);
         }
     }
@@ -20,8 +23,8 @@ public class CreateAdmin_UI extends javax.swing.JFrame {
         jLabel2 = new javax.swing.JLabel();
         jLabel3 = new javax.swing.JLabel();
         jTextField1 = new javax.swing.JTextField();
-        jTextField2 = new javax.swing.JTextField();
         jButton1 = new javax.swing.JButton();
+        jPasswordField1 = new javax.swing.JPasswordField();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -56,8 +59,8 @@ public class CreateAdmin_UI extends javax.swing.JFrame {
                             .addComponent(jLabel3))
                         .addGap(65, 65, 65)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addComponent(jTextField1)
-                            .addComponent(jTextField2, javax.swing.GroupLayout.PREFERRED_SIZE, 290, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                            .addComponent(jTextField1, javax.swing.GroupLayout.DEFAULT_SIZE, 290, Short.MAX_VALUE)
+                            .addComponent(jPasswordField1))))
                 .addGap(147, 147, 147))
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                 .addGap(0, 0, Short.MAX_VALUE)
@@ -76,7 +79,7 @@ public class CreateAdmin_UI extends javax.swing.JFrame {
                 .addGap(24, 24, 24)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel3)
-                    .addComponent(jTextField2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(jPasswordField1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(44, 44, 44)
                 .addComponent(jButton1)
                 .addGap(88, 88, 88))
@@ -86,8 +89,15 @@ public class CreateAdmin_UI extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-        if(jTextField1.getText().equals("")==false&&jTextField2.getText().equals("")!=false){
-            control.createAdmin(jTextField1.getText(), jTextField2.getText());
+        if (jTextField1.getText().equals("") == false && jPasswordField1.getText().equals("") == false) {
+            control.createAdmin(jTextField1.getText(), jPasswordField1.getText());
+            if (control.checkAdmin() == true) {
+                super.dispose();
+                Login_UI.main(null);
+            } else {
+                super.dispose();
+                CreateAdmin_UI.main(null);
+            }
         }
     }//GEN-LAST:event_jButton1ActionPerformed
 
@@ -121,7 +131,7 @@ public class CreateAdmin_UI extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
+    private javax.swing.JPasswordField jPasswordField1;
     private javax.swing.JTextField jTextField1;
-    private javax.swing.JTextField jTextField2;
     // End of variables declaration//GEN-END:variables
 }

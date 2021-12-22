@@ -50,7 +50,7 @@ public class auth_controller {
     public void createAdmin(String username, String password) {
         boolean available = false;
         CreateAdmin createAdmin = new CreateAdmin();
-        createAdmin.CreateAdmin(username, password);
+        createAdmin.CreateAdmin(username, encodeString(password));
     }
 
     public boolean checkAccountAvailable(String username) {

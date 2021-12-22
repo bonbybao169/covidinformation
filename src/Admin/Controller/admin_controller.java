@@ -3,14 +3,29 @@ package Admin.Controller;
 import Admin.Database.*;
 import Admin.GUI.*;
 import Manager.Model.*;
+import java.io.UnsupportedEncodingException;
 import java.util.*;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 public class admin_controller {
 
     static Admin_Backend be = new Admin_Backend();
 
+    public String encodeString(String password) {
+        String encodingType = "utf-8";
+        String encodedString = null;
+        try {
+            encodedString = Base64.getEncoder().encodeToString(password.getBytes(encodingType));
+        } catch (UnsupportedEncodingException ex) {
+            Logger.getLogger(admin_controller.class.getName()).log(Level.SEVERE, null, ex);
+        }
+
+        return encodedString;
+    }
+
     public void create_manager(String username, String password) {
-        be.CreateManager(username, password);
+        be.CreateManager(username, encodeString(password));
     }
 
     public List<String[]> list_manager() {
