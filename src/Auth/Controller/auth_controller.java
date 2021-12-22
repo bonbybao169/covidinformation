@@ -3,13 +3,24 @@ package Auth.Controller;
 import Auth.Database.CheckAccountAvailable;
 import Auth.Database.CheckMPInfoAvailable;
 import Auth.Database.CreateAccount;
+import Auth.Database.CreateAdmin;
 import Auth.Database.GetAccountByID;
 import Auth.Model.Account;
 
 public class auth_controller {
     
     public static Account acc = null;
-    
+    public boolean checkAdmin() {
+        boolean available = false;
+        CreateAdmin checkAdmin = new CreateAdmin();
+        
+        return checkAdmin.CheckAdmin();
+    }
+    public void createAdmin(String username,String password) {
+        boolean available = false;
+        CreateAdmin createAdmin = new CreateAdmin();
+        createAdmin.CreateAdmin(username,password);
+    }
     public boolean checkAccountAvailable(String username) {
         boolean available = false;
         CheckAccountAvailable checkAccount = new CheckAccountAvailable();

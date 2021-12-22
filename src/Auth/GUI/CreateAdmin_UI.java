@@ -1,10 +1,15 @@
 package Auth.GUI;
-
+import Auth.Controller.auth_controller;
 public class CreateAdmin_UI extends javax.swing.JFrame {
+    auth_controller control = new auth_controller();
 
     public CreateAdmin_UI() {
-        initComponents();
-        this.setLocationRelativeTo(null);
+        if(control.checkAdmin()==false){
+            initComponents();
+            this.setLocationRelativeTo(null);
+        }else{
+            Login_UI.main(null);
+        }
     }
 
     @SuppressWarnings("unchecked")
@@ -29,6 +34,11 @@ public class CreateAdmin_UI extends javax.swing.JFrame {
 
         jButton1.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
         jButton1.setText("Khởi tạo");
+        jButton1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton1ActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -48,7 +58,7 @@ public class CreateAdmin_UI extends javax.swing.JFrame {
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                             .addComponent(jTextField1)
                             .addComponent(jTextField2, javax.swing.GroupLayout.PREFERRED_SIZE, 290, javax.swing.GroupLayout.PREFERRED_SIZE))))
-                .addContainerGap(147, Short.MAX_VALUE))
+                .addGap(147, 147, 147))
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                 .addGap(0, 0, Short.MAX_VALUE)
                 .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 115, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -74,6 +84,12 @@ public class CreateAdmin_UI extends javax.swing.JFrame {
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
+
+    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+        if(jTextField1.getText().equals("")==false&&jTextField2.getText().equals("")!=false){
+            control.createAdmin(jTextField1.getText(), jTextField2.getText());
+        }
+    }//GEN-LAST:event_jButton1ActionPerformed
 
     public static void main(String args[]) {
         try {
