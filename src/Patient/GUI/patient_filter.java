@@ -10,6 +10,8 @@ import javax.imageio.ImageIO;
 import javax.swing.ImageIcon;
 import Patient.Controller.patient_controller;
 import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 
 public class patient_filter extends javax.swing.JFrame {
 
@@ -142,7 +144,7 @@ public class patient_filter extends javax.swing.JFrame {
             }
         });
 
-        errorLabel.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
+        errorLabel.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
         errorLabel.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
@@ -154,9 +156,9 @@ public class patient_filter extends javax.swing.JFrame {
                 .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
+                .addGap(20, 20, 20)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGap(20, 20, 20)
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 112, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(jLabel4)
@@ -177,8 +179,7 @@ public class patient_filter extends javax.swing.JFrame {
                             .addComponent(limitPeopleToTextField)
                             .addComponent(limitTimeToTextField, javax.swing.GroupLayout.Alignment.LEADING)))
                     .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGap(0, 0, Short.MAX_VALUE)
-                        .addComponent(errorLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 191, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(errorLabel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addComponent(confirmButton)))
                 .addGap(20, 20, 20))
@@ -236,14 +237,65 @@ public class patient_filter extends javax.swing.JFrame {
     private void confirmButtonMouseClicked(java.awt.event.MouseEvent evt) {// GEN-FIRST:event_confirmButtonMouseClicked
 
         // TODO add your handling code here:
-        if (limitTimeFromTextField.getText().equals("") && limitTimeToTextField.getText().equals("")) {
-            control.filter_essential_package(limitPeopleFromTextField.getText(), limitPeopleToTextField.getText(),
-                    limitTimeFromTextField.getText(), limitTimeToTextField.getText(), priceFromTextField.getText(),
-                    priceToTextField.getText());
-            filtered = true;
+        if (!limitTimeFromTextField.getText().equals("YYYY-MM-DD") && !limitTimeToTextField.getText().equals("YYYY-MM-DD")) {
+            if (priceFromTextField.getText().equals("") || priceToTextField.getText().equals("")) {
+                if (limitPeopleFromTextField.getText().equals("") || limitPeopleToTextField.getText().equals("")) {
+                    if (limitTimeFromTextField.getText().equals("") || limitTimeToTextField.getText().equals("")) {
+                        control.filter_essential_package(limitPeopleFromTextField.getText(), limitPeopleToTextField.getText(),
+                                limitTimeFromTextField.getText(), limitTimeToTextField.getText(), priceFromTextField.getText(),
+                                priceToTextField.getText());
+                        filtered = true;
 
-            super.dispose();
-            patient_purchase.main(null);
+                        super.dispose();
+                        patient_purchase.main(null);
+                    } else {
+                        SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
+                        try {
+                            Date dateFrom = sdf.parse(limitTimeFromTextField.getText());
+                            Date dateTo = sdf.parse(limitTimeToTextField.getText());
+
+                            if (dateFrom.before(dateTo) || dateFrom.equals(dateTo)) {
+                                control.filter_essential_package(limitPeopleFromTextField.getText(), limitPeopleToTextField.getText(),
+                                        limitTimeFromTextField.getText(), limitTimeToTextField.getText(), priceFromTextField.getText(),
+                                        priceToTextField.getText());
+                                filtered = true;
+
+                                super.dispose();
+                                patient_purchase.main(null);
+                            } else {
+                                errorLabel.setText("Input date wrong.");
+                            }
+                        } catch (ParseException ex) {
+                            Logger.getLogger(patient_filter.class.getName()).log(Level.SEVERE, null, ex);
+                        }
+                    }
+                } else {
+                    if (Integer.valueOf(limitPeopleFromTextField.getText()) <= Integer.valueOf(limitPeopleToTextField.getText())) {
+                        control.filter_essential_package(limitPeopleFromTextField.getText(), limitPeopleToTextField.getText(),
+                                limitTimeFromTextField.getText(), limitTimeToTextField.getText(), priceFromTextField.getText(),
+                                priceToTextField.getText());
+                        filtered = true;
+
+                        super.dispose();
+                        patient_purchase.main(null);
+                    } else {
+                        errorLabel.setText("Input limit per people wrong.");
+                    }
+                }
+            } else {
+                if (Float.valueOf(priceFromTextField.getText()) <= Float.valueOf(priceToTextField.getText())) {
+                    control.filter_essential_package(limitPeopleFromTextField.getText(), limitPeopleToTextField.getText(),
+                            limitTimeFromTextField.getText(), limitTimeToTextField.getText(), priceFromTextField.getText(),
+                            priceToTextField.getText());
+                    filtered = true;
+
+                    super.dispose();
+                    patient_purchase.main(null);
+                } else {
+                    errorLabel.setText("Input price wrong.");
+                }
+            }
+
         } else {
             errorLabel.setText("Delete YYYY-MM-DD");
         }
