@@ -42,7 +42,6 @@ public class CreatePassword_UI extends javax.swing.JFrame {
 
         createPassButton.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
         createPassButton.setText("Tạo Password");
-        createPassButton.setToolTipText("");
         createPassButton.setMaximumSize(new java.awt.Dimension(90, 30));
         createPassButton.setMinimumSize(new java.awt.Dimension(90, 30));
         createPassButton.setPreferredSize(new java.awt.Dimension(90, 30));
