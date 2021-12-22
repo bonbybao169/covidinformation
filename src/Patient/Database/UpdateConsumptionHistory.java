@@ -11,12 +11,10 @@ import java.sql.Date;
 public class UpdateConsumptionHistory {
 
     String sql;
-    ResultSet rs;
     Connection conn = createConnection();
     PreparedStatement psm = null;
 
     public void updateConsumptionHistory(String mpID, String epID, int quantity) {
-        EssentialPackage temp = null;
         Date date;
 
         try {
@@ -27,7 +25,7 @@ public class UpdateConsumptionHistory {
             psm.setInt(3, quantity);
             date = Date.valueOf(java.time.LocalDate.now());
             psm.setDate(4, date);
-            rs = psm.executeQuery();
+            int executeUpdate = psm.executeUpdate();
             conn.close();
             psm.close();
         } catch (SQLException e) {

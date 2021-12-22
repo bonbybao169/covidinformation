@@ -17,7 +17,7 @@ public class patient_controller {
         ViewPatientInfo view = new ViewPatientInfo();
         Patient patient = null;
 
-        patient = view.getPatientInfo("222222222222");
+        patient = view.getPatientInfo("111111111111");
         return patient;
     }
 
@@ -25,7 +25,7 @@ public class patient_controller {
         ViewManagementHistory view = new ViewManagementHistory();
         ArrayList<ManagementHistory> list = null;
 
-        list = view.getManagementHistory("222222222222");
+        list = view.getManagementHistory("111111111111");
         return list;
     }
 
@@ -199,13 +199,6 @@ public class patient_controller {
             limitTimeTo = "2030-01-01";
         }
 
-        System.out.println("timeF: " + limitTimeFrom);
-        System.out.println("timeT: " + limitTimeTo);
-        System.out.println("priceF: " + priceF);
-        System.out.println("priceT: " + priceT);
-        System.out.println("peopleF: " + limitPF);
-        System.out.println("peopleT: " + limitPT);
-
         this.list = view.filterEP(limitPF, limitPT, java.sql.Date.valueOf(limitTimeFrom), java.sql.Date.valueOf(limitTimeTo), priceF, priceT);
     }
 
@@ -223,5 +216,17 @@ public class patient_controller {
 
         int total = view.viewTotalUse("111111111111", epID);
         return total;
+    }
+
+    public void addConsumptionHistory(String epID, int quantity) {
+        UpdateConsumptionHistory view = new UpdateConsumptionHistory();
+
+        view.updateConsumptionHistory("111111111111", epID, quantity);
+    }
+
+    public void buyEssentialPackage(float newDebt) {
+        BuyEssentialPackage view = new BuyEssentialPackage();
+
+        view.buyEssentialPackagesByID(newDebt, "111111111111");
     }
 }

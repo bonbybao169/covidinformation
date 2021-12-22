@@ -2,6 +2,7 @@ package Patient.GUI;
 
 import Patient.Controller.patient_controller;
 import Patient.Model.EssentialPackage;
+import Patient.Model.Patient;
 import java.awt.Image;
 import java.awt.image.BufferedImage;
 import java.io.File;
@@ -17,6 +18,7 @@ public class patient_purchase_confirm extends javax.swing.JFrame {
     patient_controller control = new patient_controller();
     DefaultTableModel model;
     static EssentialPackage ep = null;
+    static Patient pa;
 
     public patient_purchase_confirm() {
 
@@ -58,6 +60,7 @@ public class patient_purchase_confirm extends javax.swing.JFrame {
         buyConfirmButton = new javax.swing.JButton();
         backButton = new javax.swing.JButton();
         quantityEPSpinner = new javax.swing.JSpinner();
+        errorLabel = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("Xác nhận mua nhu yếu phẩm");
@@ -98,6 +101,11 @@ public class patient_purchase_confirm extends javax.swing.JFrame {
         totalPriceLabel.setHorizontalTextPosition(javax.swing.SwingConstants.RIGHT);
 
         buyConfirmButton.setText("Mua");
+        buyConfirmButton.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                buyConfirmButtonMouseClicked(evt);
+            }
+        });
 
         backButton.setText("Back");
         backButton.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -113,6 +121,9 @@ public class patient_purchase_confirm extends javax.swing.JFrame {
             }
         });
 
+        errorLabel.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
+        errorLabel.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
+
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
@@ -123,8 +134,10 @@ public class patient_purchase_confirm extends javax.swing.JFrame {
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
+                        .addComponent(errorLabel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addComponent(backButton)
                         .addGap(15, 15, 15)
                         .addComponent(buyConfirmButton))
@@ -165,9 +178,11 @@ public class patient_purchase_confirm extends javax.swing.JFrame {
                     .addComponent(jLabel5)
                     .addComponent(totalPriceLabel))
                 .addGap(25, 25, 25)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(buyConfirmButton)
-                    .addComponent(backButton))
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                        .addComponent(buyConfirmButton)
+                        .addComponent(backButton))
+                    .addComponent(errorLabel, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(15, 15, 15))
         );
 
@@ -202,6 +217,22 @@ public class patient_purchase_confirm extends javax.swing.JFrame {
         float totalPrice = (int) quantityEPSpinner.getValue() * ep.getPrice();
         totalPriceLabel.setText(String.valueOf(totalPrice));
     }//GEN-LAST:event_quantityEPSpinnerStateChanged
+
+    private void buyConfirmButtonMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_buyConfirmButtonMouseClicked
+        // TODO add your handling code here:
+        if ((int) quantityEPSpinner.getValue() == 0) {
+            errorLabel.setText("Please choose quantity or Press Back!");
+        } else {
+            control.addConsumptionHistory(ep.getEPID(), (int) quantityEPSpinner.getValue());
+            pa = control.view_basic_info();
+            float newDebt = pa.getDebt() + Float.valueOf(totalPriceLabel.getText());
+            control.buyEssentialPackage(newDebt);
+
+            super.dispose();
+            patient_purchase.main(null);
+        }
+
+    }//GEN-LAST:event_buyConfirmButtonMouseClicked
 
     public static void main(String args[]) {
         try {
@@ -240,6 +271,7 @@ public class patient_purchase_confirm extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton backButton;
     private javax.swing.JButton buyConfirmButton;
+    private javax.swing.JLabel errorLabel;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;

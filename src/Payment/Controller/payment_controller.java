@@ -38,7 +38,13 @@ public class payment_controller {
     public void add_payaccount(String CCCD,int balance){
         be.AddPayAccount(CCCD,balance);
     }
+    public boolean check_admin(){
+        return be.CheckAdmin();
+    }
+    public boolean login(String username, String password){
+        return be.Login(username,password);
+    }
     public static void main(String args[]) {
-        
+        //System.out.println(be.Login("ADMIN","ad"));
     }
 }

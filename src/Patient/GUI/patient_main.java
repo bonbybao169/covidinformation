@@ -76,7 +76,7 @@ public class patient_main extends javax.swing.JFrame {
         });
 
         jLabel1.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
-        jLabel1.setText("<html><body>- Xem thông tin cơ bản<br>- Lịch sử được quản lý<br>- Xem dư nợ<br>- Lịch sử thanh toán</body></html>");
+        jLabel1.setText("<html><body>- Xem thông tin cơ bản<br>- Lịch sử được quản lý<br>- Lịch sử tiêu thụ gói nhu yếu phẩm<br>-  Xem dư nợ<br>- Lịch sử thanh toán</body></html>");
         jLabel1.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
 
         jLabel2.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
