@@ -3,16 +3,16 @@ package Auth.GUI;
 import Auth.Controller.auth_controller;
 
 public class CreatePassword_UI extends javax.swing.JFrame {
-    
+
     auth_controller control = new auth_controller();
-    
+
     public CreatePassword_UI() {
         initComponents();
         this.setLocationRelativeTo(null);
-        
+
         usernameTextField.setText(Login_UI.usernameStr);
     }
-    
+
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
@@ -99,11 +99,11 @@ public class CreatePassword_UI extends javax.swing.JFrame {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel4)
                     .addComponent(passPassField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(48, 48, 48)
+                .addGap(45, 45, 45)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addComponent(backButton, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(createPassButton, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                .addContainerGap(87, Short.MAX_VALUE))
+                .addContainerGap(18, Short.MAX_VALUE))
         );
 
         pack();
@@ -114,15 +114,15 @@ public class CreatePassword_UI extends javax.swing.JFrame {
         super.dispose();
         Login_UI.main(null);
     }//GEN-LAST:event_backButtonMouseClicked
-    
+
     private void createPassButtonMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_createPassButtonMouseClicked
         // TODO add your handling code here:
         control.createPatientAccount(Login_UI.usernameStr, passPassField.getText());
-        
+
         super.dispose();
         Login_UI.main(null);
     }//GEN-LAST:event_createPassButtonMouseClicked
-    
+
     public static void main(String args[]) {
         try {
             for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
