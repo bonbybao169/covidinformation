@@ -10,8 +10,8 @@ public class connect_db {
 
     static final String JDBC_DRIVER = "com.mysql.cj.jdbc.Driver";
     static final String DB_URL = "jdbc:mysql://localhost/covid_management";
-    static String user = ""; // add username của connection trong mysql vào đây
-    static String pass = ""; // add password của connection trong mysql vào đây
+    static String user = "root"; // add username của connection trong mysql vào đây
+    static String pass = "root"; // add password của connection trong mysql vào đây
 
     public static Connection createConnection() {
         Connection conn = null;

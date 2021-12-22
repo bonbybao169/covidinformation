@@ -19,6 +19,17 @@ public class Patient {
         this.debt = debt;
     }
 
+    public Patient(String name, String CCCD, Date DOB, String address, String state, String isolationarea, float debt) {
+        this.name = name;
+        this.CCCD = CCCD;
+        this.address = address;
+        this.state = state;
+        this.isolationarea = isolationarea;
+
+        this.DOB = DOB;
+        this.debt = debt;
+    }
+
     public String getName() {
         return name;
     }
@@ -50,4 +61,5 @@ public class Patient {
     public float getDebt() {
         return debt;
     }
+
 }
