@@ -1,5 +1,6 @@
 package Patient.GUI;
 
+import Auth.Controller.auth_controller;
 import Patient.Controller.patient_controller;
 import Patient.Model.PaymentHistory;
 import java.util.ArrayList;
@@ -24,7 +25,7 @@ public class patient_payment_history extends javax.swing.JFrame {
             model.addRow(new Object[]{e.getTime(), s});
         }
 
-        debtTextField.setText((int) list.get(list.size() - 1).getDebt() + "");
+        debtTextField.setText(String.valueOf(control.getDebt()));
     }
 
     @SuppressWarnings("unchecked")

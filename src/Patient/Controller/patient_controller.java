@@ -226,4 +226,10 @@ public class patient_controller {
 
         view.buyEssentialPackagesByID(newDebt, auth_control.acc.getUsername());
     }
+
+    public float getDebt() {
+        GetDebtByID view = new GetDebtByID();
+
+        return view.getDebtByID(auth_control.acc.getUsername());
+    }
 }
