@@ -7,16 +7,18 @@ package Payment.GUI;
 import Payment.Controller.*;
 import java.util.*;
 import javax.swing.table.DefaultTableModel;
+
 public class Statement_UI extends javax.swing.JFrame {
 
     static payment_controller con = new payment_controller();
     static DefaultTableModel model;
+
     public Statement_UI() {
         initComponents();
         List<String[]> list = con.list_payment();
         model = (DefaultTableModel) jTable1.getModel();
-        for(String[] element:list){
-            model.addRow(new Object[]{element[0], element[1], element[2], Integer.parseInt(element[3]), element[4] });
+        for (String[] element : list) {
+            model.addRow(new Object[]{element[0], element[1], element[2], Integer.parseInt(element[3]), element[4]});
         }
     }
 
@@ -211,17 +213,19 @@ public class Statement_UI extends javax.swing.JFrame {
         List<String[]> list = con.list_payment();
         model = (DefaultTableModel) jTable1.getModel();
         model.setRowCount(0);
-        for(String[] element:list){
+        for (String[] element : list) {
             model.addRow(new Object[]{element[0], element[1], element[2], Integer.parseInt(element[3]), element[4]});
         }
     }//GEN-LAST:event_jButton5ActionPerformed
 
     private void jButton4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton4ActionPerformed
-        List<String[]> list = con.find_payment(jTextField2.getText());
-        model = (DefaultTableModel) jTable1.getModel();
-        model.setRowCount(0);
-        for(String[] element:list){
-            model.addRow(new Object[]{element[0], element[1], element[2], Integer.parseInt(element[3]), element[4]});
+        if (jTextField2.getText().equals("") == false) {
+            List<String[]> list = con.find_payment(jTextField2.getText());
+            model = (DefaultTableModel) jTable1.getModel();
+            model.setRowCount(0);
+            for (String[] element : list) {
+                model.addRow(new Object[]{element[0], element[1], element[2], Integer.parseInt(element[3]), element[4]});
+            }
         }
     }//GEN-LAST:event_jButton4ActionPerformed
 
