@@ -20,11 +20,13 @@ public class HistoryManager_AUI extends javax.swing.JFrame {
      */
     static DefaultTableModel model;
     static admin_controller con = new admin_controller();
+
     public HistoryManager_AUI(String SelectedUsername) {
         initComponents();
+        this.setLocationRelativeTo(null);
         List<String[]> list = con.history_manager(SelectedUsername);
         model = (DefaultTableModel) jTable1.getModel();
-        for(String[] element:list){
+        for (String[] element : list) {
             model.addRow(new Object[]{element[0], element[1]});
         }
     }

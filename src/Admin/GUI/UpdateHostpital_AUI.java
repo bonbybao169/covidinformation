@@ -19,6 +19,7 @@ public class UpdateHostpital_AUI extends javax.swing.JFrame {
 
     public UpdateHostpital_AUI(String[] components) {
         initComponents();
+        this.setLocationRelativeTo(null);
         System.out.println(components[1]);
         jLabel6.setText(components[0]);
         jTextField1.setText(components[1]);
@@ -158,7 +159,7 @@ public class UpdateHostpital_AUI extends javax.swing.JFrame {
     }//GEN-LAST:event_jTextField3ActionPerformed
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-        if(jTextField1.getText().equals("")==false&&jTextField3.getText().equals("")==false){
+        if (jTextField1.getText().equals("") == false && jTextField3.getText().equals("") == false) {
             String Name = jTextField1.getText();
             int MaxCapicity = Integer.parseInt(jTextField2.getText());
             int PresentCapicity = Integer.parseInt(jTextField3.getText());

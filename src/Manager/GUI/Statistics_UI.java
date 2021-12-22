@@ -15,6 +15,7 @@ public class Statistics_UI extends javax.swing.JFrame {
      */
     public Statistics_UI() {
         initComponents();
+        this.setLocationRelativeTo(null);
     }
 
     /**
@@ -149,31 +150,31 @@ public class Statistics_UI extends javax.swing.JFrame {
     private void statusButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_statusButtonActionPerformed
         // TODO add your handling code here:
         super.dispose();
-       StatusStatistic_UI.main(null);
+        StatusStatistic_UI.main(null);
     }//GEN-LAST:event_statusButtonActionPerformed
 
     private void comsumptionButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_comsumptionButtonActionPerformed
         // TODO add your handling code here:
         super.dispose();
-       ComsumptionStatistic_UI.main(null);
+        ComsumptionStatistic_UI.main(null);
     }//GEN-LAST:event_comsumptionButtonActionPerformed
 
     private void debtButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_debtButtonActionPerformed
         // TODO add your handling code here:
         super.dispose();
-       DebtStatistic_UI.main(null);
+        DebtStatistic_UI.main(null);
     }//GEN-LAST:event_debtButtonActionPerformed
 
     private void transferButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_transferButtonActionPerformed
         // TODO add your handling code here:
         super.dispose();
-       TransferStatusStatistic_UI.main(null);
+        TransferStatusStatistic_UI.main(null);
     }//GEN-LAST:event_transferButtonActionPerformed
 
     private void jButton5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton5ActionPerformed
         // TODO add your handling code here:
         super.dispose();
-       ManagerMain_UI.main(null);
+        ManagerMain_UI.main(null);
     }//GEN-LAST:event_jButton5ActionPerformed
 
     /**

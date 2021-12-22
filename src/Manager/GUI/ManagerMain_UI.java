@@ -16,6 +16,7 @@ public class ManagerMain_UI extends javax.swing.JFrame {
     public ManagerMain_UI() {
         //this.setTitle("Manager");
         initComponents();
+        this.setLocationRelativeTo(null);
     }
 
     /**
@@ -103,19 +104,19 @@ public class ManagerMain_UI extends javax.swing.JFrame {
     private void PMButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_PMButtonActionPerformed
         // TODO add your handling code here:
         super.dispose();
-       PackageManagement_UI.main(null);
+        PackageManagement_UI.main(null);
     }//GEN-LAST:event_PMButtonActionPerformed
 
     private void MPMButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_MPMButtonActionPerformed
         // TODO add your handling code here:
         super.dispose();
-       CovidManagement_UI.main(null);
+        CovidManagement_UI.main(null);
     }//GEN-LAST:event_MPMButtonActionPerformed
 
     private void StatisticButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_StatisticButtonActionPerformed
         // TODO add your handling code here:
-       super.dispose();
-       Statistics_UI.main(null);
+        super.dispose();
+        Statistics_UI.main(null);
     }//GEN-LAST:event_StatisticButtonActionPerformed
 
     /**

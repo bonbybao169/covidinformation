@@ -15,6 +15,7 @@ public class DebtStatistic_UI extends javax.swing.JFrame {
      */
     public DebtStatistic_UI() {
         initComponents();
+        this.setLocationRelativeTo(null);
     }
 
     /**
@@ -114,8 +115,8 @@ public class DebtStatistic_UI extends javax.swing.JFrame {
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
         // TODO add your handling code here:
-         super.dispose();
-      Statistics_UI.main(null);
+        super.dispose();
+        Statistics_UI.main(null);
     }//GEN-LAST:event_jButton2ActionPerformed
 
     /**

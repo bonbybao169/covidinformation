@@ -11,17 +11,22 @@ import Admin.Controller.*;
 
 public class ManageHospital_AUI extends javax.swing.JFrame {
 
-    static String SelectedID,SelectedName,SelectedMaxCapicity,SelectedPresentCapicity;
+    static String SelectedID, SelectedName, SelectedMaxCapicity, SelectedPresentCapicity;
     static DefaultTableModel model;
     static admin_controller con = new admin_controller();
+
     public ManageHospital_AUI() {
         initComponents();
+        this.setLocationRelativeTo(null);
         List<String[]> list = con.list_hospital();
         model = (DefaultTableModel) jTable1.getModel();
-        for(String[] element:list){
-            model.addRow(new Object[]{element[0], element[1],element[2],element[3]});
+        for (String[] element : list) {
+            model.addRow(new Object[]{element[0], element[1], element[2], element[3]});
         }
-        SelectedID="";SelectedName="";SelectedMaxCapicity="";SelectedPresentCapicity="";
+        SelectedID = "";
+        SelectedName = "";
+        SelectedMaxCapicity = "";
+        SelectedPresentCapicity = "";
     }
 
     /**
@@ -184,7 +189,7 @@ public class ManageHospital_AUI extends javax.swing.JFrame {
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
         super.dispose();
-        String[] arg = new String[] {SelectedID,SelectedName,SelectedMaxCapicity,SelectedPresentCapicity};
+        String[] arg = new String[]{SelectedID, SelectedName, SelectedMaxCapicity, SelectedPresentCapicity};
         UpdateHostpital_AUI.main(arg);
     }//GEN-LAST:event_jButton2ActionPerformed
 
@@ -194,11 +199,11 @@ public class ManageHospital_AUI extends javax.swing.JFrame {
     }//GEN-LAST:event_jButton3ActionPerformed
 
     private void jTable1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jTable1MouseClicked
-        DefaultTableModel tableModel=(DefaultTableModel)jTable1.getModel();
-        SelectedID = tableModel.getValueAt(jTable1.getSelectedRow(),0).toString();
-        SelectedName = tableModel.getValueAt(jTable1.getSelectedRow(),1).toString();
-        SelectedMaxCapicity = tableModel.getValueAt(jTable1.getSelectedRow(),2).toString(); 
-        SelectedPresentCapicity = tableModel.getValueAt(jTable1.getSelectedRow(),3).toString(); 
+        DefaultTableModel tableModel = (DefaultTableModel) jTable1.getModel();
+        SelectedID = tableModel.getValueAt(jTable1.getSelectedRow(), 0).toString();
+        SelectedName = tableModel.getValueAt(jTable1.getSelectedRow(), 1).toString();
+        SelectedMaxCapicity = tableModel.getValueAt(jTable1.getSelectedRow(), 2).toString();
+        SelectedPresentCapicity = tableModel.getValueAt(jTable1.getSelectedRow(), 3).toString();
     }//GEN-LAST:event_jTable1MouseClicked
 
     private void jTextField1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField1ActionPerformed
@@ -209,8 +214,8 @@ public class ManageHospital_AUI extends javax.swing.JFrame {
         List<String[]> list = con.list_hospital();
         model = (DefaultTableModel) jTable1.getModel();
         model.setRowCount(0);
-        for(String[] element:list){
-            model.addRow(new Object[]{element[0], element[1],element[2],element[3]});
+        for (String[] element : list) {
+            model.addRow(new Object[]{element[0], element[1], element[2], element[3]});
         }
     }//GEN-LAST:event_jButton5ActionPerformed
 
@@ -218,8 +223,8 @@ public class ManageHospital_AUI extends javax.swing.JFrame {
         List<String[]> list = con.find_hospital(jTextField1.getText());
         model = (DefaultTableModel) jTable1.getModel();
         model.setRowCount(0);
-        for(String[] element:list){
-            model.addRow(new Object[]{element[0], element[1],element[2],element[3]});
+        for (String[] element : list) {
+            model.addRow(new Object[]{element[0], element[1], element[2], element[3]});
         }
     }//GEN-LAST:event_jButton4ActionPerformed
 
@@ -256,7 +261,7 @@ public class ManageHospital_AUI extends javax.swing.JFrame {
                 ManageHospital_AUI UI = new ManageHospital_AUI();
                 UI.setVisible(true);
             }
-            
+
         });
     }
 

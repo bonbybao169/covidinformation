@@ -3,15 +3,16 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JFrame.java to edit this template
  */
 package Admin.GUI;
+
 import Admin.Controller.*;
 
 public class CreateManager_AUI extends javax.swing.JFrame {
-
 
     static admin_controller con = new admin_controller();
 
     public CreateManager_AUI() {
         initComponents();
+        this.setLocationRelativeTo(null);
     }
 
     /**
@@ -151,10 +152,10 @@ public class CreateManager_AUI extends javax.swing.JFrame {
     }//GEN-LAST:event_jTextField1ActionPerformed
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-        String username,password;
+        String username, password;
         username = jTextField1.getText();
         password = jTextField2.getText();
-        if(username.equals("")==false&&password.equals("")==false){
+        if (username.equals("") == false && password.equals("") == false) {
             con.create_manager(username, password);
         }
         super.dispose();

@@ -15,6 +15,7 @@ public class ManagedPersonList_UI extends javax.swing.JFrame {
      */
     public ManagedPersonList_UI() {
         initComponents();
+        this.setLocationRelativeTo(null);
     }
 
     /**

@@ -8,6 +8,7 @@ import javax.swing.table.*;
 import javax.swing.*;
 import java.util.*;
 import Admin.Controller.*;
+
 public class ManageManager_AUI extends javax.swing.JFrame {
 
     /**
@@ -17,14 +18,17 @@ public class ManageManager_AUI extends javax.swing.JFrame {
     static String SelectedUsername;
     static String SelectedState;
     static admin_controller con = new admin_controller();
+
     public ManageManager_AUI() {
         initComponents();
+        this.setLocationRelativeTo(null);
         List<String[]> list = con.list_manager();
         model = (DefaultTableModel) jTable1.getModel();
-        for(String[] element:list){
+        for (String[] element : list) {
             model.addRow(new Object[]{element[0], element[1]});
         }
-        SelectedUsername="";SelectedState="";
+        SelectedUsername = "";
+        SelectedState = "";
     }
 
     /**
@@ -177,7 +181,7 @@ public class ManageManager_AUI extends javax.swing.JFrame {
         List<String[]> list = con.list_manager();
         model = (DefaultTableModel) jTable1.getModel();
         model.setRowCount(0);
-        for(String[] element:list){
+        for (String[] element : list) {
             model.addRow(new Object[]{element[0], element[1]});
         }
         //System.out.println(SelectedUsername+" "+SelectedState);
@@ -185,7 +189,7 @@ public class ManageManager_AUI extends javax.swing.JFrame {
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
         super.dispose();
-        String[] arg = new String[] {SelectedUsername};
+        String[] arg = new String[]{SelectedUsername};
         HistoryManager_AUI.main(arg);
     }//GEN-LAST:event_jButton2ActionPerformed
 
@@ -195,9 +199,9 @@ public class ManageManager_AUI extends javax.swing.JFrame {
     }//GEN-LAST:event_jButton3ActionPerformed
 
     private void jTable1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jTable1MouseClicked
-        DefaultTableModel tableModel=(DefaultTableModel)jTable1.getModel();
-        SelectedUsername = tableModel.getValueAt(jTable1.getSelectedRow(),0).toString();
-        SelectedState = tableModel.getValueAt(jTable1.getSelectedRow(),1).toString();
+        DefaultTableModel tableModel = (DefaultTableModel) jTable1.getModel();
+        SelectedUsername = tableModel.getValueAt(jTable1.getSelectedRow(), 0).toString();
+        SelectedState = tableModel.getValueAt(jTable1.getSelectedRow(), 1).toString();
     }//GEN-LAST:event_jTable1MouseClicked
 
     private void jTextField1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField1ActionPerformed
@@ -208,7 +212,7 @@ public class ManageManager_AUI extends javax.swing.JFrame {
         List<String[]> list = con.find_manager(jTextField1.getText());
         model = (DefaultTableModel) jTable1.getModel();
         model.setRowCount(0);
-        for(String[] element:list){
+        for (String[] element : list) {
             model.addRow(new Object[]{element[0], element[1]});
         }
     }//GEN-LAST:event_jButton4ActionPerformed
@@ -217,7 +221,7 @@ public class ManageManager_AUI extends javax.swing.JFrame {
         List<String[]> list = con.list_manager();
         model = (DefaultTableModel) jTable1.getModel();
         model.setRowCount(0);
-        for(String[] element:list){
+        for (String[] element : list) {
             model.addRow(new Object[]{element[0], element[1]});
         }
     }//GEN-LAST:event_jButton5ActionPerformed
@@ -226,7 +230,7 @@ public class ManageManager_AUI extends javax.swing.JFrame {
      * @param args the command line arguments
      */
     public static void main(String args[]) {
- 
+
         try {
             for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
                 if ("Nimbus".equals(info.getName())) {

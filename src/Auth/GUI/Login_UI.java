@@ -13,6 +13,7 @@ import Auth.Controller.auth_controller;
 public class Login_UI extends javax.swing.JFrame {
 
     auth_controller control = new auth_controller();
+    public static String usernameStr;
 
     public Login_UI() {
         try {
@@ -126,11 +127,19 @@ public class Login_UI extends javax.swing.JFrame {
                 super.dispose();
                 InputPassword_UI.main(null);
             } else {
+                usernameStr = usernameTextField.getText();
 
+                super.dispose();
+                CreatePassword_UI.main(null);
             }
         } else {
             if (control.checkAccountAvailable(usernameTextField.getText())) {
-                
+                control.getAccountByID(usernameTextField.getText());
+
+                super.dispose();
+                InputPassword_UI.main(null);
+            } else {
+                errorLabel.setText("Your account isn't available");
             }
         }
     }//GEN-LAST:event_loginButtonMouseClicked
