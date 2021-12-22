@@ -103,9 +103,6 @@
         </Property>
         <Property name="text" type="java.lang.String" value="Kh&#x1edf;i t&#x1ea1;o"/>
       </Properties>
-      <Events>
-        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jButton1ActionPerformed"/>
-      </Events>
     </Component>
   </SubComponents>
 </Form>
