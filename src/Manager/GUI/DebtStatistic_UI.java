@@ -4,6 +4,10 @@
  */
 package Manager.GUI;
 
+import Manager.Controller.ManagerController;
+import java.util.ArrayList;
+import javax.swing.table.DefaultTableModel;
+
 /**
  *
  * @author HOME
@@ -13,8 +17,18 @@ public class DebtStatistic_UI extends javax.swing.JFrame {
     /**
      * Creates new form DebtStatistic
      */
+    ManagerController manager = new ManagerController();
+    static String MNID = "MN12345";
+    static DefaultTableModel model;
+
     public DebtStatistic_UI() {
         initComponents();
+        ArrayList<String[]> list = manager.view_Debt_Statisitc(MNID);
+        model = (DefaultTableModel) jTable1.getModel();
+        for (String[] i : list) {
+            model.addRow(i);
+        }
+        jTextField1.setText(manager.cal_total_Debt());
     }
 
     /**
@@ -39,10 +53,7 @@ public class DebtStatistic_UI extends javax.swing.JFrame {
 
         jTable1.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null}
+
             },
             new String [] {
                 "Họ và tên", "CMND", "Ngày sinh", "Dư nợ"
@@ -114,8 +125,8 @@ public class DebtStatistic_UI extends javax.swing.JFrame {
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
         // TODO add your handling code here:
-         super.dispose();
-      Statistics_UI.main(null);
+        super.dispose();
+        Statistics_UI.main(null);
     }//GEN-LAST:event_jButton2ActionPerformed
 
     /**
