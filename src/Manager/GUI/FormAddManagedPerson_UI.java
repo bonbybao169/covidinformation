@@ -21,6 +21,7 @@ public class FormAddManagedPerson_UI extends javax.swing.JFrame {
 
     public FormAddManagedPerson_UI() {
         initComponents();
+        this.setLocationRelativeTo(null);
     }
 
     /**

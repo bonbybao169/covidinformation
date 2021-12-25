@@ -23,12 +23,14 @@ public class CuredStatistic_UI extends javax.swing.JFrame {
 
     public CuredStatistic_UI() {
         initComponents();
+        this.setLocationRelativeTo(null);
         ArrayList<String[]> list = manager.view_Cured_Statisitc(MNID);
         model = (DefaultTableModel) jTable1.getModel();
         for (String[] i : list) {
             model.addRow(i);
         }
         jTextField1.setText(manager.cal_total_Cured());
+
     }
 
     /**

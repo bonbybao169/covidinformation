@@ -15,6 +15,7 @@ public class StatusStatistic_UI extends javax.swing.JFrame {
      */
     public StatusStatistic_UI() {
         initComponents();
+        this.setLocationRelativeTo(null);
     }
 
     /**

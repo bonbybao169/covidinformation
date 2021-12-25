@@ -25,6 +25,7 @@ public class ManagedPersonList_UI extends javax.swing.JFrame {
 
     public ManagedPersonList_UI() {
         initComponents();
+        this.setLocationRelativeTo(null);
         ArrayList<Patient> list = manager.view_patient_list();
         model = (DefaultTableModel) jTable1.getModel();
         for (Patient p : list) {
@@ -41,6 +42,7 @@ public class ManagedPersonList_UI extends javax.swing.JFrame {
         sortType.add("Giảm dần theo Trạng thái");
         sortType.add("Tăng dần theo Dư nợ");
         sortType.add("Giảm dần theo Dư nợ");
+
     }
 
     /**

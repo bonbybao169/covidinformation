@@ -28,6 +28,7 @@ public class PackageManagement_UI extends javax.swing.JFrame {
 
     public PackageManagement_UI() {
         initComponents();
+        this.setLocationRelativeTo(null);
         sortType.add("Tăng dần theo ID");
         sortType.add("Giảm dần theo ID");
         sortType.add("Tăng dần theo Tên gói");
@@ -53,6 +54,7 @@ public class PackageManagement_UI extends javax.swing.JFrame {
                 model.addRow(new Object[]{e.getEPID(), e.getEPName(), e.getLimitPeople(), e.getLimitDate(), e.getPrice()});
             }
         }
+
     }
 
     /**

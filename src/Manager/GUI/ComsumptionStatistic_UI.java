@@ -20,15 +20,17 @@ public class ComsumptionStatistic_UI extends javax.swing.JFrame {
     ManagerController manager = new ManagerController();
     static String MNID = "MN12345";
     static DefaultTableModel model;
-    
+
     public ComsumptionStatistic_UI() {
         initComponents();
+        this.setLocationRelativeTo(null);
         ArrayList<String[]> list = manager.view_Consumption_Statisitc(MNID);
         model = (DefaultTableModel) jTable1.getModel();
         for (String[] i : list) {
             model.addRow(i);
         }
         jTextField1.setText(manager.cal_total_Consumption());
+
     }
 
     /**

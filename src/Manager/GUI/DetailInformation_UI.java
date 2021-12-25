@@ -24,6 +24,7 @@ public class DetailInformation_UI extends javax.swing.JFrame {
 
     public DetailInformation_UI() {
         initComponents();
+        this.setLocationRelativeTo(null);
         hopitals = manager.view_Isolation_Area_List();
         for (String[] h : hopitals) {
             hopitalChoice.add(h[1]);
@@ -33,6 +34,7 @@ public class DetailInformation_UI extends javax.swing.JFrame {
         stateChoice.add("F2");
         stateChoice.add("F3");
         RelatedPeople.setVisible(true);
+
     }
 
     /**
