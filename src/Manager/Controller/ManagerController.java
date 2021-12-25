@@ -25,81 +25,101 @@ public class ManagerController {
         return list;
     }
 
-    public ArrayList<Patient> sort_ACS_byName() {
+    public ArrayList<Patient> sort_ASC_byName() {
 
         CovidManagementService service = new CovidManagementService();
 
-        return service.sortACSByName();
+        return service.sortASCByName();
     }
 
-    public ArrayList<Patient> sort_DECS_byName() {
+    public ArrayList<Patient> sort_DESC_byName() {
 
         CovidManagementService service = new CovidManagementService();
 
-        return service.sortDECSByName();
+        return service.sortDESCByName();
     }
 
-    public ArrayList<Patient> sort_ACS_byState() {
+    public ArrayList<Patient> sort_ASC_byHopitalName() {
 
         CovidManagementService service = new CovidManagementService();
 
-        return service.sortACSByState();
+        return service.sortASCByHopital();
     }
 
-    public ArrayList<Patient> sort_DECS_byState() {
+    public ArrayList<Patient> sort_DESC_byHopitalName() {
 
         CovidManagementService service = new CovidManagementService();
 
-        return service.sortDECSByState();
+        return service.sortDESCByHopital();
     }
 
-    public ArrayList<Patient> sort_ACS_byDebt() {
+    public ArrayList<Patient> sort_ASC_byState() {
 
         CovidManagementService service = new CovidManagementService();
 
-        return service.sortACSByDebt();
+        return service.sortASCByState();
     }
 
-    public ArrayList<Patient> sort_DECS_byDebt() {
+    public ArrayList<Patient> sort_DESC_byState() {
 
         CovidManagementService service = new CovidManagementService();
 
-        return service.sortDECSByDebt();
+        return service.sortDESCByState();
     }
 
-    public ArrayList<Patient> sort_ACS_byDOB() {
+    public ArrayList<Patient> sort_ASC_byDebt() {
 
         CovidManagementService service = new CovidManagementService();
 
-        return service.sortACSByDOB();
+        return service.sortASCByDebt();
     }
 
-    public ArrayList<Patient> sort_DECS_byDOB() {
+    public ArrayList<Patient> sort_DESC_byDebt() {
 
         CovidManagementService service = new CovidManagementService();
 
-        return service.sortDECSByDOB();
+        return service.sortDESCByDebt();
     }
 
-    public void transfer_State(String MNID, String CCCD, int oldState, int newState) {
+    public ArrayList<Patient> sort_ASC_byDOB() {
+
+        CovidManagementService service = new CovidManagementService();
+
+        return service.sortASCByDOB();
+    }
+
+    public ArrayList<Patient> sort_DESC_byDOB() {
+
+        CovidManagementService service = new CovidManagementService();
+
+        return service.sortDESCByDOB();
+    }
+
+    public void transfer_State(String mnId, String CCCD, int oldState, int newState) {
         CovidManagementService service = new CovidManagementService();
         service.transferStatus(CCCD, newState);
-        service.addTransferStatusHistoryForManager(MNID, CCCD, Integer.toString(oldState), Integer.toString(newState));
+        service.addTransferStatusHistoryForManager(mnId, CCCD, Integer.toString(oldState), Integer.toString(newState));
     }
 
-    public void transfer_Hopital(String MNID, String CCCD, String oldHopital, String newHopital) {
+    public void transfer_Hopital(String mnId, String CCCD, String oldHopital, String newHopitalID, String newHopitalName) {
         CovidManagementService service = new CovidManagementService();
-        service.transferIsolationArea(CCCD, oldHopital);
-        service.addTransferIsolationAreaHistoryForManager(MNID, CCCD, oldHopital, newHopital);
+        service.transferIsolationArea(CCCD, newHopitalID);
+        service.addTransferIsolationAreaHistoryForManager(mnId, CCCD, oldHopital, newHopitalName);
     }
 
-    public void add_newPatient(String MNID, Patient newMP) {
+    public int add_newPatient(String mnId, Patient newMP) {
         CovidManagementService service = new CovidManagementService();
+        if (service.findByCCCD(newMP.getCCCD()) != null) {
+            return -1;
+        }
+        if (newMP.getRelated() != null && service.findByCCCD(newMP.getRelated()) == null) {
+            return 0;
+        }
         service.addNewMP_Info(newMP);
-        service.addNewMPInforHistoryForManager(MNID, newMP.getCCCD());
+        service.addNewMPInforHistoryForManager(mnId, newMP.getCCCD());
         service.addNewMPAccount(newMP.getCCCD());
-        service.addNewMPAccountHistoryForManager(MNID, newMP.getCCCD());
-
+        service.addNewMPAccountHistoryForManager(mnId, newMP.getCCCD());
+        return 1;
     }
 
     public ArrayList<String[]> view_Isolation_Area_List() {
@@ -117,47 +137,47 @@ public class ManagerController {
         return service.findByCCCD(MPID);
     }
 
-    public void add_NewEssentialPackage(String MNID, String epID, String name, int limitPeople, Date limitDate, float price) {
+    public void add_NewEssentialPackage(String mnId, String epID, String name, int limitPeople, Date limitDate, float price) {
         EssentialPackageManagementService service = new EssentialPackageManagementService();
         service.addNewEssentialPackage(epID, name, limitPeople, limitDate, price);
-        service.addNewEPHistoryForManager(MNID, epID);
+        service.addNewEPHistoryForManager(mnId, epID);
 
     }
 
-    public void UpdateEssentialPackage(String MNID, String epID, String name, int limitPeople, Date limitDate, float price) {
+    public void UpdateEssentialPackage(String mnId, String epID, String name, int limitPeople, Date limitDate, float price) {
         EssentialPackageManagementService service = new EssentialPackageManagementService();
         service.updateEssentialPackage(epID, name, limitPeople, limitDate, price);
-        service.addUpdateEPHistoryForManager(MNID, epID);
+        service.addUpdateEPHistoryForManager(mnId, epID);
 
     }
 
-    public void DelEssentialPackage(String MNID, String epID) {
+    public void DelEssentialPackage(String mnId, String epID) {
         EssentialPackageManagementService service = new EssentialPackageManagementService();
         service.deleteEssentialPackage(epID);
-        service.addDelEPHistoryForManager(MNID, epID);
+        service.addDelEPHistoryForManager(mnId, epID);
 
     }
 
-    public ArrayList<String[]> view_Consumption_Statisitc(String MNID) {
+    public ArrayList<String[]> view_Consumption_Statisitc(String mnId) {
         StatisticService service = new StatisticService();
-        service.addStatistictHistoryForManager(MNID, "tiêu thụ");
+        service.addStatistictHistoryForManager(mnId, "tiêu thụ");
         return service.showConsumption();
 
     }
 
-    public ArrayList<String[]> view_State_Statisitc(String MNID) {
+    public ArrayList<String[]> view_State_Statisitc(String mnId) {
         StatisticService service = new StatisticService();
-        service.addStatistictHistoryForManager(MNID, "số lượng người theo từng trạng thái");
+        service.addStatistictHistoryForManager(mnId, "số lượng người theo từng trạng thái");
         return service.showStateStatistic();
     }
 
-    public ArrayList<String[]> view_Cured_Statisitc(String MNID) {
+    public ArrayList<String[]> view_Cured_Statisitc(String mnId) {
         StatisticService service = new StatisticService();
-        service.addStatistictHistoryForManager(MNID, "F0 được chữa khỏi");
+        service.addStatistictHistoryForManager(mnId, "F0 được chữa khỏi");
         return service.showCuredStatistic();
     }
 
-    public ArrayList<String[]> view_Debt_Statisitc(String MNID) {
+    public ArrayList<String[]> view_Debt_Statisitc(String mnId) {
         StatisticService service = new StatisticService();
         CovidManagementService s = new CovidManagementService();
         ArrayList<String[]> list = new ArrayList<String[]>();
@@ -167,7 +187,7 @@ public class ManagerController {
             String[] temp = {p.getName(), p.getCCCD(), p.getDOB().toString(), Float.toString(p.getDebt())};
             list.add(temp);
         }
-        service.addStatistictHistoryForManager(MNID, "dư nợ");
+        service.addStatistictHistoryForManager(mnId, "dư nợ");
         return list;
     }
 

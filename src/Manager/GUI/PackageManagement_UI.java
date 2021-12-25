@@ -28,6 +28,16 @@ public class PackageManagement_UI extends javax.swing.JFrame {
 
     public PackageManagement_UI() {
         initComponents();
+        sortType.add("Tăng dần theo ID");
+        sortType.add("Giảm dần theo ID");
+        sortType.add("Tăng dần theo Tên gói");
+        sortType.add("Giảm dần theo Tên gói");
+        sortType.add("Tăng dần theo Mức giới hạn");
+        sortType.add("Giảm dần theo Mức giới hạn");
+        sortType.add("Tăng dần theo Thời hạn");
+        sortType.add("Giảm dần theo Thời hạn");
+        sortType.add("Tăng dần theo Gía");
+        sortType.add("Giảm dần theo Gía");
         if (FilterEP_UI.filtered == false) {
             list = control.view_essential_package();
 
@@ -65,19 +75,19 @@ public class PackageManagement_UI extends javax.swing.JFrame {
         jLabel4 = new javax.swing.JLabel();
         jLabel5 = new javax.swing.JLabel();
         jLabel6 = new javax.swing.JLabel();
-        jTextField1 = new javax.swing.JTextField();
-        jTextField2 = new javax.swing.JTextField();
-        jTextField3 = new javax.swing.JTextField();
-        jTextField4 = new javax.swing.JTextField();
-        jTextField5 = new javax.swing.JTextField();
-        jButton9 = new javax.swing.JButton();
-        jButton10 = new javax.swing.JButton();
-        jButton11 = new javax.swing.JButton();
-        jButton12 = new javax.swing.JButton();
+        price = new javax.swing.JTextField();
+        limitTime = new javax.swing.JTextField();
+        limitPeople = new javax.swing.JTextField();
+        EPID = new javax.swing.JTextField();
+        EPName = new javax.swing.JTextField();
+        searchButon = new javax.swing.JButton();
+        delButton = new javax.swing.JButton();
+        addButton = new javax.swing.JButton();
+        editButton = new javax.swing.JButton();
         jPanel2 = new javax.swing.JPanel();
         jLabel7 = new javax.swing.JLabel();
-        choice1 = new java.awt.Choice();
-        jButton7 = new javax.swing.JButton();
+        sortType = new java.awt.Choice();
+        sortButton = new javax.swing.JButton();
         jButton3 = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
@@ -124,25 +134,45 @@ public class PackageManagement_UI extends javax.swing.JFrame {
 
         jLabel6.setText("Thời gian giới hạn");
 
-        jTextField1.addActionListener(new java.awt.event.ActionListener() {
+        price.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jTextField1ActionPerformed(evt);
+                priceActionPerformed(evt);
             }
         });
 
-        jTextField3.addActionListener(new java.awt.event.ActionListener() {
+        limitPeople.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jTextField3ActionPerformed(evt);
+                limitPeopleActionPerformed(evt);
             }
         });
 
-        jButton9.setText("Tìm kiếm");
+        searchButon.setText("Tìm kiếm");
+        searchButon.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                searchButonActionPerformed(evt);
+            }
+        });
 
-        jButton10.setText("Xóa");
+        delButton.setText("Xóa");
+        delButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                delButtonActionPerformed(evt);
+            }
+        });
 
-        jButton11.setText("Thêm");
+        addButton.setText("Thêm");
+        addButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                addButtonActionPerformed(evt);
+            }
+        });
 
-        jButton12.setText("Sửa");
+        editButton.setText("Sửa");
+        editButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                editButtonActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
@@ -160,19 +190,19 @@ public class PackageManagement_UI extends javax.swing.JFrame {
                             .addComponent(jLabel6))
                         .addGap(70, 70, 70)
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jTextField2)
-                            .addComponent(jTextField1, javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addComponent(jTextField4, javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addComponent(jTextField5, javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addComponent(jTextField3, javax.swing.GroupLayout.Alignment.TRAILING)))
+                            .addComponent(limitTime)
+                            .addComponent(price, javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addComponent(EPID, javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addComponent(EPName, javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addComponent(limitPeople, javax.swing.GroupLayout.Alignment.TRAILING)))
                     .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addComponent(jButton9)
+                        .addComponent(searchButon)
                         .addGap(18, 18, 18)
-                        .addComponent(jButton11)
+                        .addComponent(addButton)
                         .addGap(18, 18, 18)
-                        .addComponent(jButton12)
+                        .addComponent(editButton)
                         .addGap(18, 18, 18)
-                        .addComponent(jButton10)
+                        .addComponent(delButton)
                         .addGap(0, 0, Short.MAX_VALUE)))
                 .addContainerGap())
         );
@@ -182,29 +212,29 @@ public class PackageManagement_UI extends javax.swing.JFrame {
                 .addContainerGap()
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 26, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jTextField4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(EPID, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 26, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jTextField5, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(EPName, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel4, javax.swing.GroupLayout.PREFERRED_SIZE, 26, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jTextField3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(limitPeople, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel6, javax.swing.GroupLayout.PREFERRED_SIZE, 26, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jTextField2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(limitTime, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel5, javax.swing.GroupLayout.PREFERRED_SIZE, 26, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(price, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 13, Short.MAX_VALUE)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jButton9)
-                    .addComponent(jButton10)
-                    .addComponent(jButton11)
-                    .addComponent(jButton12))
+                    .addComponent(searchButon)
+                    .addComponent(delButton)
+                    .addComponent(addButton)
+                    .addComponent(editButton))
                 .addContainerGap())
         );
 
@@ -212,7 +242,12 @@ public class PackageManagement_UI extends javax.swing.JFrame {
 
         jLabel7.setText("Tiêu chí");
 
-        jButton7.setText("Sắp xếp");
+        sortButton.setText("Sắp xếp");
+        sortButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                sortButtonActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
@@ -222,9 +257,9 @@ public class PackageManagement_UI extends javax.swing.JFrame {
                 .addContainerGap()
                 .addComponent(jLabel7, javax.swing.GroupLayout.PREFERRED_SIZE, 46, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(choice1, javax.swing.GroupLayout.PREFERRED_SIZE, 159, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(sortType, javax.swing.GroupLayout.PREFERRED_SIZE, 159, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 13, Short.MAX_VALUE)
-                .addComponent(jButton7)
+                .addComponent(sortButton)
                 .addContainerGap())
         );
         jPanel2Layout.setVerticalGroup(
@@ -233,11 +268,11 @@ public class PackageManagement_UI extends javax.swing.JFrame {
                 .addContainerGap()
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                        .addComponent(choice1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(sortType, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addComponent(jLabel7, javax.swing.GroupLayout.PREFERRED_SIZE, 22, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(jPanel2Layout.createSequentialGroup()
                         .addGap(2, 2, 2)
-                        .addComponent(jButton7)))
+                        .addComponent(sortButton)))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
@@ -301,13 +336,13 @@ public class PackageManagement_UI extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void jTextField1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField1ActionPerformed
+    private void priceActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_priceActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jTextField1ActionPerformed
+    }//GEN-LAST:event_priceActionPerformed
 
-    private void jTextField3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField3ActionPerformed
+    private void limitPeopleActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_limitPeopleActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jTextField3ActionPerformed
+    }//GEN-LAST:event_limitPeopleActionPerformed
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
         // TODO add your handling code here:
@@ -320,6 +355,168 @@ public class PackageManagement_UI extends javax.swing.JFrame {
         super.dispose();
         FilterEP_UI.main(null);
     }//GEN-LAST:event_jButton3ActionPerformed
+
+    private void searchButonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_searchButonActionPerformed
+        // TODO add your handling code here:
+        String searchID = EPID.getText();
+        searchID = searchID.trim();
+        String searchName = EPName.getText();
+        searchName = searchName.trim();
+        if (!searchID.equals("")) {
+            EssentialPackage e = control.view_essential_package_by_id(searchID);
+
+            model = (DefaultTableModel) jTable1.getModel();
+            model.setRowCount(0);
+
+            model.addRow(new Object[]{e.getEPID(), e.getEPName(), e.getLimitPeople(), e.getLimitDate(), e.getPrice()});
+
+        } else if (!searchName.equals("")) {
+            list = control.view_essential_package_by_name(searchName);
+
+            model = (DefaultTableModel) jTable1.getModel();
+            model.setRowCount(0);
+            for (EssentialPackage e : list) {
+                model.addRow(new Object[]{e.getEPID(), e.getEPName(), e.getLimitPeople(), e.getLimitDate(), e.getPrice()});
+            }
+        }
+    }//GEN-LAST:event_searchButonActionPerformed
+
+    private void sortButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_sortButtonActionPerformed
+        // TODO add your handling code here:
+        String type = sortType.getSelectedItem().toString();
+
+        switch (type) {
+            case "Tăng dần theo ID" -> {
+                list = control.view_essential_package_id_asc();
+
+                model = (DefaultTableModel) jTable1.getModel();
+                model.setRowCount(0);
+                for (EssentialPackage e : list) {
+                    model.addRow(new Object[]{e.getEPID(), e.getEPName(), e.getLimitPeople(), e.getLimitDate(), e.getPrice()});
+                }
+            }
+            case "Giảm dần theo ID" -> {
+                list = control.view_essential_package_id_desc();
+
+                model = (DefaultTableModel) jTable1.getModel();
+                model.setRowCount(0);
+                for (EssentialPackage e : list) {
+                    model.addRow(new Object[]{e.getEPID(), e.getEPName(), e.getLimitPeople(), e.getLimitDate(), e.getPrice()});
+                }
+            }
+            case "Tăng dần theo Tên gói" -> {
+                list = control.view_essential_package_name_asc();
+
+                model = (DefaultTableModel) jTable1.getModel();
+                model.setRowCount(0);
+                for (EssentialPackage e : list) {
+                    model.addRow(new Object[]{e.getEPID(), e.getEPName(), e.getLimitPeople(), e.getLimitDate(), e.getPrice()});
+                }
+            }
+            case "Giảm dần theo Tên gói" -> {
+                list = control.view_essential_package_name_desc();
+
+                model = (DefaultTableModel) jTable1.getModel();
+                model.setRowCount(0);
+                for (EssentialPackage e : list) {
+                    model.addRow(new Object[]{e.getEPID(), e.getEPName(), e.getLimitPeople(), e.getLimitDate(), e.getPrice()});
+                }
+            }
+            case "Tăng dần theo Mức giới hạn" -> {
+                list = control.view_essential_package_limit_people_asc();
+
+                model = (DefaultTableModel) jTable1.getModel();
+                model.setRowCount(0);
+                for (EssentialPackage e : list) {
+                    model.addRow(new Object[]{e.getEPID(), e.getEPName(), e.getLimitPeople(), e.getLimitDate(), e.getPrice()});
+                }
+            }
+            case "Giảm dần theo Mức giới hạn" -> {
+                list = control.view_essential_package_limit_people_desc();
+
+                model = (DefaultTableModel) jTable1.getModel();
+                model.setRowCount(0);
+                for (EssentialPackage e : list) {
+                    model.addRow(new Object[]{e.getEPID(), e.getEPName(), e.getLimitPeople(), e.getLimitDate(), e.getPrice()});
+                }
+            }
+            case "Tăng dần theo Thời hạn" -> {
+                list = control.view_essential_package_limit_time_asc();
+
+                model = (DefaultTableModel) jTable1.getModel();
+                model.setRowCount(0);
+                for (EssentialPackage e : list) {
+                    model.addRow(new Object[]{e.getEPID(), e.getEPName(), e.getLimitPeople(), e.getLimitDate(), e.getPrice()});
+                }
+            }
+            case "Giảm dần theo Thời hạn" -> {
+                list = control.view_essential_package_limit_time_desc();
+
+                model = (DefaultTableModel) jTable1.getModel();
+                model.setRowCount(0);
+                for (EssentialPackage e : list) {
+                    model.addRow(new Object[]{e.getEPID(), e.getEPName(), e.getLimitPeople(), e.getLimitDate(), e.getPrice()});
+                }
+            }
+            case "Tăng dần theo Gía" -> {
+                list = control.view_essential_package_price_asc();
+
+                model = (DefaultTableModel) jTable1.getModel();
+                model.setRowCount(0);
+                for (EssentialPackage e : list) {
+                    model.addRow(new Object[]{e.getEPID(), e.getEPName(), e.getLimitPeople(), e.getLimitDate(), e.getPrice()});
+                }
+            }
+            case "Giảm dần theo Gía" -> {
+                list = control.view_essential_package_price_desc();
+
+                model = (DefaultTableModel) jTable1.getModel();
+                model.setRowCount(0);
+                for (EssentialPackage e : list) {
+                    model.addRow(new Object[]{e.getEPID(), e.getEPName(), e.getLimitPeople(), e.getLimitDate(), e.getPrice()});
+                }
+            }
+            default -> {
+            }
+        }
+    }//GEN-LAST:event_sortButtonActionPerformed
+
+    private void addButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_addButtonActionPerformed
+        // TODO add your handling code here:
+        manager.add_NewEssentialPackage(MNID, EPID.getText(), EPName.getText(),
+                Integer.parseInt(limitPeople.getText()),
+                java.sql.Date.valueOf(limitTime.getText()), Float.parseFloat(price.getText()));
+        list = control.view_essential_package();
+        model.setRowCount(0);
+        model = (DefaultTableModel) jTable1.getModel();
+        for (EssentialPackage e : list) {
+            model.addRow(new Object[]{e.getEPID(), e.getEPName(), e.getLimitPeople(), e.getLimitDate(), e.getPrice()});
+        }
+    }//GEN-LAST:event_addButtonActionPerformed
+
+    private void editButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_editButtonActionPerformed
+        // TODO add your handling code here:
+        manager.UpdateEssentialPackage(MNID, EPID.getText(), EPName.getText(),
+                Integer.parseInt(limitPeople.getText()),
+                java.sql.Date.valueOf(limitTime.getText()), Float.parseFloat(price.getText()));
+        list = control.view_essential_package();
+        model.setRowCount(0);
+        model = (DefaultTableModel) jTable1.getModel();
+        for (EssentialPackage e : list) {
+            model.addRow(new Object[]{e.getEPID(), e.getEPName(), e.getLimitPeople(), e.getLimitDate(), e.getPrice()});
+        }
+    }//GEN-LAST:event_editButtonActionPerformed
+
+    private void delButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_delButtonActionPerformed
+        // TODO add your handling code here:
+        manager.DelEssentialPackage(MNID, EPID.getText());
+        list = control.view_essential_package();
+        model.setRowCount(0);
+        model = (DefaultTableModel) jTable1.getModel();
+        for (EssentialPackage e : list) {
+            model.addRow(new Object[]{e.getEPID(), e.getEPName(), e.getLimitPeople(), e.getLimitDate(), e.getPrice()});
+        }
+    }//GEN-LAST:event_delButtonActionPerformed
 
     /**
      * @param args the command line arguments
@@ -358,15 +555,14 @@ public class PackageManagement_UI extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private java.awt.Choice choice1;
+    private javax.swing.JTextField EPID;
+    private javax.swing.JTextField EPName;
+    private javax.swing.JButton addButton;
+    private javax.swing.JButton delButton;
+    private javax.swing.JButton editButton;
     private javax.swing.JButton jButton1;
-    private javax.swing.JButton jButton10;
-    private javax.swing.JButton jButton11;
-    private javax.swing.JButton jButton12;
     private javax.swing.JButton jButton2;
     private javax.swing.JButton jButton3;
-    private javax.swing.JButton jButton7;
-    private javax.swing.JButton jButton9;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
@@ -378,11 +574,12 @@ public class PackageManagement_UI extends javax.swing.JFrame {
     private javax.swing.JPanel jPanel2;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JTable jTable1;
-    private javax.swing.JTextField jTextField1;
-    private javax.swing.JTextField jTextField2;
-    private javax.swing.JTextField jTextField3;
-    private javax.swing.JTextField jTextField4;
-    private javax.swing.JTextField jTextField5;
+    private javax.swing.JTextField limitPeople;
+    private javax.swing.JTextField limitTime;
+    private javax.swing.JTextField price;
+    private javax.swing.JButton searchButon;
+    private javax.swing.JButton sortButton;
+    private java.awt.Choice sortType;
     // End of variables declaration//GEN-END:variables
 
 }

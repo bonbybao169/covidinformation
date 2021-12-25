@@ -103,7 +103,7 @@ public class EssentialPackageManagementService {
         return row;
     }
 
-    public int deleteEssentialPackage(String epID) {
+    public int deleteEssentialPackage(String EPID) {
 
         String sql;
 
@@ -111,12 +111,12 @@ public class EssentialPackageManagementService {
         PreparedStatement psm = null;
         int row = 0;
         try {
-            sql = "delete from essentials_package where ID = ?";
+            sql = "delete from essentials_package where ID =?";
             conn = createConnection();
             psm = conn.prepareStatement(sql);
 
-            psm.setString(1, epID);
-
+            psm.setString(1, EPID);
+            row = psm.executeUpdate();
         } catch (SQLException se) {
             se.printStackTrace();
         } catch (Exception e) {
