@@ -16,7 +16,7 @@ public class payment_main {
     public static void main(String[] args) {
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                Payment.GUI.CreateAdmin_UI.main(null);
+                //Payment.GUI.CreateAdmin_UI.main(null);
             }
         });
         int portnumber = 4321;
@@ -77,22 +77,25 @@ class ServerClientThread implements Runnable {
                 }
                 try {
                     be.AddPayment(words[1], Integer.parseInt(words[2]), words[3]);
+                    be.UpdateAccount(words[1], Integer.parseInt(words[2]));
                     payment_main.clients.get(payment_main.clients.indexOf(this)).send(pc.encodeString("1"));
                 } catch (Exception ex) {
+                    System.out.print(ex);
                     payment_main.clients.get(payment_main.clients.indexOf(this)).send(pc.encodeString("0"));
                 }
-
             }
             if (words[0].equals("addaccount")) {
                 if (be.CheckPatient(words[1]) == true) {
                     payment_main.clients.get(payment_main.clients.indexOf(this)).send(pc.encodeString("-1"));
                 }
-                be.AddPayAccount(words[1], Integer.parseInt(words[2]));
-                Thread.sleep(100);
-                if (be.CheckPatient(words[1]) == true) {
-                    payment_main.clients.get(payment_main.clients.indexOf(this)).send(pc.encodeString("1"));
+                try {
+                    be.AddPayAccount(words[1], Integer.parseInt(words[2]));
+                    if (be.CheckPatient(words[1]) == true) {
+                        payment_main.clients.get(payment_main.clients.indexOf(this)).send(pc.encodeString("1"));
+                    }
+                } catch (Exception ex) {
+                    payment_main.clients.get(payment_main.clients.indexOf(this)).send(pc.encodeString("0"));
                 }
-                payment_main.clients.get(payment_main.clients.indexOf(this)).send(pc.encodeString("0"));
             }
             payment_main.clients.remove(this);
             client.close();

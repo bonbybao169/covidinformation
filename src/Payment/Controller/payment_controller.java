@@ -93,6 +93,6 @@ public class payment_controller {
     }
 
     public static void main(String args[]) {
-        //System.out.println(be.Login("ADMIN","ad"));
+        System.out.print(be.InfoAdmin().get(0)[0]);
     }
 }

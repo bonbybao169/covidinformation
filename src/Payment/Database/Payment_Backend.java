@@ -31,6 +31,47 @@ public class Payment_Backend {
         return list;
     }
 
+    public List<String[]> InfoPatient(String CCCD) {
+        List<String[]> list = new ArrayList<String[]>();
+        try {
+            sql = "select ID,Balance from payaccount as M where M.ID=?;";
+            psm = conn.prepareStatement(sql);
+            psm.setString(1, CCCD);
+            rs = psm.executeQuery();
+            while (rs.next()) {
+                String[] temp = {rs.getString("ID"), rs.getString("Balance")};
+                list.add(temp);
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return list;
+    }
+
+    public void UpdateAccount(String CCCD, int Cash) {
+        List<String[]> infoadmin = this.InfoAdmin();
+        try {
+            sql = "update payaccount set Balance = ? where Type = 1;";
+            psm = conn.prepareStatement(sql);
+            int money = Integer.parseInt(infoadmin.get(0)[1]) + Cash;
+            psm.setInt(1, money);
+            psm.executeUpdate();
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        List<String[]> infopatient = this.InfoPatient(CCCD);
+        try {
+            sql = "update payaccount set Balance = ? where ID = ?;";
+            psm = conn.prepareStatement(sql);
+            int money = Integer.parseInt(infopatient.get(0)[1]) - Cash;
+            psm.setInt(1, money);
+            psm.setString(2, CCCD);
+            psm.executeUpdate();
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+    }
+
     public List<String[]> ListPayment() {
         List<String[]> list = new ArrayList<String[]>();
         try {
@@ -50,7 +91,6 @@ public class Payment_Backend {
     public void AddPayment(String CCCD, int Cash, String Time) {
         try {
             sql = "insert into payment_history(MPID,Content,Cash,Time) values (?,?,?,?)";
-            //sql = "insert payment_history values(,?,?,?,?);";
             psm = conn.prepareStatement(sql);
             psm.setString(1, CCCD);
             psm.setString(2, "Thanh toán " + Cash + "vnđ vào ngày " + Time);
