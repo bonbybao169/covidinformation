@@ -15,9 +15,10 @@ public class Statistics_UI extends javax.swing.JFrame {
      */
     static String MNID = "";
 
-    public Statistics_UI() {
+    public Statistics_UI(String mnid) {
         initComponents();
         this.setLocationRelativeTo(null);
+        MNID = mnid;
     }
 
     /**
@@ -152,26 +153,26 @@ public class Statistics_UI extends javax.swing.JFrame {
     private void statusButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_statusButtonActionPerformed
         // TODO add your handling code here:
         super.dispose();
-        StatusStatistic_UI.main(null);
+        StatusStatistic_UI.main(null, MNID);
     }//GEN-LAST:event_statusButtonActionPerformed
 
     private void comsumptionButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_comsumptionButtonActionPerformed
         // TODO add your handling code here:
         super.dispose();
-        ComsumptionStatistic_UI.main(null);
+        ComsumptionStatistic_UI.main(null, MNID);
     }//GEN-LAST:event_comsumptionButtonActionPerformed
 
     private void debtButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_debtButtonActionPerformed
         // TODO add your handling code here:
         super.dispose();
-        DebtStatistic_UI.main(null);
+        DebtStatistic_UI.main(null, MNID);
     }//GEN-LAST:event_debtButtonActionPerformed
 
     private void transferButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_transferButtonActionPerformed
         // TODO add your handling code here:
         super.dispose();
 
-        CuredStatistic_UI.main(null);
+        CuredStatistic_UI.main(null, MNID);
 
     }//GEN-LAST:event_transferButtonActionPerformed
 
@@ -184,7 +185,7 @@ public class Statistics_UI extends javax.swing.JFrame {
     /**
      * @param args the command line arguments
      */
-    public static void main(String args[]) {
+    public static void main(String args[], String mnID) {
         /* Set the Nimbus look and feel */
         //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
         /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
@@ -212,7 +213,7 @@ public class Statistics_UI extends javax.swing.JFrame {
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new Statistics_UI().setVisible(true);
+                new Statistics_UI(mnID).setVisible(true);
             }
         });
     }

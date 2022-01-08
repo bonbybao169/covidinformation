@@ -16,8 +16,10 @@ public class FilterEP_UI extends javax.swing.JFrame {
 
     patient_controller control = new patient_controller();
     public static boolean filtered = false;
+    static String MNID = "";
 
-    public FilterEP_UI() {
+    public FilterEP_UI(String mnid) {
+        MNID = mnid;
         try {
             img = ImageIO.read(new File("src/Image/covid.jpg"));
             initComponents();
@@ -248,7 +250,7 @@ public class FilterEP_UI extends javax.swing.JFrame {
         filtered = true;
 
         super.dispose();
-        PackageManagement_UI.main(null);
+        PackageManagement_UI.main(null, MNID);
     }// GEN-LAST:event_confirmButtonMouseClicked
 
     private void priceFromTextFieldKeyPressed(java.awt.event.KeyEvent evt) {// GEN-FIRST:event_priceFromTextFieldKeyPressed
@@ -301,7 +303,7 @@ public class FilterEP_UI extends javax.swing.JFrame {
         limitTimeToTextField.setText("");
     }// GEN-LAST:event_limitTimeToTextFieldMouseClicked
 
-    public static void main(String args[]) {
+    public static void main(String args[], String mnID) {
 
         try {
             for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager
@@ -327,7 +329,7 @@ public class FilterEP_UI extends javax.swing.JFrame {
 
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new FilterEP_UI().setVisible(true);
+                new FilterEP_UI(mnID).setVisible(true);
             }
         });
     }
