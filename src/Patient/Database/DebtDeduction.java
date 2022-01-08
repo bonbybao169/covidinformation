@@ -20,17 +20,17 @@ public class DebtDeduction {
     Connection conn = createConnection();
     PreparedStatement psm = null;
 
-    public void updateDebt(String mpID, int money) {
+    public void updateDebt(String MPID, int money) {
         Date date;
 
         try {
             GetDebtByID model = new GetDebtByID();
-            int paymoney = model.getDebtByID(mpID);
+            int paymoney = model.getDebtByID(MPID);
             int debt = paymoney - money;
             sql = "update mp_infor set Debt = ?  where CCCD = ?";
             psm = conn.prepareStatement(sql);
             psm.setInt(1, debt);
-            psm.setString(2, mpID);
+            psm.setString(2, MPID);
             int executeUpdate = psm.executeUpdate();
             conn.close();
             psm.close();

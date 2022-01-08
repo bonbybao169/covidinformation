@@ -20,14 +20,14 @@ public class UpdatePaymentHistory {
     Connection conn = createConnection();
     PreparedStatement psm = null;
 
-    public void updatePaymentHistory(String mpID, int money) {
+    public void updatePaymentHistory(String MPID, int money) {
         Date date;
 
         try {
             sql = "insert into consumption_history(MPID,Content,Cash,Time) values (?,?,?,?)";
             psm = conn.prepareStatement(sql);
-            psm.setString(1, mpID);
-            psm.setString(2, "Thanh toán ngày" + java.time.LocalDate.now());
+            psm.setString(1, MPID);
+            psm.setString(2, "Thanh toán ngày" + java.time.LocalDate.now().toString());
             psm.setInt(3, money);
             date = Date.valueOf(java.time.LocalDate.now());
             psm.setDate(4, date);
