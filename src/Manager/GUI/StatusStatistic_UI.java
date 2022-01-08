@@ -4,6 +4,7 @@
  */
 package Manager.GUI;
 
+import Auth.GUI.Login_UI;
 import Manager.Controller.ManagerController;
 import java.util.ArrayList;
 import javax.swing.table.DefaultTableModel;
@@ -57,6 +58,11 @@ public class StatusStatistic_UI extends javax.swing.JFrame {
         jLabel1.setText("THỐNG KÊ SỐ LƯỢNG NGƯỜI THEO TRẠNG THÁI");
 
         jButton1.setText("Đăng xuất");
+        jButton1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton1ActionPerformed(evt);
+            }
+        });
 
         jTable1.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -127,6 +133,12 @@ public class StatusStatistic_UI extends javax.swing.JFrame {
         super.dispose();
         Statistics_UI.main(null, MNID);
     }//GEN-LAST:event_jButton2ActionPerformed
+
+    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+        // TODO add your handling code here:
+        super.dispose();
+        Login_UI.main(null);
+    }//GEN-LAST:event_jButton1ActionPerformed
 
     /**
      * @param args the command line arguments

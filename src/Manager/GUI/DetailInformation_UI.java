@@ -4,6 +4,7 @@
  */
 package Manager.GUI;
 
+import Auth.GUI.Login_UI;
 import Manager.Controller.ManagerController;
 import Patient.Model.Patient;
 import java.util.ArrayList;
@@ -404,6 +405,11 @@ public class DetailInformation_UI extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_MPIDActionPerformed
 
+    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {
+        // TODO add your handling code here:
+        super.dispose();
+        Login_UI.main(null);
+    }
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
         // TODO add your handling code here:
         super.dispose();

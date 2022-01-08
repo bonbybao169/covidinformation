@@ -4,6 +4,8 @@
  */
 package Manager.GUI;
 
+import Auth.GUI.Login_UI;
+
 /**
  *
  * @author HOME
@@ -68,6 +70,11 @@ public class CovidManagement_UI extends javax.swing.JFrame {
         });
 
         jButton4.setText("Đăng xuất");
+        jButton4.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton4ActionPerformed(evt);
+            }
+        });
 
         jButton5.setText("Back");
         jButton5.addActionListener(new java.awt.event.ActionListener() {
@@ -142,6 +149,12 @@ public class CovidManagement_UI extends javax.swing.JFrame {
         super.dispose();
         FormAddManagedPerson_UI.main(null, MNID);
     }//GEN-LAST:event_addButtonActionPerformed
+
+    private void jButton4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton4ActionPerformed
+        // TODO add your handling code here:
+        super.dispose();
+        Login_UI.main(null);
+    }//GEN-LAST:event_jButton4ActionPerformed
 
     /**
      * @param args the command line arguments

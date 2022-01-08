@@ -4,6 +4,8 @@
  */
 package Manager.GUI;
 
+import Auth.GUI.Login_UI;
+
 /**
  *
  * @author HOME
@@ -78,6 +80,11 @@ public class Statistics_UI extends javax.swing.JFrame {
         });
 
         jButton6.setText("Đăng xuất");
+        jButton6.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton6ActionPerformed(evt);
+            }
+        });
 
         jLabel2.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         jLabel2.setText("THỐNG KÊ THÔNG TIN");
@@ -181,6 +188,12 @@ public class Statistics_UI extends javax.swing.JFrame {
         super.dispose();
         ManagerMain_UI.main(null, MNID);
     }//GEN-LAST:event_jButton5ActionPerformed
+
+    private void jButton6ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton6ActionPerformed
+        // TODO add your handling code here:
+        super.dispose();
+        Login_UI.main(null);
+    }//GEN-LAST:event_jButton6ActionPerformed
 
     /**
      * @param args the command line arguments

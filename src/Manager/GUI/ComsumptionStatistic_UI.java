@@ -4,6 +4,7 @@
  */
 package Manager.GUI;
 
+import Auth.GUI.Login_UI;
 import Manager.Controller.ManagerController;
 import java.util.ArrayList;
 import javax.swing.table.DefaultTableModel;
@@ -77,6 +78,11 @@ public class ComsumptionStatistic_UI extends javax.swing.JFrame {
         });
 
         jButton2.setText("Đăng xuất");
+        jButton2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton2ActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -126,6 +132,12 @@ public class ComsumptionStatistic_UI extends javax.swing.JFrame {
         super.dispose();
         Statistics_UI.main(null, MNID);
     }//GEN-LAST:event_jButton1ActionPerformed
+
+    private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
+        // TODO add your handling code here:
+        super.dispose();
+        Login_UI.main(null);
+    }//GEN-LAST:event_jButton2ActionPerformed
 
     /**
      * @param args the command line arguments

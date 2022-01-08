@@ -4,6 +4,7 @@
  */
 package Manager.GUI;
 
+import Auth.GUI.Login_UI;
 import Manager.Controller.ManagerController;
 import Patient.Model.Patient;
 
@@ -69,6 +70,11 @@ public class FormAddManagedPerson_UI extends javax.swing.JFrame {
         jLabel1.setText("BIỂU MẪU THÊM NGƯỜI LIÊN QUAN COVID");
 
         jButton1.setText("Đăng xuất");
+        jButton1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton1ActionPerformed(evt);
+            }
+        });
 
         jPanel1.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
 
@@ -322,6 +328,12 @@ public class FormAddManagedPerson_UI extends javax.swing.JFrame {
         // TODO add your handling code here:
         MPState.setText("");
     }//GEN-LAST:event_MPStateMouseClicked
+
+    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+        // TODO add your handling code here:
+        super.dispose();
+        Login_UI.main(null);
+    }//GEN-LAST:event_jButton1ActionPerformed
 
     /**
      * @param args the command line arguments
