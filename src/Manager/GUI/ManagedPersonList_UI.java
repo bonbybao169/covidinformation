@@ -20,12 +20,13 @@ public class ManagedPersonList_UI extends javax.swing.JFrame {
      * Creates new form ManagedPersonList
      */
     ManagerController manager = new ManagerController();
-    static String MNID = "MN12345";
+    static String MNID = "";
     static DefaultTableModel model;
 
-    public ManagedPersonList_UI() {
+    public ManagedPersonList_UI(String mnid) {
         initComponents();
         this.setLocationRelativeTo(null);
+        MNID = mnid;
         ArrayList<Patient> list = manager.view_patient_list();
         model = (DefaultTableModel) jTable1.getModel();
         for (Patient p : list) {
@@ -164,10 +165,11 @@ public class ManagedPersonList_UI extends javax.swing.JFrame {
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel2Layout.createSequentialGroup()
                 .addContainerGap()
-                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel4)
-                    .addComponent(sortButton)
-                    .addComponent(sortType, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(sortType, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                        .addComponent(jLabel4)
+                        .addComponent(sortButton)))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
@@ -218,7 +220,7 @@ public class ManagedPersonList_UI extends javax.swing.JFrame {
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         // TODO add your handling code here:
         super.dispose();
-        CovidManagement_UI.main(null);
+        CovidManagement_UI.main(null, MNID);
     }//GEN-LAST:event_jButton1ActionPerformed
 
     private void searchButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_searchButtonActionPerformed
@@ -350,7 +352,7 @@ public class ManagedPersonList_UI extends javax.swing.JFrame {
     /**
      * @param args the command line arguments
      */
-    public static void main(String args[]) {
+    public static void main(String args[], String mnID) {
         /* Set the Nimbus look and feel */
         //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
         /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
@@ -378,7 +380,7 @@ public class ManagedPersonList_UI extends javax.swing.JFrame {
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new ManagedPersonList_UI().setVisible(true);
+                new ManagedPersonList_UI(mnID).setVisible(true);
             }
         });
     }
