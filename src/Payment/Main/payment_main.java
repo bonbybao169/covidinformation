@@ -63,10 +63,10 @@ class ServerClientThread implements Runnable {
             clientin = new DataInputStream(client.getInputStream());
             clientout = new DataOutputStream(client.getOutputStream());
             String msgFromClient = "";
-            do {
-                msgFromClient = clientin.readUTF();
-                System.out.print(msgFromClient);
-            } while (!msgFromClient.equalsIgnoreCase("bye"));
+
+            msgFromClient = clientin.readUTF();
+            System.out.print(msgFromClient);
+            payment_main.clients.get(payment_main.clients.indexOf(this)).send("1");
             payment_main.clients.remove(this);
             client.close();
         } catch (Exception ex) {
@@ -79,7 +79,6 @@ class ServerClientThread implements Runnable {
         try {
             clientout.writeUTF(msg);
         } catch (Exception ex) {
-            System.out.println(ex);
         }
     }
 

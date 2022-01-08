@@ -1,5 +1,6 @@
 package Patient.GUI;
 
+import Auth.Controller.auth_controller;
 import java.io.DataInputStream;
 import java.io.DataOutputStream;
 import java.io.IOException;
@@ -9,10 +10,12 @@ import java.sql.Date;
 
 public class patient_payment_confirm extends javax.swing.JFrame {
 
+    static auth_controller auth_control = new auth_controller();
+
     static Socket client;
     static DataInputStream clientin;
     static DataOutputStream clientout;
-    static String ID = "111111111111";
+    static String ID = auth_control.acc.getUsername();
 
     public patient_payment_confirm() {
         initComponents();

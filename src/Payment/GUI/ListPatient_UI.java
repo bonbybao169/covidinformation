@@ -3,26 +3,22 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JFrame.java to edit this template
  */
 package Payment.GUI;
-
 import Payment.Controller.*;
 import java.util.*;
 import javax.swing.table.DefaultTableModel;
-
 public class ListPatient_UI extends javax.swing.JFrame {
 
     static DefaultTableModel model;
-    static String SelectedCCCD;
-    ;
+    static String SelectedCCCD;;
     static payment_controller con = new payment_controller();
-
     public ListPatient_UI() {
         initComponents();
         List<String[]> list = con.list_patient();
         model = (DefaultTableModel) jTable1.getModel();
-        for (String[] element : list) {
-            model.addRow(new Object[]{element[0], Integer.parseInt(element[1])});
+        for(String[] element:list){
+            model.addRow(new Object[]{element[0], element[1]});
         }
-        SelectedCCCD = "";
+        SelectedCCCD="";
     }
 
     /**
@@ -58,11 +54,11 @@ public class ListPatient_UI extends javax.swing.JFrame {
 
             },
             new String [] {
-                "CCCD", "Số dư"
+                "CCCD", "Họ và tên"
             }
         ) {
             Class[] types = new Class [] {
-                java.lang.String.class, java.lang.Integer.class
+                java.lang.String.class, java.lang.String.class
             };
 
             public Class getColumnClass(int columnIndex) {
@@ -204,8 +200,8 @@ public class ListPatient_UI extends javax.swing.JFrame {
         List<String[]> list = con.find_patient(SelectedCCCD);
         model = (DefaultTableModel) jTable1.getModel();
         model.setRowCount(0);
-        for (String[] element : list) {
-            model.addRow(new Object[]{element[0], Integer.parseInt(element[1])});
+        for(String[] element:list){
+            model.addRow(new Object[]{element[0], element[1]});
         }
     }//GEN-LAST:event_jButton3ActionPerformed
 
@@ -218,19 +214,19 @@ public class ListPatient_UI extends javax.swing.JFrame {
         List<String[]> list = con.list_patient();
         model = (DefaultTableModel) jTable1.getModel();
         model.setRowCount(0);
-        for (String[] element : list) {
-            model.addRow(new Object[]{element[0], Integer.parseInt(element[1])});
+        for(String[] element:list){
+            model.addRow(new Object[]{element[0], element[1]});
         }
     }//GEN-LAST:event_jButton4ActionPerformed
 
     private void jTable1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jTable1MouseClicked
-        DefaultTableModel tableModel = (DefaultTableModel) jTable1.getModel();
-        SelectedCCCD = tableModel.getValueAt(jTable1.getSelectedRow(), 0).toString();
+        DefaultTableModel tableModel=(DefaultTableModel)jTable1.getModel();
+        SelectedCCCD = tableModel.getValueAt(jTable1.getSelectedRow(),0).toString();
     }//GEN-LAST:event_jTable1MouseClicked
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         super.dispose();
-        String[] arg = new String[]{SelectedCCCD};
+        String[] arg = new String[] {SelectedCCCD};
         AddAccount_UI.main(arg);
     }//GEN-LAST:event_jButton1ActionPerformed
 
