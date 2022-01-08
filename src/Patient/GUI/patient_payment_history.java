@@ -1,6 +1,5 @@
 package Patient.GUI;
 
-import Auth.Controller.auth_controller;
 import Patient.Controller.patient_controller;
 import Patient.Model.PaymentHistory;
 import java.util.ArrayList;
@@ -25,7 +24,7 @@ public class patient_payment_history extends javax.swing.JFrame {
             model.addRow(new Object[]{e.getTime(), s});
         }
 
-        debtTextField.setText(String.valueOf(control.getDebt()));
+        debtTextField.setText((int) list.get(list.size() - 1).getDebt() + "");
     }
 
     @SuppressWarnings("unchecked")
@@ -42,7 +41,6 @@ public class patient_payment_history extends javax.swing.JFrame {
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("Lịch sử thanh toán");
         setPreferredSize(new java.awt.Dimension(640, 360));
-        setResizable(false);
 
         jLabel1.setFont(new java.awt.Font("Segoe UI Black", 0, 18)); // NOI18N
         jLabel1.setText("Lịch sử thanh toán");

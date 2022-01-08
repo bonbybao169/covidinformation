@@ -168,7 +168,9 @@ public class Statistics_UI extends javax.swing.JFrame {
     private void transferButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_transferButtonActionPerformed
         // TODO add your handling code here:
         super.dispose();
-        TransferStatusStatistic_UI.main(null);
+
+        CuredStatistic_UI.main(null);
+
     }//GEN-LAST:event_transferButtonActionPerformed
 
     private void jButton5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton5ActionPerformed

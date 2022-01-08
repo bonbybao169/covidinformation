@@ -45,13 +45,13 @@ public class StatusStatistic_UI extends javax.swing.JFrame {
 
         jTable1.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null, null, null, null},
-                {null, null, null, null, null},
-                {null, null, null, null, null},
-                {null, null, null, null, null}
+                {"F0", null},
+                {"F1", null},
+                {"F2", null},
+                {"F3", null}
             },
             new String [] {
-                "Thời gian", "F0", "F1", "F2", "F3"
+                "Trạng thái", "Số lượng"
             }
         ));
         jScrollPane1.setViewportView(jTable1);

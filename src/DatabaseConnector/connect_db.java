@@ -1,12 +1,14 @@
 package DatabaseConnector;
 
 import java.sql.*;
+
 public class connect_db {
 
     static final String JDBC_DRIVER = "com.mysql.cj.jdbc.Driver";
     static final String DB_URL = "jdbc:mysql://localhost:3306/covid_management";
     static String user = "root"; // add username của connection trong mysql vào đây
     static String pass = "Sttffsuck@123"; // add password của connection trong mysql vào đây
+
     public static Connection createConnection() {
         Connection conn = null;
 

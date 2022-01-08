@@ -65,7 +65,6 @@ public class patient_purchase_confirm extends javax.swing.JFrame {
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("Xác nhận mua nhu yếu phẩm");
         setPreferredSize(new java.awt.Dimension(640, 360));
-        setResizable(false);
 
         jPanel1.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
 

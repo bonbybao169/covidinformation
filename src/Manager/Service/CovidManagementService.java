@@ -9,6 +9,7 @@ package Manager.Service;
  * @author HOME
  */
 import static DatabaseConnector.connect_db.createConnection;
+import Manager.Controller.ManagerController;
 import Patient.Model.Patient;
 
 import java.sql.Connection;
@@ -33,7 +34,7 @@ public class CovidManagementService {
         PreparedStatement psm = null;
         ArrayList<Patient> list = new ArrayList<Patient>();
         try {
-            sql = "select Name,CCCD,Birthday,Address,State,At_IsolationArea,Debt from mp_infor";
+            sql = "select m.Name,CCCD,Birthday,Address,State,Debt, a.Name  as Hopital from mp_infor m join isolation_area a on m.At_IsolationArea=a.ID";
             psm = conn.prepareStatement(sql);
 
             rs = psm.executeQuery();
@@ -42,7 +43,7 @@ public class CovidManagementService {
 
                 list.add(new Patient(rs.getString("Name"), rs.getString("CCCD"),
                         rs.getDate("Birthday"), rs.getString("Address"),
-                        rs.getString("State"), rs.getString("At_IsolationArea"), rs.getFloat("Debt")));
+                        Integer.toString(rs.getInt("State")), rs.getString("Hopital"), rs.getFloat("Debt")));
             }
 
             conn.close();
@@ -61,7 +62,7 @@ public class CovidManagementService {
         Connection conn = createConnection();
         PreparedStatement psm = null;
         try {
-            sql = "select * from mp_infor where CCCD = ?";
+            sql = "select m.Name,CCCD,Birthday,Address,State,Debt, a.Name  as Hopital from mp_infor m join isolation_area a on m.At_IsolationArea=a.ID where m.CCCD = ?";
             psm = conn.prepareStatement(sql);
             psm.setString(1, CCCD);
             rs = psm.executeQuery();
@@ -70,7 +71,7 @@ public class CovidManagementService {
 
                 p = new Patient(rs.getString("Name"), rs.getString("CCCD"),
                         rs.getDate("Birthday"), rs.getString("Address"),
-                        rs.getString("State"), rs.getString("At_IsolationArea"), rs.getFloat("Debt"));
+                        Integer.toString(rs.getInt("State")), rs.getString("Hopital"), rs.getFloat("Debt"));
             }
 
             conn.close();
@@ -97,7 +98,7 @@ public class CovidManagementService {
             psm.setString(2, newp.getCCCD());
             psm.setDate(3, newp.getDOB());
             psm.setString(4, newp.getAddress());
-            psm.setString(5, newp.getState());
+            psm.setInt(5, Integer.parseInt(newp.getState()));
             psm.setString(6, newp.getIsolation());
             psm.setString(7, newp.getRelated());
             psm.setFloat(8, 0);
@@ -169,21 +170,22 @@ public class CovidManagementService {
         return row;
     }
 
-    public ArrayList<String> findIsolationArea() {
+    public ArrayList<String[]> findIsolationArea() {
         String sql;
         ResultSet rs;
         Connection conn = createConnection();
         PreparedStatement psm = null;
-        ArrayList<String> list = new ArrayList<String>();
+        ArrayList<String[]> list = new ArrayList<String[]>();
         try {
-            sql = "select Name from isolation_area where PresentCapicity < MaxCapicity";
+            sql = "select ID,Name from isolation_area where PresentCapicity < MaxCapicity";
             psm = conn.prepareStatement(sql);
 
             rs = psm.executeQuery();
 
             while (rs.next()) {
 
-                list.add(new String(rs.getString("Name")));
+                String[] temp = {rs.getString("ID"), rs.getString("Name")};
+                list.add(temp);
             }
 
             conn.close();
@@ -195,19 +197,45 @@ public class CovidManagementService {
         return list;
     }
 
-    public int transferStatus(String CCCD, String newstatus) {
-        Patient p = null;
+    public ArrayList<String[]> findRelatedPeopleList(String CCCD) {
+        String sql;
+        ResultSet rs;
+        Connection conn = createConnection();
+        PreparedStatement psm = null;
+        ArrayList<String[]> list = new ArrayList<String[]>();
+        try {
+            sql = "CALL findRelatedPeople(?);";
+            psm = conn.prepareStatement(sql);
+            psm.setString(1, CCCD);
+            rs = psm.executeQuery();
+
+            while (rs.next()) {
+                String[] temp = {rs.getString("CCCD"), rs.getString("Name")};
+                list.add(temp);
+            }
+
+            conn.close();
+            psm.close();
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+
+        return list;
+    }
+
+    public int transferStatus(String CCCD, int newstatus) {
+
         String sql;
 
         Connection conn = null;
         PreparedStatement psm = null;
         int row = 0;
         try {
-            sql = "update mp_infor set At_IsolationArea = ? where CCCD = ?";
+            sql = "call transferState(?,?)";
             conn = createConnection();
             psm = conn.prepareStatement(sql);
-            psm.setString(1, newstatus);
-            psm.setString(2, CCCD);
+            psm.setInt(2, newstatus);
+            psm.setString(1, CCCD);
 
             row = psm.executeUpdate();
 
@@ -236,14 +264,14 @@ public class CovidManagementService {
     }
 
     public int transferIsolationArea(String CCCD, String newplace) {
-        Patient p = null;
+
         String sql;
 
         Connection conn = null;
         PreparedStatement psm = null;
         int row = 0;
         try {
-            sql = "update mp_infor set State = ? where CCCD = ?";
+            sql = "update mp_infor set At_IsolationArea = ? where CCCD = ?";
             conn = createConnection();
             psm = conn.prepareStatement(sql);
             psm.setString(1, newplace);
@@ -275,14 +303,14 @@ public class CovidManagementService {
         return row;
     }
 
-    public ArrayList<Patient> sortACSByName() {
+    public ArrayList<Patient> sortASCByName() {
         String sql;
         ResultSet rs;
         Connection conn = createConnection();
         PreparedStatement psm = null;
         ArrayList<Patient> list = new ArrayList<Patient>();
         try {
-            sql = "select Name,CCCD,Birthday,Address,State,At_IsolationArea,Debt from mp_infor order by Name ACS";
+            sql = "select m.Name,CCCD,Birthday,Address,State,At_IsolationArea,Debt ,a.Name  as Hopital from mp_infor m join isolation_area a  on m.At_IsolationArea=a.ID order by m.Name ASC";
             psm = conn.prepareStatement(sql);
 
             rs = psm.executeQuery();
@@ -291,7 +319,7 @@ public class CovidManagementService {
 
                 list.add(new Patient(rs.getString("Name"), rs.getString("CCCD"),
                         rs.getDate("Birthday"), rs.getString("Address"),
-                        rs.getString("State"), rs.getString("At_IsolationArea"), rs.getFloat("Debt")));
+                        rs.getString("State"), rs.getString("Hopital"), rs.getFloat("Debt")));
             }
 
             conn.close();
@@ -303,14 +331,14 @@ public class CovidManagementService {
         return list;
     }
 
-    public ArrayList<Patient> sortACSByState() {
+    public ArrayList<Patient> sortDESCByName() {
         String sql;
         ResultSet rs;
         Connection conn = createConnection();
         PreparedStatement psm = null;
         ArrayList<Patient> list = new ArrayList<Patient>();
         try {
-            sql = "select Name,CCCD,Birthday,Address,State,At_IsolationArea,Debt from mp_infor order by Status ACS";
+            sql = "select m.Name,CCCD,Birthday,Address,State,Debt, a.Name  as Hopital from mp_infor m join isolation_area a  on m.At_IsolationArea=a.ID order by m.Name DESC";
             psm = conn.prepareStatement(sql);
 
             rs = psm.executeQuery();
@@ -319,7 +347,7 @@ public class CovidManagementService {
 
                 list.add(new Patient(rs.getString("Name"), rs.getString("CCCD"),
                         rs.getDate("Birthday"), rs.getString("Address"),
-                        rs.getString("State"), rs.getString("At_IsolationArea"), rs.getFloat("Debt")));
+                        rs.getString("State"), rs.getString("Hopital"), rs.getFloat("Debt")));
             }
 
             conn.close();
@@ -331,14 +359,14 @@ public class CovidManagementService {
         return list;
     }
 
-    public ArrayList<Patient> sortDECSByState() {
+    public ArrayList<Patient> sortASCByState() {
         String sql;
         ResultSet rs;
         Connection conn = createConnection();
         PreparedStatement psm = null;
         ArrayList<Patient> list = new ArrayList<Patient>();
         try {
-            sql = "select Name,CCCD,Birthday,Address,State,At_IsolationArea,Debt from mp_infor order by State DESC";
+            sql = "select m.Name,CCCD,Birthday,Address,State,At_IsolationArea,Debt, a.Name  as Hopital from mp_infor m join isolation_area a  on m.At_IsolationArea=a.ID order by Status ASC";
             psm = conn.prepareStatement(sql);
 
             rs = psm.executeQuery();
@@ -347,7 +375,7 @@ public class CovidManagementService {
 
                 list.add(new Patient(rs.getString("Name"), rs.getString("CCCD"),
                         rs.getDate("Birthday"), rs.getString("Address"),
-                        rs.getString("State"), rs.getString("At_IsolationArea"), rs.getFloat("Debt")));
+                        rs.getString("State"), rs.getString("Hopital"), rs.getFloat("Debt")));
             }
 
             conn.close();
@@ -359,14 +387,14 @@ public class CovidManagementService {
         return list;
     }
 
-    public ArrayList<Patient> sortACSByDebt() {
+    public ArrayList<Patient> sortDESCByState() {
         String sql;
         ResultSet rs;
         Connection conn = createConnection();
         PreparedStatement psm = null;
         ArrayList<Patient> list = new ArrayList<Patient>();
         try {
-            sql = "select Name,CCCD,Birthday,Address,State,At_IsolationArea,Debt from mp_infor order by Debt ACS";
+            sql = "select m.Name,CCCD,Birthday,Address,State,At_IsolationArea,Debt, a.Name  as Hopital from mp_infor m join isolation_area a  on m.At_IsolationArea=a.ID order by State DESC";
             psm = conn.prepareStatement(sql);
 
             rs = psm.executeQuery();
@@ -375,7 +403,7 @@ public class CovidManagementService {
 
                 list.add(new Patient(rs.getString("Name"), rs.getString("CCCD"),
                         rs.getDate("Birthday"), rs.getString("Address"),
-                        rs.getString("State"), rs.getString("At_IsolationArea"), rs.getFloat("Debt")));
+                        rs.getString("State"), rs.getString("Hopital"), rs.getFloat("Debt")));
             }
 
             conn.close();
@@ -387,14 +415,14 @@ public class CovidManagementService {
         return list;
     }
 
-    public ArrayList<Patient> sortDECSByDebt() {
+    public ArrayList<Patient> sortASCByDebt() {
         String sql;
         ResultSet rs;
         Connection conn = createConnection();
         PreparedStatement psm = null;
         ArrayList<Patient> list = new ArrayList<Patient>();
         try {
-            sql = "select Name,CCCD,Birthday,Address,State,At_IsolationArea,Debt from mp_infor order by Debt DESC";
+            sql = "select m.Name,CCCD,Birthday,Address,State,At_IsolationArea,Debt, a.Name  as Hopital from mp_infor m join isolation_area a  on m.At_IsolationArea=a.ID order by Debt ASC";
             psm = conn.prepareStatement(sql);
 
             rs = psm.executeQuery();
@@ -403,7 +431,7 @@ public class CovidManagementService {
 
                 list.add(new Patient(rs.getString("Name"), rs.getString("CCCD"),
                         rs.getDate("Birthday"), rs.getString("Address"),
-                        rs.getString("State"), rs.getString("At_IsolationArea"), rs.getFloat("Debt")));
+                        rs.getString("State"), rs.getString("Hopital"), rs.getFloat("Debt")));
             }
 
             conn.close();
@@ -415,14 +443,14 @@ public class CovidManagementService {
         return list;
     }
 
-    public ArrayList<Patient> sortACSByDOB() {
+    public ArrayList<Patient> sortDESCByDebt() {
         String sql;
         ResultSet rs;
         Connection conn = createConnection();
         PreparedStatement psm = null;
         ArrayList<Patient> list = new ArrayList<Patient>();
         try {
-            sql = "select Name,CCCD,Birthday,Address,State,At_IsolationArea,Debt from mp_infor order by Birthday ACS";
+            sql = "select m.Name,CCCD,Birthday,Address,State,At_IsolationArea,Debt ,a.Name  as Hopital from mp_infor m join isolation_area a  on m.At_IsolationArea=a.ID order by Debt DESC";
             psm = conn.prepareStatement(sql);
 
             rs = psm.executeQuery();
@@ -431,7 +459,119 @@ public class CovidManagementService {
 
                 list.add(new Patient(rs.getString("Name"), rs.getString("CCCD"),
                         rs.getDate("Birthday"), rs.getString("Address"),
-                        rs.getString("State"), rs.getString("At_IsolationArea"), rs.getFloat("Debt")));
+                        rs.getString("State"), rs.getString("Hopital"), rs.getFloat("Debt")));
+            }
+
+            conn.close();
+            psm.close();
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+
+        return list;
+    }
+
+    public ArrayList<Patient> sortASCByDOB() {
+        String sql;
+        ResultSet rs;
+        Connection conn = createConnection();
+        PreparedStatement psm = null;
+        ArrayList<Patient> list = new ArrayList<Patient>();
+        try {
+            sql = "select m.Name,CCCD,Birthday,Address,State,At_IsolationArea,Debt, a.Name  as Hopital from mp_infor m join isolation_area a  on m.At_IsolationArea=a.ID order by Birthday ASC";
+            psm = conn.prepareStatement(sql);
+
+            rs = psm.executeQuery();
+
+            while (rs.next()) {
+
+                list.add(new Patient(rs.getString("Name"), rs.getString("CCCD"),
+                        rs.getDate("Birthday"), rs.getString("Address"),
+                        rs.getString("State"), rs.getString("Hopital"), rs.getFloat("Debt")));
+            }
+
+            conn.close();
+            psm.close();
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+
+        return list;
+    }
+
+    public ArrayList<Patient> sortDESCByDOB() {
+        String sql;
+        ResultSet rs;
+        Connection conn = createConnection();
+        PreparedStatement psm = null;
+        ArrayList<Patient> list = new ArrayList<Patient>();
+        try {
+            sql = "select m.Name,CCCD,Birthday,Address,State,At_IsolationArea,Debt, a.Name  as Hopital from mp_infor m join isolation_area a  on m.At_IsolationArea=a.ID order by Birthday DESC";
+            psm = conn.prepareStatement(sql);
+
+            rs = psm.executeQuery();
+
+            while (rs.next()) {
+
+                list.add(new Patient(rs.getString("Name"), rs.getString("CCCD"),
+                        rs.getDate("Birthday"), rs.getString("Address"),
+                        rs.getString("State"), rs.getString("Hopital"), rs.getFloat("Debt")));
+            }
+
+            conn.close();
+            psm.close();
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+
+        return list;
+    }
+
+    public ArrayList<Patient> sortASCByHopital() {
+        String sql;
+        ResultSet rs;
+        Connection conn = createConnection();
+        PreparedStatement psm = null;
+        ArrayList<Patient> list = new ArrayList<Patient>();
+        try {
+            sql = "select m.Name,CCCD,Birthday,Address,State,At_IsolationArea,Debt, a.Name  as Hopital from mp_infor m join isolation_area a  on m.At_IsolationArea=a.ID order by a.Name ASC";
+            psm = conn.prepareStatement(sql);
+
+            rs = psm.executeQuery();
+
+            while (rs.next()) {
+
+                list.add(new Patient(rs.getString("Name"), rs.getString("CCCD"),
+                        rs.getDate("Birthday"), rs.getString("Address"),
+                        rs.getString("State"), rs.getString("Hopital"), rs.getFloat("Debt")));
+            }
+
+            conn.close();
+            psm.close();
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+
+        return list;
+    }
+
+    public ArrayList<Patient> sortDESCByHopital() {
+        String sql;
+        ResultSet rs;
+        Connection conn = createConnection();
+        PreparedStatement psm = null;
+        ArrayList<Patient> list = new ArrayList<Patient>();
+        try {
+            sql = "select m.Name,CCCD,Birthday,Address,State,At_IsolationArea,Debt, a.Name  as Hopital from mp_infor m join isolation_area a  on m.At_IsolationArea=a.ID order by a.Name DESC";
+            psm = conn.prepareStatement(sql);
+
+            rs = psm.executeQuery();
+
+            while (rs.next()) {
+
+                list.add(new Patient(rs.getString("Name"), rs.getString("CCCD"),
+                        rs.getDate("Birthday"), rs.getString("Address"),
+                        rs.getString("State"), rs.getString("Hopital"), rs.getFloat("Debt")));
             }
 
             conn.close();
@@ -449,6 +589,94 @@ public class CovidManagementService {
         Date date;
         String content = "Người được quản lý với CCCD= " + MPID + " được chuyển trạng thái từ "
                 + oldState + " sang trạng thái mới " + newState;
+        Connection conn = null;
+        PreparedStatement psm = null;
+        int row = 0;
+        try {
+            sql = "insert into management_history (AccountID,Content,Time) values (?,?,?)";
+            conn = createConnection();
+            psm = conn.prepareStatement(sql);
+
+            psm.setString(1, MNID);
+            psm.setString(2, content);
+            date = Date.valueOf(java.time.LocalDate.now());
+            psm.setDate(3, date);
+            row = psm.executeUpdate();
+            psm.setString(1, MPID);
+            row += psm.executeUpdate();
+        } catch (SQLException se) {
+            se.printStackTrace();
+        } catch (Exception e) {
+            e.printStackTrace();
+        } finally {
+            // finally block used to close resources
+            try {
+                if (psm != null) {
+                    psm.close();
+                }
+            } catch (SQLException se2) {
+            }
+            try {
+                if (conn != null) {
+                    conn.close();
+                }
+            } catch (SQLException se) {
+                se.printStackTrace();
+            } // end finally try
+        }
+
+        return row;
+    }
+
+    public int addNewMPInforHistoryForManager(String MNID, String MPID) {
+        Patient p = null;
+        String sql;
+        Date date;
+        String content = "Thêm thông tin người được quản lý mới với CCCD= " + MPID;
+        Connection conn = null;
+        PreparedStatement psm = null;
+        int row = 0;
+        try {
+            sql = "insert into management_history (AccountID,Content,Time) values (?,?,?)";
+            conn = createConnection();
+            psm = conn.prepareStatement(sql);
+
+            psm.setString(1, MNID);
+            psm.setString(2, content);
+            date = Date.valueOf(java.time.LocalDate.now());
+            psm.setDate(3, date);
+            row = psm.executeUpdate();
+            psm.setString(1, MPID);
+            row += psm.executeUpdate();
+        } catch (SQLException se) {
+            se.printStackTrace();
+        } catch (Exception e) {
+            e.printStackTrace();
+        } finally {
+            // finally block used to close resources
+            try {
+                if (psm != null) {
+                    psm.close();
+                }
+            } catch (SQLException se2) {
+            }
+            try {
+                if (conn != null) {
+                    conn.close();
+                }
+            } catch (SQLException se) {
+                se.printStackTrace();
+            } // end finally try
+        }
+
+        return row;
+    }
+
+    public int addNewMPAccountHistoryForManager(String MNID, String MPID) {
+        Patient p = null;
+        String sql;
+        Date date;
+        String content = "Thêm tài khoản mới cho người được quản lý mới với CCCD= " + MPID;
         Connection conn = null;
         PreparedStatement psm = null;
         int row = 0;
@@ -533,52 +761,4 @@ public class CovidManagementService {
         return row;
     }
 
-    public static void main(String[] args) {
-        Patient p = null;
-        String sql;
-        Date date;
-        String MNID = "MN12345";
-        String MPID = "111111111111";
-        String oldState = "F1";
-        String newState = "F0";
-        String content = "Người được quản lý với CCCD= " + MPID + " được chuyển trạng thái từ "
-                + oldState + " sang trạng thái mới " + newState;
-        Connection conn = null;
-        PreparedStatement psm = null;
-        int row = 0;
-        try {
-            sql = "insert into management_history (STT,AccountID,Content,Time) values (?,?,?,?)";
-            conn = createConnection();
-            psm = conn.prepareStatement(sql);
-            psm.setInt(1, 6);
-            psm.setString(2, MNID);
-            psm.setString(3, content);
-            date = Date.valueOf(java.time.LocalDate.now());
-            psm.setDate(4, date);
-            row = psm.executeUpdate();
-            psm.setInt(1, 7);
-            psm.setString(2, MPID);
-            row += psm.executeUpdate();
-        } catch (SQLException se) {
-            se.printStackTrace();
-        } catch (Exception e) {
-            e.printStackTrace();
-        } finally {
-            // finally block used to close resources
-            try {
-                if (psm != null) {
-                    psm.close();
-                }
-            } catch (SQLException se2) {
-            }
-            try {
-                if (conn != null) {
-                    conn.close();
-                }
-            } catch (SQLException se) {
-                se.printStackTrace();
-            } // end finally try
-        }
-        System.out.println(row + " inserted.");
-    }
 }

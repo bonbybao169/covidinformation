@@ -4,6 +4,10 @@
  */
 package Manager.GUI;
 
+import Manager.Controller.ManagerController;
+import java.util.ArrayList;
+import javax.swing.table.DefaultTableModel;
+
 /**
  *
  * @author HOME
@@ -13,9 +17,20 @@ public class ComsumptionStatistic_UI extends javax.swing.JFrame {
     /**
      * Creates new form ComsumptionStatistic
      */
+    ManagerController manager = new ManagerController();
+    static String MNID = "MN12345";
+    static DefaultTableModel model;
+
     public ComsumptionStatistic_UI() {
         initComponents();
         this.setLocationRelativeTo(null);
+        ArrayList<String[]> list = manager.view_Consumption_Statisitc(MNID);
+        model = (DefaultTableModel) jTable1.getModel();
+        for (String[] i : list) {
+            model.addRow(i);
+        }
+        jTextField1.setText(manager.cal_total_Consumption());
+
     }
 
     /**
@@ -40,13 +55,10 @@ public class ComsumptionStatistic_UI extends javax.swing.JFrame {
 
         jTable1.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null, null, null, null, null},
-                {null, null, null, null, null, null},
-                {null, null, null, null, null, null},
-                {null, null, null, null, null, null}
+
             },
             new String [] {
-                "ID", "Tên gói", "Mức giới hạn", "Thời hạn", "Đơn giá", "Số lượng tiêu thụ"
+                "Thời gian", "ID", "Tên gói", "Mức giới hạn", "Thời hạn", "Đơn giá", "Số lượng tiêu thụ"
             }
         ));
         jScrollPane1.setViewportView(jTable1);

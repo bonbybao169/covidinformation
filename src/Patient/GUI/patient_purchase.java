@@ -51,7 +51,6 @@ public class patient_purchase extends javax.swing.JFrame {
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("Gói nhu yếu phẩm");
-        setResizable(false);
 
         jLabel1.setFont(new java.awt.Font("Segoe UI Black", 0, 18)); // NOI18N
         jLabel1.setText("Gói nhu yếu phẩm");

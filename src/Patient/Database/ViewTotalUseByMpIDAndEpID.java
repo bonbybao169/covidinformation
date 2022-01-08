@@ -17,7 +17,7 @@ public class ViewTotalUseByMpIDAndEpID {
         int total = 0;
 
         try {
-            sql = "select sum(quantity) from consumption_history ch join essentials_package ep on ch.EPID = ep.ID where ch.Time <= ep.ExpiredDate AND ch.mpid = ? and ch.epid = ? group by mpid";
+            sql = "select sum(quantity) from consumption_history ch join essentials_package ep on ch.EPID = ep.ID where ch.Time BETWEEN ep.Startingdate AND ep.ExpiredDate AND ch.mpid = ? and ch.epid = ? group by mpid";
             psm = conn.prepareStatement(sql);
             psm.setString(1, mpID);
             psm.setString(2, epID);

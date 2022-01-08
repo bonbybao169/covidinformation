@@ -8,26 +8,20 @@ import javax.swing.table.*;
 import javax.swing.*;
 import java.util.*;
 import Admin.Controller.*;
-import Auth.Main.auth_main;
 
 public class ManageHospital_AUI extends javax.swing.JFrame {
 
-    static String SelectedID, SelectedName, SelectedMaxCapicity, SelectedPresentCapicity;
+    static String SelectedID,SelectedName,SelectedMaxCapicity,SelectedPresentCapicity;
     static DefaultTableModel model;
     static admin_controller con = new admin_controller();
-
     public ManageHospital_AUI() {
         initComponents();
-        this.setLocationRelativeTo(null);
         List<String[]> list = con.list_hospital();
         model = (DefaultTableModel) jTable1.getModel();
-        for (String[] element : list) {
-            model.addRow(new Object[]{element[0], element[1], element[2], element[3]});
+        for(String[] element:list){
+            model.addRow(new Object[]{element[0], element[1],element[2],element[3]});
         }
-        SelectedID = "";
-        SelectedName = "";
-        SelectedMaxCapicity = "";
-        SelectedPresentCapicity = "";
+        SelectedID="";SelectedName="";SelectedMaxCapicity="";SelectedPresentCapicity="";
     }
 
     /**
@@ -49,13 +43,6 @@ public class ManageHospital_AUI extends javax.swing.JFrame {
         jTextField1 = new javax.swing.JTextField();
         jButton4 = new javax.swing.JButton();
         jButton5 = new javax.swing.JButton();
-        jMenuBar1 = new javax.swing.JMenuBar();
-        jMenu1 = new javax.swing.JMenu();
-        jMenuItem2 = new javax.swing.JMenuItem();
-        jMenuItem3 = new javax.swing.JMenuItem();
-        jMenuItem4 = new javax.swing.JMenuItem();
-        jMenu2 = new javax.swing.JMenu();
-        jMenuItem1 = new javax.swing.JMenuItem();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("Quản lý địa điểm điều trị/cách ly");
@@ -139,48 +126,6 @@ public class ManageHospital_AUI extends javax.swing.JFrame {
             }
         });
 
-        jMenu1.setText("Menu");
-
-        jMenuItem2.setText("Tạo tài khoản Manager");
-        jMenuItem2.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jMenuItem2ActionPerformed(evt);
-            }
-        });
-        jMenu1.add(jMenuItem2);
-
-        jMenuItem3.setText("Quản lý tài khoản Manager");
-        jMenuItem3.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jMenuItem3ActionPerformed(evt);
-            }
-        });
-        jMenu1.add(jMenuItem3);
-
-        jMenuItem4.setText("Quản lý địa điểm điều trị/cách ly");
-        jMenuItem4.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jMenuItem4ActionPerformed(evt);
-            }
-        });
-        jMenu1.add(jMenuItem4);
-
-        jMenuBar1.add(jMenu1);
-
-        jMenu2.setText("Account");
-
-        jMenuItem1.setText("LOGOUT");
-        jMenuItem1.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jMenuItem1ActionPerformed(evt);
-            }
-        });
-        jMenu2.add(jMenuItem1);
-
-        jMenuBar1.add(jMenu2);
-
-        setJMenuBar(jMenuBar1);
-
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -239,7 +184,7 @@ public class ManageHospital_AUI extends javax.swing.JFrame {
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
         super.dispose();
-        String[] arg = new String[]{SelectedID, SelectedName, SelectedMaxCapicity, SelectedPresentCapicity};
+        String[] arg = new String[] {SelectedID,SelectedName,SelectedMaxCapicity,SelectedPresentCapicity};
         UpdateHostpital_AUI.main(arg);
     }//GEN-LAST:event_jButton2ActionPerformed
 
@@ -249,11 +194,11 @@ public class ManageHospital_AUI extends javax.swing.JFrame {
     }//GEN-LAST:event_jButton3ActionPerformed
 
     private void jTable1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jTable1MouseClicked
-        DefaultTableModel tableModel = (DefaultTableModel) jTable1.getModel();
-        SelectedID = tableModel.getValueAt(jTable1.getSelectedRow(), 0).toString();
-        SelectedName = tableModel.getValueAt(jTable1.getSelectedRow(), 1).toString();
-        SelectedMaxCapicity = tableModel.getValueAt(jTable1.getSelectedRow(), 2).toString();
-        SelectedPresentCapicity = tableModel.getValueAt(jTable1.getSelectedRow(), 3).toString();
+        DefaultTableModel tableModel=(DefaultTableModel)jTable1.getModel();
+        SelectedID = tableModel.getValueAt(jTable1.getSelectedRow(),0).toString();
+        SelectedName = tableModel.getValueAt(jTable1.getSelectedRow(),1).toString();
+        SelectedMaxCapicity = tableModel.getValueAt(jTable1.getSelectedRow(),2).toString(); 
+        SelectedPresentCapicity = tableModel.getValueAt(jTable1.getSelectedRow(),3).toString(); 
     }//GEN-LAST:event_jTable1MouseClicked
 
     private void jTextField1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField1ActionPerformed
@@ -264,41 +209,19 @@ public class ManageHospital_AUI extends javax.swing.JFrame {
         List<String[]> list = con.list_hospital();
         model = (DefaultTableModel) jTable1.getModel();
         model.setRowCount(0);
-        for (String[] element : list) {
-            model.addRow(new Object[]{element[0], element[1], element[2], element[3]});
+        for(String[] element:list){
+            model.addRow(new Object[]{element[0], element[1],element[2],element[3]});
         }
     }//GEN-LAST:event_jButton5ActionPerformed
 
     private void jButton4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton4ActionPerformed
-        if (jTextField1.getText().equals("") == false) {
-            List<String[]> list = con.find_hospital(jTextField1.getText());
-            model = (DefaultTableModel) jTable1.getModel();
-            model.setRowCount(0);
-            for (String[] element : list) {
-                model.addRow(new Object[]{element[0], element[1], element[2], element[3]});
-            }
+        List<String[]> list = con.find_hospital(jTextField1.getText());
+        model = (DefaultTableModel) jTable1.getModel();
+        model.setRowCount(0);
+        for(String[] element:list){
+            model.addRow(new Object[]{element[0], element[1],element[2],element[3]});
         }
     }//GEN-LAST:event_jButton4ActionPerformed
-
-    private void jMenuItem2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem2ActionPerformed
-        super.dispose();
-        CreateManager_AUI.main(null);
-    }//GEN-LAST:event_jMenuItem2ActionPerformed
-
-    private void jMenuItem3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem3ActionPerformed
-        super.dispose();
-        ManageManager_AUI.main(null);
-    }//GEN-LAST:event_jMenuItem3ActionPerformed
-
-    private void jMenuItem4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem4ActionPerformed
-        super.dispose();
-        ManageHospital_AUI.main(null);
-    }//GEN-LAST:event_jMenuItem4ActionPerformed
-
-    private void jMenuItem1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem1ActionPerformed
-        super.dispose();
-        auth_main.main(null);
-    }//GEN-LAST:event_jMenuItem1ActionPerformed
 
     /**
      * @param args the command line arguments
@@ -333,7 +256,7 @@ public class ManageHospital_AUI extends javax.swing.JFrame {
                 ManageHospital_AUI UI = new ManageHospital_AUI();
                 UI.setVisible(true);
             }
-
+            
         });
     }
 
@@ -344,13 +267,6 @@ public class ManageHospital_AUI extends javax.swing.JFrame {
     private javax.swing.JButton jButton4;
     private javax.swing.JButton jButton5;
     private javax.swing.JLabel jLabel1;
-    private javax.swing.JMenu jMenu1;
-    private javax.swing.JMenu jMenu2;
-    private javax.swing.JMenuBar jMenuBar1;
-    private javax.swing.JMenuItem jMenuItem1;
-    private javax.swing.JMenuItem jMenuItem2;
-    private javax.swing.JMenuItem jMenuItem3;
-    private javax.swing.JMenuItem jMenuItem4;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JSeparator jSeparator1;
     private javax.swing.JTable jTable1;

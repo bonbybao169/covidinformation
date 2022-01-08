@@ -37,7 +37,6 @@ public class patient_consumption_history extends javax.swing.JFrame {
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("Lịch sử tiêu thụ gói nhu yếu phẩm");
         setPreferredSize(new java.awt.Dimension(640, 360));
-        setResizable(false);
 
         jLabel1.setFont(new java.awt.Font("Segoe UI Black", 0, 18)); // NOI18N
         jLabel1.setText("Lịch sử tiêu thụ gói nhu yếu phẩm");

@@ -4,6 +4,12 @@
  */
 package Manager.GUI;
 
+import Manager.Controller.ManagerController;
+import static Manager.GUI.PackageManagement_UI.model;
+import Patient.Model.Patient;
+import java.util.ArrayList;
+import javax.swing.table.DefaultTableModel;
+
 /**
  *
  * @author HOME
@@ -13,9 +19,30 @@ public class ManagedPersonList_UI extends javax.swing.JFrame {
     /**
      * Creates new form ManagedPersonList
      */
+    ManagerController manager = new ManagerController();
+    static String MNID = "MN12345";
+    static DefaultTableModel model;
+
     public ManagedPersonList_UI() {
         initComponents();
         this.setLocationRelativeTo(null);
+        ArrayList<Patient> list = manager.view_patient_list();
+        model = (DefaultTableModel) jTable1.getModel();
+        for (Patient p : list) {
+            String[] temp = {p.getName(), p.getCCCD(), p.getDOB().toString(), p.getAddress(), "F" + p.getState(), p.getIsolation(), Float.toString(p.getDebt())};
+            model.addRow(temp);
+        }
+        sortType.add("Tăng dần theo Tên người được quản lý");
+        sortType.add("Giảm dần theo Tên người được quản lý");
+        sortType.add("Tăng dần theo Tên nơi điều trị");
+        sortType.add("Giảm dần theo Tên nơi điều trị");
+        sortType.add("Tăng dần theo Ngày sinh");
+        sortType.add("Giảm dần theo Ngày sinh");
+        sortType.add("Tăng dần theo Trạng thái");
+        sortType.add("Giảm dần theo Trạng thái");
+        sortType.add("Tăng dần theo Dư nợ");
+        sortType.add("Giảm dần theo Dư nợ");
+
     }
 
     /**
@@ -35,26 +62,22 @@ public class ManagedPersonList_UI extends javax.swing.JFrame {
         jPanel1 = new javax.swing.JPanel();
         jLabel2 = new javax.swing.JLabel();
         jLabel3 = new javax.swing.JLabel();
-        jTextField1 = new javax.swing.JTextField();
-        jButton3 = new javax.swing.JButton();
+        searchID = new javax.swing.JTextField();
+        searchButton = new javax.swing.JButton();
         jPanel2 = new javax.swing.JPanel();
         jLabel4 = new javax.swing.JLabel();
-        jLabel5 = new javax.swing.JLabel();
-        choice1 = new java.awt.Choice();
-        jButton4 = new javax.swing.JButton();
+        sortType = new java.awt.Choice();
+        sortButton = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("Covid Info Management - Manager");
 
         jTable1.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null, null, null, null, null},
-                {null, null, null, null, null, null},
-                {null, null, null, null, null, null},
-                {null, null, null, null, null, null}
+
             },
             new String [] {
-                "Tên", "CCCD", "Ngày sinh", "Địa chỉ", "Trạng thái", "Nơi điều trị"
+                "Tên", "CCCD", "Ngày sinh", "Địa chỉ", "Trạng thái", "Nơi điều trị", "Dư nợ"
             }
         ));
         jScrollPane1.setViewportView(jTable1);
@@ -78,39 +101,37 @@ public class ManagedPersonList_UI extends javax.swing.JFrame {
 
         jLabel3.setText("CCCD:");
 
-        jButton3.setText("Tìm");
+        searchButton.setText("Tìm");
+        searchButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                searchButtonActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addContainerGap()
-                        .addComponent(jLabel3)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(jTextField1))
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                        .addGap(0, 0, Short.MAX_VALUE)
-                        .addComponent(jButton3)))
-                .addContainerGap())
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                .addGap(0, 0, Short.MAX_VALUE)
+                .addContainerGap()
                 .addComponent(jLabel2)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(jLabel3)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(searchID, javax.swing.GroupLayout.DEFAULT_SIZE, 124, Short.MAX_VALUE)
+                .addGap(18, 18, 18)
+                .addComponent(searchButton)
+                .addContainerGap())
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jLabel2)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel3)
-                    .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(jButton3)
+                    .addComponent(jLabel2)
+                    .addComponent(searchButton)
+                    .addComponent(searchID, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel3))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
@@ -119,9 +140,12 @@ public class ManagedPersonList_UI extends javax.swing.JFrame {
         jLabel4.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
         jLabel4.setText("Sắp xếp");
 
-        jLabel5.setText("Tiêu chí");
-
-        jButton4.setText("Sắp xếp");
+        sortButton.setText("Sắp xếp");
+        sortButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                sortButtonActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
@@ -129,70 +153,60 @@ public class ManagedPersonList_UI extends javax.swing.JFrame {
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel2Layout.createSequentialGroup()
                 .addContainerGap()
-                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jLabel4, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addGroup(jPanel2Layout.createSequentialGroup()
-                        .addComponent(jLabel5)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(choice1, javax.swing.GroupLayout.DEFAULT_SIZE, 107, Short.MAX_VALUE))
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
-                        .addGap(0, 0, Short.MAX_VALUE)
-                        .addComponent(jButton4)))
+                .addComponent(jLabel4)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(sortType, javax.swing.GroupLayout.DEFAULT_SIZE, 168, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(sortButton)
                 .addContainerGap())
         );
         jPanel2Layout.setVerticalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel2Layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jLabel4)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jLabel5)
-                    .addComponent(choice1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(jButton4)
-                .addContainerGap())
+                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel4)
+                    .addComponent(sortButton)
+                    .addComponent(sortType, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(jLabel1)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                 .addContainerGap()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(jPanel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                        .addGap(18, 18, 18)
-                        .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 577, Short.MAX_VALUE))
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(jScrollPane1, javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createSequentialGroup()
+                        .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 58, Short.MAX_VALUE)
+                        .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(layout.createSequentialGroup()
                         .addGap(0, 0, Short.MAX_VALUE)
-                        .addComponent(jButton2))
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                        .addGap(0, 0, Short.MAX_VALUE)
-                        .addComponent(jLabel1)
-                        .addGap(0, 0, Short.MAX_VALUE))
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                        .addGap(0, 0, Short.MAX_VALUE)
-                        .addComponent(jButton1)))
-                .addContainerGap())
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addComponent(jButton2)
+                            .addComponent(jButton1))))
+                .addGap(35, 35, 35))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(jButton2)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGap(18, 18, 18)
                 .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 24, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 337, Short.MAX_VALUE)
-                    .addGroup(layout.createSequentialGroup()
-                        .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(18, 18, 18)
-                        .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                    .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 275, Short.MAX_VALUE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jButton1)
                 .addContainerGap())
@@ -206,6 +220,132 @@ public class ManagedPersonList_UI extends javax.swing.JFrame {
         super.dispose();
         CovidManagement_UI.main(null);
     }//GEN-LAST:event_jButton1ActionPerformed
+
+    private void searchButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_searchButtonActionPerformed
+        // TODO add your handling code here:
+        String mpID = searchID.getText();
+        mpID = mpID.trim();
+        Patient p = null;
+        p = manager.searchPatient(mpID);
+        if (p != null) {
+            model = (DefaultTableModel) jTable1.getModel();
+            model.setRowCount(0);
+            String[] temp = {p.getName(), p.getCCCD(), p.getDOB().toString(), p.getAddress(), "F" + p.getState(), p.getIsolation(), Float.toString(p.getDebt())};
+            model.addRow(temp);
+        }
+
+    }//GEN-LAST:event_searchButtonActionPerformed
+
+    private void sortButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_sortButtonActionPerformed
+        // TODO add your handling code here:
+        String type = sortType.getSelectedItem().toString();
+
+        switch (type) {
+
+            case "Tăng dần theo Tên người được quản lý" -> {
+                ArrayList<Patient> list = manager.sort_ASC_byName();
+
+                model = (DefaultTableModel) jTable1.getModel();
+                model.setRowCount(0);
+                for (Patient p : list) {
+                    String[] temp = {p.getName(), p.getCCCD(), p.getDOB().toString(), p.getAddress(), "F" + p.getState(), p.getIsolation(), Float.toString(p.getDebt())};
+                    model.addRow(temp);
+                }
+            }
+            case "Giảm dần theo Tên người được quản lý" -> {
+                ArrayList<Patient> list = manager.sort_DESC_byName();
+
+                model = (DefaultTableModel) jTable1.getModel();
+                model.setRowCount(0);
+                for (Patient p : list) {
+                    String[] temp = {p.getName(), p.getCCCD(), p.getDOB().toString(), p.getAddress(), "F" + p.getState(), p.getIsolation(), Float.toString(p.getDebt())};
+                    model.addRow(temp);
+                }
+            }
+            case "Tăng dần theo Tên nơi điều trị" -> {
+                ArrayList<Patient> list = manager.sort_ASC_byName();
+
+                model = (DefaultTableModel) jTable1.getModel();
+                model.setRowCount(0);
+                for (Patient p : list) {
+                    String[] temp = {p.getName(), p.getCCCD(), p.getDOB().toString(), p.getAddress(), "F" + p.getState(), p.getIsolation(), Float.toString(p.getDebt())};
+                    model.addRow(temp);
+                }
+            }
+            case "Giảm dần theo Tên nơi điều trị" -> {
+                ArrayList<Patient> list = manager.sort_DESC_byName();
+
+                model = (DefaultTableModel) jTable1.getModel();
+                model.setRowCount(0);
+                for (Patient p : list) {
+                    String[] temp = {p.getName(), p.getCCCD(), p.getDOB().toString(), p.getAddress(), "F" + p.getState(), p.getIsolation(), Float.toString(p.getDebt())};
+                    model.addRow(temp);
+                }
+            }
+            case "Tăng dần theo Ngày sinh" -> {
+                ArrayList<Patient> list = manager.sort_ASC_byDOB();
+
+                model = (DefaultTableModel) jTable1.getModel();
+                model.setRowCount(0);
+                for (Patient p : list) {
+                    String[] temp = {p.getName(), p.getCCCD(), p.getDOB().toString(), p.getAddress(), "F" + p.getState(), p.getIsolation(), Float.toString(p.getDebt())};
+                    model.addRow(temp);
+                }
+            }
+            case "Giảm dần theo Ngày sinh" -> {
+                ArrayList<Patient> list = manager.sort_DESC_byDOB();
+
+                model = (DefaultTableModel) jTable1.getModel();
+                model.setRowCount(0);
+                for (Patient p : list) {
+                    String[] temp = {p.getName(), p.getCCCD(), p.getDOB().toString(), p.getAddress(), "F" + p.getState(), p.getIsolation(), Float.toString(p.getDebt())};
+                    model.addRow(temp);
+                }
+            }
+            case "Tăng dần theo Trạng thái" -> {
+                ArrayList<Patient> list = manager.sort_ASC_byState();
+
+                model = (DefaultTableModel) jTable1.getModel();
+                model.setRowCount(0);
+                for (Patient p : list) {
+                    String[] temp = {p.getName(), p.getCCCD(), p.getDOB().toString(), p.getAddress(), "F" + p.getState(), p.getIsolation(), Float.toString(p.getDebt())};
+                    model.addRow(temp);
+                }
+            }
+            case "Giảm dần theo Trạng thái" -> {
+                ArrayList<Patient> list = manager.sort_DESC_byState();
+
+                model = (DefaultTableModel) jTable1.getModel();
+                model.setRowCount(0);
+                for (Patient p : list) {
+                    String[] temp = {p.getName(), p.getCCCD(), p.getDOB().toString(), p.getAddress(), "F" + p.getState(), p.getIsolation(), Float.toString(p.getDebt())};
+                    model.addRow(temp);
+                }
+            }
+            case "Tăng dần theo Dư nợ" -> {
+                ArrayList<Patient> list = manager.sort_ASC_byDebt();
+
+                model = (DefaultTableModel) jTable1.getModel();
+                model.setRowCount(0);
+                for (Patient p : list) {
+                    String[] temp = {p.getName(), p.getCCCD(), p.getDOB().toString(), p.getAddress(), "F" + p.getState(), p.getIsolation(), Float.toString(p.getDebt())};
+                    model.addRow(temp);
+                }
+            }
+            case "Giảm dần theo Dư nợ" -> {
+                ArrayList<Patient> list = manager.sort_DESC_byDebt();
+
+                model = (DefaultTableModel) jTable1.getModel();
+                model.setRowCount(0);
+                for (Patient p : list) {
+                    String[] temp = {p.getName(), p.getCCCD(), p.getDOB().toString(), p.getAddress(), "F" + p.getState(), p.getIsolation(), Float.toString(p.getDebt())};
+                    model.addRow(temp);
+                }
+            }
+            default -> {
+            }
+        }
+    }//GEN-LAST:event_sortButtonActionPerformed
 
     /**
      * @param args the command line arguments
@@ -244,20 +384,19 @@ public class ManagedPersonList_UI extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private java.awt.Choice choice1;
     private javax.swing.JButton jButton1;
     private javax.swing.JButton jButton2;
-    private javax.swing.JButton jButton3;
-    private javax.swing.JButton jButton4;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
-    private javax.swing.JLabel jLabel5;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JTable jTable1;
-    private javax.swing.JTextField jTextField1;
+    private javax.swing.JButton searchButton;
+    private javax.swing.JTextField searchID;
+    private javax.swing.JButton sortButton;
+    private java.awt.Choice sortType;
     // End of variables declaration//GEN-END:variables
 }

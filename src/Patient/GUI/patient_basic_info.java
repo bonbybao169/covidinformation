@@ -49,7 +49,6 @@ public class patient_basic_info extends javax.swing.JFrame {
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("CIMSystem - Patient");
         setPreferredSize(new java.awt.Dimension(640, 360));
-        setResizable(false);
 
         jLabel1.setFont(new java.awt.Font("Segoe UI Black", 0, 18)); // NOI18N
         jLabel1.setText("Thông tin cơ bản");

@@ -1,5 +1,6 @@
-package Patient.GUI;
+package Manager.GUI;
 
+import Patient.GUI.*;
 import java.awt.Image;
 import java.awt.image.BufferedImage;
 import java.io.File;
@@ -11,12 +12,12 @@ import javax.swing.ImageIcon;
 import Patient.Controller.patient_controller;
 import java.text.ParseException;
 
-public class patient_filter extends javax.swing.JFrame {
+public class FilterEP_UI extends javax.swing.JFrame {
 
     patient_controller control = new patient_controller();
     public static boolean filtered = false;
 
-    public patient_filter() {
+    public FilterEP_UI() {
         try {
             img = ImageIO.read(new File("src/Image/covid.jpg"));
             initComponents();
@@ -25,7 +26,7 @@ public class patient_filter extends javax.swing.JFrame {
             jLabel2.setIcon(imageIcon);
             this.setLocationRelativeTo(null);
         } catch (IOException ex) {
-            Logger.getLogger(patient_filter.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(FilterEP_UI.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
 
@@ -62,7 +63,6 @@ public class patient_filter extends javax.swing.JFrame {
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("Lọc");
-        setPreferredSize(new java.awt.Dimension(640, 360));
 
         jPanel1.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
         jPanel1.setPreferredSize(new java.awt.Dimension(379, 275));
@@ -236,18 +236,19 @@ public class patient_filter extends javax.swing.JFrame {
     private void confirmButtonMouseClicked(java.awt.event.MouseEvent evt) {// GEN-FIRST:event_confirmButtonMouseClicked
 
         // TODO add your handling code here:
-        if (limitTimeFromTextField.getText().equals("") && limitTimeToTextField.getText().equals("")) {
-            control.filter_essential_package(limitPeopleFromTextField.getText(), limitPeopleToTextField.getText(),
-                    limitTimeFromTextField.getText(), limitTimeToTextField.getText(), priceFromTextField.getText(),
-                    priceToTextField.getText());
-            filtered = true;
+//        if (limitTimeFromTextField.getText().equals("") && limitTimeToTextField.getText().equals("")) {
+//            
+//        } else {
+//            errorLabel.setText("Delete YYYY-MM-DD");
+//        }
+//        
+        control.filter_essential_package(limitPeopleFromTextField.getText(), limitPeopleToTextField.getText(),
+                limitTimeFromTextField.getText(), limitTimeToTextField.getText(), priceFromTextField.getText(),
+                priceToTextField.getText());
+        filtered = true;
 
-            super.dispose();
-            patient_purchase.main(null);
-        } else {
-            errorLabel.setText("Delete YYYY-MM-DD");
-        }
-
+        super.dispose();
+        PackageManagement_UI.main(null);
     }// GEN-LAST:event_confirmButtonMouseClicked
 
     private void priceFromTextFieldKeyPressed(java.awt.event.KeyEvent evt) {// GEN-FIRST:event_priceFromTextFieldKeyPressed
@@ -311,22 +312,22 @@ public class patient_filter extends javax.swing.JFrame {
                 }
             }
         } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(patient_filter.class.getName())
+            java.util.logging.Logger.getLogger(FilterEP_UI.class.getName())
                     .log(java.util.logging.Level.SEVERE, null, ex);
         } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(patient_filter.class.getName())
+            java.util.logging.Logger.getLogger(FilterEP_UI.class.getName())
                     .log(java.util.logging.Level.SEVERE, null, ex);
         } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(patient_filter.class.getName())
+            java.util.logging.Logger.getLogger(FilterEP_UI.class.getName())
                     .log(java.util.logging.Level.SEVERE, null, ex);
         } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(patient_filter.class.getName())
+            java.util.logging.Logger.getLogger(FilterEP_UI.class.getName())
                     .log(java.util.logging.Level.SEVERE, null, ex);
         }
 
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new patient_filter().setVisible(true);
+                new FilterEP_UI().setVisible(true);
             }
         });
     }
