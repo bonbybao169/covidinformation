@@ -1,13 +1,5 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
- */
 package Patient.Database;
 
-/**
- *
- * @author HOME
- */
 import static DatabaseConnector.connect_db.createConnection;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -21,8 +13,8 @@ public class GetDebtByID {
     Connection conn = createConnection();
     PreparedStatement psm = null;
 
-    public int getDebtByID(String CCCD) {
-        int temp = 0;
+    public float getDebtByID(String CCCD) {
+        float temp = 0;
 
         try {
             sql = "SELECT Debt FROM mp_infor where CCCD = ?";
@@ -31,7 +23,7 @@ public class GetDebtByID {
             rs = psm.executeQuery();
 
             while (rs.next()) {
-                temp = rs.getInt("Debt");
+                temp = rs.getFloat("Debt");
             }
 
             conn.close();
