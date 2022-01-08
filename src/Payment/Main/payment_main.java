@@ -1,6 +1,8 @@
 package Payment.Main;
 
+import Payment.Database.*;
 import Payment.GUI.*;
+import Payment.Controller.*;
 import java.net.*;
 import java.io.*;
 import java.util.*;
@@ -49,6 +51,8 @@ public class payment_main {
 
 class ServerClientThread implements Runnable {
 
+    static Payment_Backend be = new Payment_Backend();
+    static payment_controller pc = new payment_controller();
     Socket client;
     DataInputStream clientin;
     DataOutputStream clientout;
@@ -63,10 +67,21 @@ class ServerClientThread implements Runnable {
             clientin = new DataInputStream(client.getInputStream());
             clientout = new DataOutputStream(client.getOutputStream());
             String msgFromClient = "";
-
             msgFromClient = clientin.readUTF();
+            msgFromClient = pc.decodeString(msgFromClient);
             System.out.print(msgFromClient);
-            payment_main.clients.get(payment_main.clients.indexOf(this)).send("1");
+            String[] words = msgFromClient.split(" ");
+            if (words[0] == "addpayment") {
+
+                payment_main.clients.get(payment_main.clients.indexOf(this)).send("1");
+
+            }
+            if (words[0] == "addaccount") {
+                //if(be.FindPatient(words[1]))
+                be.AddPayAccount(words[1], Integer.parseInt(words[2]));
+                Thread.sleep(100);
+
+            }
             payment_main.clients.remove(this);
             client.close();
         } catch (Exception ex) {

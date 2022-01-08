@@ -67,11 +67,11 @@ public class Payment_Backend {
     public List<String[]> ListPatient() {
         List<String[]> list = new ArrayList<String[]>();
         try {
-            sql = "select M.CCCD,M.Name from mp_infor as M where M.CCCD NOT IN (select A.CCCD from mp_infor as A join payaccount where A.CCCD=payaccount.ID);";
+            sql = "select M.ID,M.Balance from payaccount as M where M.Type=2;";
             psm = conn.prepareStatement(sql);
             rs = psm.executeQuery();
             while (rs.next()) {
-                String[] temp = {rs.getString("CCCD"), rs.getString("Name")};
+                String[] temp = {rs.getString("ID"), rs.getString("Balance")};
 
                 list.add(temp);
             }
@@ -84,12 +84,12 @@ public class Payment_Backend {
     public List<String[]> FindPatient(String CCCD) {
         List<String[]> list = new ArrayList<String[]>();
         try {
-            sql = "select M.CCCD,M.Name from mp_infor as M where M.CCCD NOT IN (select A.CCCD from mp_infor as A join payaccount where A.CCCD=payaccount.ID) and M.CCCD = ?;";
+            sql = "select M.ID,M.Balance from payaccount as M where M.Type=2 M.CCCD = ?;";
             psm = conn.prepareStatement(sql);
             psm.setString(1, CCCD);
             rs = psm.executeQuery();
             while (rs.next()) {
-                String[] temp = {rs.getString("CCCD"), rs.getString("Name")};
+                String[] temp = {rs.getString("ID"), rs.getString("Balance")};
                 list.add(temp);
             }
         } catch (SQLException e) {
