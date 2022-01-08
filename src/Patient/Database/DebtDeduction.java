@@ -24,13 +24,13 @@ public class DebtDeduction {
         Date date;
 
         try {
-            sql = "insert into consumption_history(MPID,Content,Cash,Time) values (?,?,?,?)";
+            GetDebtByID model = new GetDebtByID();
+            int paymoney = model.getDebtByID(mpID);
+            int debt = paymoney - money;
+            sql = "update mp_infor set Debt = ?  where CCCD = ?";
             psm = conn.prepareStatement(sql);
-            psm.setString(1, mpID);
-            psm.setString(2, "Thanh toán ngày" + java.time.LocalDate.now());
-            psm.setInt(3, money);
-            date = Date.valueOf(java.time.LocalDate.now());
-            psm.setDate(4, date);
+            psm.setInt(1, debt);
+            psm.setString(2, mpID);
             int executeUpdate = psm.executeUpdate();
             conn.close();
             psm.close();
