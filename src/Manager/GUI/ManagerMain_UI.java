@@ -5,6 +5,7 @@
 package Manager.GUI;
 
 import Auth.GUI.Login_UI;
+import static javax.swing.JOptionPane.showMessageDialog;
 
 /**
  *
@@ -165,6 +166,7 @@ public class ManagerMain_UI extends javax.swing.JFrame {
         //</editor-fold>
         //</editor-fold>
 
+        showMessageDialog(null, "This is even shorter");
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
