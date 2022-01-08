@@ -13,10 +13,14 @@ public class ManagerMain_UI extends javax.swing.JFrame {
     /**
      * Creates new form ManagerMain
      */
-    public ManagerMain_UI() {
+    static String MNID = "";
+
+    public ManagerMain_UI(String mnid) {
         //this.setTitle("Manager");
         initComponents();
+        MNID = mnid;
         this.setLocationRelativeTo(null);
+
     }
 
     /**
@@ -110,7 +114,7 @@ public class ManagerMain_UI extends javax.swing.JFrame {
     private void MPMButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_MPMButtonActionPerformed
         // TODO add your handling code here:
         super.dispose();
-        CovidManagement_UI.main(null);
+        CovidManagement_UI.main(null, MNID);
     }//GEN-LAST:event_MPMButtonActionPerformed
 
     private void StatisticButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_StatisticButtonActionPerformed
@@ -122,7 +126,7 @@ public class ManagerMain_UI extends javax.swing.JFrame {
     /**
      * @param args the command line arguments
      */
-    public static void main(String args[]) {
+    public static void main(String args[], String mnID) {
         /* Set the Nimbus look and feel */
         //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
         /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
@@ -150,7 +154,7 @@ public class ManagerMain_UI extends javax.swing.JFrame {
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new ManagerMain_UI().setVisible(true);
+                new ManagerMain_UI(mnID).setVisible(true);
             }
         });
     }

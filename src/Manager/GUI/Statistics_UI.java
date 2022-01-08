@@ -13,6 +13,8 @@ public class Statistics_UI extends javax.swing.JFrame {
     /**
      * Creates new form Statistics
      */
+    static String MNID = "";
+
     public Statistics_UI() {
         initComponents();
         this.setLocationRelativeTo(null);
@@ -176,7 +178,7 @@ public class Statistics_UI extends javax.swing.JFrame {
     private void jButton5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton5ActionPerformed
         // TODO add your handling code here:
         super.dispose();
-        ManagerMain_UI.main(null);
+        ManagerMain_UI.main(null, MNID);
     }//GEN-LAST:event_jButton5ActionPerformed
 
     /**

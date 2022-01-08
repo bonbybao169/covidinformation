@@ -144,7 +144,7 @@ public class InputPassword_UI extends javax.swing.JFrame {
                     patient_main.main(null);
                 } else if (Integer.valueOf(control.acc.getType()) == 2) {
                     super.dispose();
-                    ManagerMain_UI.main(null);
+                    ManagerMain_UI.main(null, control.acc.getUsername());
                 } else if (Integer.valueOf(control.acc.getType()) == 1) {
                     super.dispose();
                     AdminMenu_AUI.main(null);

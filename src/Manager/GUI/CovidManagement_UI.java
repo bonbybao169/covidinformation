@@ -13,9 +13,12 @@ public class CovidManagement_UI extends javax.swing.JFrame {
     /**
      * Creates new form CovidManagement
      */
-    public CovidManagement_UI() {
+    static String MNID = "";
+
+    public CovidManagement_UI(String mnid) {
         initComponents();
         this.setLocationRelativeTo(null);
+        MNID = mnid;
     }
 
     /**
@@ -119,31 +122,31 @@ public class CovidManagement_UI extends javax.swing.JFrame {
     private void showlistButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_showlistButtonActionPerformed
         // TODO add your handling code here:
         super.dispose();
-        ManagedPersonList_UI.main(null);
+        ManagedPersonList_UI.main(null, MNID);
     }//GEN-LAST:event_showlistButtonActionPerformed
 
     private void jButton5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton5ActionPerformed
         // TODO add your handling code here:
         super.dispose();
-        ManagerMain_UI.main(null);
+        ManagerMain_UI.main(null, MNID);
     }//GEN-LAST:event_jButton5ActionPerformed
 
     private void infoButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_infoButtonActionPerformed
         // TODO add your handling code here:
         super.dispose();
-        DetailInformation_UI.main(null);
+        DetailInformation_UI.main(null, MNID);
     }//GEN-LAST:event_infoButtonActionPerformed
 
     private void addButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_addButtonActionPerformed
         // TODO add your handling code here:
         super.dispose();
-        FormAddManagedPerson_UI.main(null);
+        FormAddManagedPerson_UI.main(null, MNID);
     }//GEN-LAST:event_addButtonActionPerformed
 
     /**
      * @param args the command line arguments
      */
-    public static void main(String args[]) {
+    public static void main(String args[], String mnID) {
         /* Set the Nimbus look and feel */
         //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
         /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
@@ -171,7 +174,7 @@ public class CovidManagement_UI extends javax.swing.JFrame {
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new CovidManagement_UI().setVisible(true);
+                new CovidManagement_UI(mnID).setVisible(true);
             }
         });
     }
