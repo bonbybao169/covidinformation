@@ -7,16 +7,18 @@ package Payment.GUI;
 import Payment.Controller.*;
 import java.util.*;
 import javax.swing.table.DefaultTableModel;
+
 public class Statement_UI extends javax.swing.JFrame {
 
     static payment_controller con = new payment_controller();
     static DefaultTableModel model;
+
     public Statement_UI() {
         initComponents();
         List<String[]> list = con.list_payment();
         model = (DefaultTableModel) jTable1.getModel();
-        for(String[] element:list){
-            model.addRow(new Object[]{element[0], element[1], element[2], Integer.parseInt(element[3]), element[4] });
+        for (String[] element : list) {
+            model.addRow(new Object[]{element[0], element[1], Integer.parseInt(element[2]), element[3]});
         }
     }
 
@@ -55,11 +57,11 @@ public class Statement_UI extends javax.swing.JFrame {
 
             },
             new String [] {
-                "Thời gian", "Họ và tên", "CCCD", "Số tiền thanh toán", "Nội dung"
+                "Thời gian", "CCCD", "Số tiền thanh toán", "Nội dung"
             }
         ) {
             Class[] types = new Class [] {
-                java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.Integer.class, java.lang.String.class
+                java.lang.String.class, java.lang.String.class, java.lang.Integer.class, java.lang.String.class
             };
 
             public Class getColumnClass(int columnIndex) {
@@ -73,7 +75,7 @@ public class Statement_UI extends javax.swing.JFrame {
         });
         jScrollPane1.setViewportView(jTable1);
         if (jTable1.getColumnModel().getColumnCount() > 0) {
-            jTable1.getColumnModel().getColumn(4).setMinWidth(150);
+            jTable1.getColumnModel().getColumn(3).setMinWidth(150);
         }
 
         jButton1.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
@@ -211,8 +213,8 @@ public class Statement_UI extends javax.swing.JFrame {
         List<String[]> list = con.list_payment();
         model = (DefaultTableModel) jTable1.getModel();
         model.setRowCount(0);
-        for(String[] element:list){
-            model.addRow(new Object[]{element[0], element[1], element[2], Integer.parseInt(element[3]), element[4]});
+        for (String[] element : list) {
+            model.addRow(new Object[]{element[0], element[1], Integer.parseInt(element[2]), element[3]});
         }
     }//GEN-LAST:event_jButton5ActionPerformed
 
@@ -220,8 +222,8 @@ public class Statement_UI extends javax.swing.JFrame {
         List<String[]> list = con.find_payment(jTextField2.getText());
         model = (DefaultTableModel) jTable1.getModel();
         model.setRowCount(0);
-        for(String[] element:list){
-            model.addRow(new Object[]{element[0], element[1], element[2], Integer.parseInt(element[3]), element[4]});
+        for (String[] element : list) {
+            model.addRow(new Object[]{element[0], element[1], Integer.parseInt(element[2]), element[3]});
         }
     }//GEN-LAST:event_jButton4ActionPerformed
 
