@@ -221,7 +221,7 @@ public class patient_payment_confirm extends javax.swing.JFrame {
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         // TODO add your handling code here:
         msgmoney.removeAll();
-        msgmoney.setText(jButton1.getText());
+        msgmoney.setText("500000");
     }//GEN-LAST:event_jButton1ActionPerformed
 
     private void jButton7ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton7ActionPerformed
@@ -232,25 +232,25 @@ public class patient_payment_confirm extends javax.swing.JFrame {
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {// GEN-FIRST:event_jButton2ActionPerformed
         // TODO add your handling code here:
         msgmoney.removeAll();
-        msgmoney.setText(jButton2.getText());
+        msgmoney.setText("50000");
     }// GEN-LAST:event_jButton2ActionPerformed
 
     private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {// GEN-FIRST:event_jButton3ActionPerformed
         // TODO add your handling code here:
         msgmoney.removeAll();
-        msgmoney.setText(jButton3.getText());
+        msgmoney.setText("1000000");
     }// GEN-LAST:event_jButton3ActionPerformed
 
     private void jButton4ActionPerformed(java.awt.event.ActionEvent evt) {// GEN-FIRST:event_jButton4ActionPerformed
         // TODO add your handling code here:
         msgmoney.removeAll();
-        msgmoney.setText(jButton4.getText());
+        msgmoney.setText("100000");
     }// GEN-LAST:event_jButton4ActionPerformed
 
     private void jButton5ActionPerformed(java.awt.event.ActionEvent evt) {// GEN-FIRST:event_jButton5ActionPerformed
         // TODO add your handling code here:
         msgmoney.removeAll();
-        msgmoney.setText(jButton5.getText());
+        msgmoney.setText("200000");
     }// GEN-LAST:event_jButton5ActionPerformed
 
     private void jButton6ActionPerformed(java.awt.event.ActionEvent evt) {// GEN-FIRST:event_jButton6ActionPerformed
@@ -302,9 +302,7 @@ public class patient_payment_confirm extends javax.swing.JFrame {
             }
         });
         int portnumber = 4321;
-        if (args.length >= 1) {
-            portnumber = Integer.parseInt(args[0]);
-        }
+
         try {
             String msg = "";
             client = new Socket(InetAddress.getLocalHost(), portnumber);
@@ -314,6 +312,7 @@ public class patient_payment_confirm extends javax.swing.JFrame {
             msg = clientin.readUTF();
 
             client.close();
+
         } catch (IOException ie) {
             System.out.println("I/O error " + ie);
 
