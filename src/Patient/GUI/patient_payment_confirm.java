@@ -5,9 +5,13 @@ import Patient.Controller.patient_controller;
 import java.io.DataInputStream;
 import java.io.DataOutputStream;
 import java.io.IOException;
+import java.io.UnsupportedEncodingException;
 import java.net.InetAddress;
 import java.net.Socket;
 import java.sql.Date;
+import java.util.Base64;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 public class patient_payment_confirm extends javax.swing.JFrame {
 
@@ -264,6 +268,13 @@ public class patient_payment_confirm extends javax.swing.JFrame {
         String msg = "";
         String money = msgmoney.getText();
         msg = "addpayment " + ID + " " + money + " " + java.time.LocalDate.now().toString();
+        String encodingType = "utf-8";
+        String encodedString = null;
+        try {
+            encodedString = Base64.getEncoder().encodeToString(msg.getBytes(encodingType));
+        } catch (UnsupportedEncodingException ex) {
+            Logger.getLogger(patient_payment_confirm.class.getName()).log(Level.SEVERE, null, ex);
+        }
         try {
             int portnumber = 4321;
 
@@ -272,19 +283,26 @@ public class patient_payment_confirm extends javax.swing.JFrame {
             DataInputStream clientin = new DataInputStream(client.getInputStream());
             DataOutputStream clientout = new DataOutputStream(client.getOutputStream());
 
-            clientout.writeUTF(msg);
+            clientout.writeUTF(encodedString);
             msgrep = clientin.readUTF();
+            byte[] decodedBytes = Base64.getDecoder().decode(msgrep);
+            String decodedString = "";
+            try {
+                decodedString = new String(decodedBytes, encodingType);
+            } catch (UnsupportedEncodingException ex) {
+                Logger.getLogger(auth_controller.class.getName()).log(Level.SEVERE, null, ex);
+            }
             client.close();
 
-            if (msgrep.equals("1")) {
+            if (decodedString.equals("1")) {
                 control.deductionDebt(ID, Integer.parseInt(money));
                 control.addPaymentHistory(ID, Integer.parseInt(money));
                 msgtxt.setText("Thanh toán dư nợ thành công.");
             }
-            if (msgrep.equals("0")) {
+            if (decodedString.equals("0")) {
                 msgtxt.setText("Thanh toán dư nợ không thành công.");
             }
-            if (msgrep.equals("-1")) {
+            if (decodedString.equals("-1")) {
                 msgtxt.setText("Người được quản lý chưa có tài khoản thanh toán.");
             }
         } catch (Exception ex) {
