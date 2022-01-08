@@ -3,21 +3,18 @@ package Patient.Controller;
 import Patient.Database.*;
 import Patient.Model.*;
 import java.util.ArrayList;
-import java.sql.Date;
-import java.text.ParseException;
-import java.text.SimpleDateFormat;
-import java.util.logging.Level;
-import java.util.logging.Logger;
+import Auth.Controller.auth_controller;
 
 public class patient_controller {
 
     static ArrayList<EssentialPackage> list = new ArrayList<>();
+    auth_controller auth_control = new auth_controller();
 
     public Patient view_basic_info() {
         ViewPatientInfo view = new ViewPatientInfo();
         Patient patient = null;
 
-        patient = view.getPatientInfo("111111111111");
+        patient = view.getPatientInfo(auth_control.acc.getUsername());
         return patient;
     }
 
@@ -25,7 +22,7 @@ public class patient_controller {
         ViewManagementHistory view = new ViewManagementHistory();
         ArrayList<ManagementHistory> list = null;
 
-        list = view.getManagementHistory("111111111111");
+        list = view.getManagementHistory(auth_control.acc.getUsername());
         return list;
     }
 
@@ -33,7 +30,7 @@ public class patient_controller {
         ViewConsumptionHistory view = new ViewConsumptionHistory();
         ArrayList<ConsumptionHistory> list = null;
 
-        list = view.getConsumptionHistory("111111111111");
+        list = view.getConsumptionHistory(auth_control.acc.getUsername());
 
         return list;
     }
@@ -42,7 +39,7 @@ public class patient_controller {
         ViewPaymentHistory view = new ViewPaymentHistory();
         ArrayList<PaymentHistory> list = null;
 
-        list = view.getPaymentHistory("111111111111");
+        list = view.getPaymentHistory(auth_control.acc.getUsername());
 
         return list;
     }
@@ -214,19 +211,25 @@ public class patient_controller {
     public int getTotalUse(String epID) {
         ViewTotalUseByMpIDAndEpID view = new ViewTotalUseByMpIDAndEpID();
 
-        int total = view.viewTotalUse("111111111111", epID);
+        int total = view.viewTotalUse(auth_control.acc.getUsername(), epID);
         return total;
     }
 
     public void addConsumptionHistory(String epID, int quantity) {
         UpdateConsumptionHistory view = new UpdateConsumptionHistory();
 
-        view.updateConsumptionHistory("111111111111", epID, quantity);
+        view.updateConsumptionHistory(auth_control.acc.getUsername(), epID, quantity);
     }
 
     public void buyEssentialPackage(float newDebt) {
         BuyEssentialPackage view = new BuyEssentialPackage();
 
-        view.buyEssentialPackagesByID(newDebt, "111111111111");
+        view.buyEssentialPackagesByID(newDebt, auth_control.acc.getUsername());
+    }
+
+    public float getDebt() {
+        GetDebtByID view = new GetDebtByID();
+
+        return view.getDebtByID(auth_control.acc.getUsername());
     }
 }

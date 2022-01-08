@@ -1,16 +1,18 @@
 package Patient.GUI;
 
-public class patient_main extends javax.swing.JFrame {
+import Auth.GUI.Login_UI;
 
+public class patient_main extends javax.swing.JFrame {
+    
     public patient_main() {
         initComponents();
         this.setLocationRelativeTo(null);
-
+        
         jLabel1.setVisible(false);
         jLabel2.setVisible(false);
         jLabel3.setVisible(false);
     }
-
+    
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
@@ -90,6 +92,11 @@ public class patient_main extends javax.swing.JFrame {
         jPanel1.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
 
         jButton4.setText("Logout");
+        jButton4.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jButton4MouseClicked(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
@@ -154,19 +161,25 @@ public class patient_main extends javax.swing.JFrame {
         super.dispose();
         patient_personal_info.main(null);
     }//GEN-LAST:event_jButton1MouseClicked
-
+    
     private void jButton2MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton2MouseClicked
         // TODO add your handling code here:
         super.dispose();
         patient_purchase.main(null);
     }//GEN-LAST:event_jButton2MouseClicked
-
+    
     private void jButton3MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton3MouseClicked
         // TODO add your handling code here:
         super.dispose();
         patient_payment_confirm.main(null);
     }//GEN-LAST:event_jButton3MouseClicked
-
+    
+    private void jButton4MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton4MouseClicked
+        // TODO add your handling code here:
+        super.dispose();
+        Login_UI.main(null);
+    }//GEN-LAST:event_jButton4MouseClicked
+    
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {// GEN-FIRST:event_jButton2ActionPerformed
         // TODO add your handling code here:
     }// GEN-LAST:event_jButton2ActionPerformed
