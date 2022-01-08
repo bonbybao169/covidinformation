@@ -62,7 +62,7 @@ public class StatisticService {
             rs = psm.executeQuery();
 
             while (rs.next()) {
-                String[] temp = {rs.getString("State"),
+                String[] temp = {"F" + rs.getString("State"),
                     Integer.toString(rs.getInt("SL"))};
                 list.add(temp);
             }

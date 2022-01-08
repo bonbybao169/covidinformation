@@ -18,8 +18,9 @@ public class ManagerMain_UI extends javax.swing.JFrame {
     public ManagerMain_UI(String mnid) {
         //this.setTitle("Manager");
         initComponents();
-        MNID = mnid;
+
         this.setLocationRelativeTo(null);
+        MNID = mnid;
 
     }
 

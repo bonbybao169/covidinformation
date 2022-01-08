@@ -4,6 +4,10 @@
  */
 package Manager.GUI;
 
+import Manager.Controller.ManagerController;
+import java.util.ArrayList;
+import javax.swing.table.DefaultTableModel;
+
 /**
  *
  * @author HOME
@@ -13,12 +17,20 @@ public class StatusStatistic_UI extends javax.swing.JFrame {
     /**
      * Creates new form StatusStatistic
      */
+    ManagerController manager = new ManagerController();
     static String MNID = "";
+    static DefaultTableModel model;
 
     public StatusStatistic_UI(String mnid) {
         initComponents();
         MNID = mnid;
         this.setLocationRelativeTo(null);
+        ArrayList<String[]> list = manager.view_State_Statisitc(MNID);
+        model = (DefaultTableModel) jTable1.getModel();
+        for (String[] i : list) {
+            model.addRow(i);
+        }
+        jTextField1.setText(manager.cal_total_Patient());
     }
 
     /**
@@ -48,10 +60,7 @@ public class StatusStatistic_UI extends javax.swing.JFrame {
 
         jTable1.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {"F0", null},
-                {"F1", null},
-                {"F2", null},
-                {"F3", null}
+
             },
             new String [] {
                 "Trạng thái", "Số lượng"
