@@ -289,6 +289,7 @@ public class patient_payment_confirm extends javax.swing.JFrame {
             String decodedString = "";
             try {
                 decodedString = new String(decodedBytes, encodingType);
+                System.out.println(decodedString);
             } catch (UnsupportedEncodingException ex) {
                 Logger.getLogger(patient_payment_confirm.class.getName()).log(Level.SEVERE, null, ex);
             }

@@ -71,16 +71,28 @@ class ServerClientThread implements Runnable {
             msgFromClient = pc.decodeString(msgFromClient);
             System.out.print(msgFromClient);
             String[] words = msgFromClient.split(" ");
-            if (words[0] == "addpayment") {
-
-                payment_main.clients.get(payment_main.clients.indexOf(this)).send("1");
+            if (words[0].equals("addpayment")) {
+                if (be.CheckPatient(words[1]) == false) {
+                    payment_main.clients.get(payment_main.clients.indexOf(this)).send(pc.encodeString("-1"));
+                }
+                try {
+                    be.AddPayment(words[1], Integer.parseInt(words[2]), words[3]);
+                    payment_main.clients.get(payment_main.clients.indexOf(this)).send(pc.encodeString("1"));
+                } catch (Exception ex) {
+                    payment_main.clients.get(payment_main.clients.indexOf(this)).send(pc.encodeString("0"));
+                }
 
             }
-            if (words[0] == "addaccount") {
-                //if(be.FindPatient(words[1]))
+            if (words[0].equals("addaccount")) {
+                if (be.CheckPatient(words[1]) == true) {
+                    payment_main.clients.get(payment_main.clients.indexOf(this)).send(pc.encodeString("-1"));
+                }
                 be.AddPayAccount(words[1], Integer.parseInt(words[2]));
                 Thread.sleep(100);
-
+                if (be.CheckPatient(words[1]) == true) {
+                    payment_main.clients.get(payment_main.clients.indexOf(this)).send(pc.encodeString("1"));
+                }
+                payment_main.clients.get(payment_main.clients.indexOf(this)).send(pc.encodeString("0"));
             }
             payment_main.clients.remove(this);
             client.close();

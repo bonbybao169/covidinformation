@@ -47,6 +47,21 @@ public class Payment_Backend {
         return list;
     }
 
+    public void AddPayment(String CCCD, int Cash, String Time) {
+        try {
+            sql = "insert into payment_history(MPID,Content,Cash,Time) values (?,?,?,?)";
+            //sql = "insert payment_history values(,?,?,?,?);";
+            psm = conn.prepareStatement(sql);
+            psm.setString(1, CCCD);
+            psm.setString(2, "Thanh toán " + Cash + "vnđ vào ngày " + Time);
+            psm.setInt(3, Cash);
+            psm.setString(4, Time);
+            psm.executeUpdate();
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+    }
+
     public List<String[]> FindPayment(String CCCD) {
         List<String[]> list = new ArrayList<String[]>();
         try {
@@ -81,10 +96,30 @@ public class Payment_Backend {
         return list;
     }
 
+    public boolean CheckPatient(String CCCD) {
+        try {
+            int temp = 0;
+            sql = "select count(*) from payaccount as M where M.Type = 2 and M.ID = ?;";
+            psm = conn.prepareStatement(sql);
+            psm.setString(1, CCCD);
+            rs = psm.executeQuery();
+            rs.next();
+            temp = rs.getInt(1);
+            if (temp == 1) {
+                return true;
+            } else {
+                return false;
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return false;
+    }
+
     public List<String[]> FindPatient(String CCCD) {
         List<String[]> list = new ArrayList<String[]>();
         try {
-            sql = "select M.ID,M.Balance from payaccount as M where M.Type=2 M.CCCD = ?;";
+            sql = "select M.ID,M.Balance from payaccount as M where M.Type=2 and M.CCCD = ?;";
             psm = conn.prepareStatement(sql);
             psm.setString(1, CCCD);
             rs = psm.executeQuery();
