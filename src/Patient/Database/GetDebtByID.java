@@ -13,8 +13,8 @@ public class GetDebtByID {
     Connection conn = createConnection();
     PreparedStatement psm = null;
 
-    public float getDebtByID(String CCCD) {
-        float temp = 0;
+    public int getDebtByID(String CCCD) {
+        int temp = 0;
 
         try {
             sql = "SELECT Debt FROM mp_infor where CCCD = ?";
@@ -23,7 +23,7 @@ public class GetDebtByID {
             rs = psm.executeQuery();
 
             while (rs.next()) {
-                temp = rs.getFloat("Debt");
+                temp = rs.getInt("Debt");
             }
 
             conn.close();
