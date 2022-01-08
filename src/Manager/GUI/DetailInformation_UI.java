@@ -458,7 +458,9 @@ public class DetailInformation_UI extends javax.swing.JFrame {
             MPState.setText("F" + mp.getState());
             MPHopital.setText(mp.getIsolation());
             ArrayList<String[]> rp = manager.view_RelatedPeople_List(mp.getCCCD());
+            RelatedPeople.removeAll();
             for (String[] p : rp) {
+                System.out.print(p[0] + " - " + p[1]);
                 RelatedPeople.add(p[0] + " - " + p[1]);
             }
         }
@@ -483,7 +485,10 @@ public class DetailInformation_UI extends javax.swing.JFrame {
             MPState.setText("F" + mp.getState());
             MPHopital.setText(mp.getIsolation());
             ArrayList<String[]> rp = manager.view_RelatedPeople_List(mp.getCCCD());
+
+            RelatedPeople.removeAll();
             for (String[] p : rp) {
+
                 RelatedPeople.add(p[0] + " - " + p[1]);
             }
         }
