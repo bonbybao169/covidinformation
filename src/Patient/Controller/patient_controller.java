@@ -227,9 +227,21 @@ public class patient_controller {
         view.buyEssentialPackagesByID(newDebt, auth_control.acc.getUsername());
     }
 
-    public float getDebt() {
+    public int getDebt() {
         GetDebtByID view = new GetDebtByID();
 
         return view.getDebtByID(auth_control.acc.getUsername());
+    }
+
+    public void deductionDebt(String mpID, int num) {
+        DebtDeduction view = new DebtDeduction();
+
+        view.updateDebt(mpID, num);
+    }
+
+    public void addPaymentHistory(String mpID, int num) {
+        UpdatePaymentHistory view = new UpdatePaymentHistory();
+
+        view.updatePaymentHistory(mpID, num);
     }
 }

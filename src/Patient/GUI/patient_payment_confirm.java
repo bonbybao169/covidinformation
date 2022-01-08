@@ -1,6 +1,7 @@
 package Patient.GUI;
 
 import Auth.Controller.auth_controller;
+import Patient.Controller.patient_controller;
 import java.io.DataInputStream;
 import java.io.DataOutputStream;
 import java.io.IOException;
@@ -11,11 +12,8 @@ import java.sql.Date;
 public class patient_payment_confirm extends javax.swing.JFrame {
 
     static auth_controller auth_control = new auth_controller();
-
-    static Socket client;
-    static DataInputStream clientin;
-    static DataOutputStream clientout;
     static String ID = auth_control.acc.getUsername();
+    static patient_controller control = new patient_controller();
 
     public patient_payment_confirm() {
         initComponents();
@@ -264,20 +262,31 @@ public class patient_payment_confirm extends javax.swing.JFrame {
             difmoney.setText("");
         }
         String msg = "";
-        msg = msgmoney.getText();
-        msg = ID + " " + msg + " " + java.time.LocalDate.now().toString();
+        String money = msgmoney.getText();
+        msg = "addpayment " + ID + " " + money + " " + java.time.LocalDate.now().toString();
         try {
             int portnumber = 4321;
 
             String msgrep = "";
-            client = new Socket(InetAddress.getLocalHost(), portnumber);
-            clientout = new DataOutputStream(client.getOutputStream());
-            clientin = new DataInputStream(client.getInputStream());
+            Socket client = new Socket(InetAddress.getLocalHost(), portnumber);
+            DataInputStream clientin = new DataInputStream(client.getInputStream());
+            DataOutputStream clientout = new DataOutputStream(client.getOutputStream());
 
             clientout.writeUTF(msg);
             msgrep = clientin.readUTF();
             client.close();
 
+            if (msgrep.equals("1")) {
+                control.deductionDebt(ID, Integer.parseInt(money));
+                control.addPaymentHistory(ID, Integer.parseInt(money));
+                msgtxt.setText("Thanh toán dư nợ thành công.");
+            }
+            if (msgrep.equals("0")) {
+                msgtxt.setText("Thanh toán dư nợ không thành công.");
+            }
+            if (msgrep.equals("-1")) {
+                msgtxt.setText("Người được quản lý chưa có tài khoản thanh toán.");
+            }
         } catch (Exception ex) {
             System.out.println("Error " + ex);
         }

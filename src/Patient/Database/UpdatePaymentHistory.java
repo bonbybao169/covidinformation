@@ -20,7 +20,7 @@ public class UpdatePaymentHistory {
     Connection conn = createConnection();
     PreparedStatement psm = null;
 
-    public void updateConsumptionHistory(String mpID, int money) {
+    public void updatePaymentHistory(String mpID, int money) {
         Date date;
 
         try {
