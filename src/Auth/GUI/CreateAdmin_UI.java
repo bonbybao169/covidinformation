@@ -10,6 +10,7 @@ public class CreateAdmin_UI extends javax.swing.JFrame {
         if (control.checkAdmin() == false) {
             initComponents();
             this.setLocationRelativeTo(null);
+            this.setVisible(true);
         } else {
             Login_UI.main(null);
         }
@@ -121,7 +122,7 @@ public class CreateAdmin_UI extends javax.swing.JFrame {
 
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new CreateAdmin_UI().setVisible(true);
+                new CreateAdmin_UI();
             }
         });
     }

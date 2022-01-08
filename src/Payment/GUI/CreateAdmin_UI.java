@@ -13,6 +13,7 @@ public class CreateAdmin_UI extends javax.swing.JFrame {
     public CreateAdmin_UI() {
         if (con.check_admin() == false) {
             initComponents();
+            this.setVisible(true);
         } else {
             Login_UI.main(null);
         }
@@ -152,7 +153,7 @@ public class CreateAdmin_UI extends javax.swing.JFrame {
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new CreateAdmin_UI().setVisible(true);
+                new CreateAdmin_UI();
 
             }
         });
