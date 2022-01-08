@@ -260,10 +260,20 @@ public class patient_payment_confirm extends javax.swing.JFrame {
             msgmoney.setText(difmoney.getText());
             difmoney.setText("");
         }
+        String msg = "";
+        msg = msgmoney.getText();
+        msg = ID + " " + msg + " " + java.time.LocalDate.now().toString();
         try {
-            String msg = "";
-            msg = msgmoney.getText();
-            msg = ID + " " + msg + " " + java.time.LocalDate.now().toString();
+            int portnumber = 4321;
+
+            String msgrep = "";
+            client = new Socket(InetAddress.getLocalHost(), portnumber);
+            clientout = new DataOutputStream(client.getOutputStream());
+            clientin = new DataInputStream(client.getInputStream());
+
+            msgrep = clientin.readUTF();
+            client.close();
+
             clientout.writeUTF(msg);
         } catch (Exception ex) {
             System.out.println("Error " + ex);
@@ -301,22 +311,6 @@ public class patient_payment_confirm extends javax.swing.JFrame {
                 new patient_payment_confirm().setVisible(true);
             }
         });
-        int portnumber = 4321;
-
-        try {
-            String msg = "";
-            client = new Socket(InetAddress.getLocalHost(), portnumber);
-            clientout = new DataOutputStream(client.getOutputStream());
-            clientin = new DataInputStream(client.getInputStream());
-
-            msg = clientin.readUTF();
-
-            client.close();
-
-        } catch (IOException ie) {
-            System.out.println("I/O error " + ie);
-
-        }
 
     }
 
