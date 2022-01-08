@@ -63,24 +63,24 @@ class ServerClientThread implements Runnable {
             clientin = new DataInputStream(client.getInputStream());
             clientout = new DataOutputStream(client.getOutputStream());
             String msgFromClient = "";
-
             do {
                 msgFromClient = clientin.readUTF();
-                for (int i = 0; i < payment_main.clients.size(); i++) {
-                    payment_main.clients.get(i).send(name + ": " + msgFromClient);
-                }
+                System.out.print(msgFromClient);
             } while (!msgFromClient.equalsIgnoreCase("bye"));
             payment_main.clients.remove(this);
             client.close();
         } catch (Exception ex) {
             System.out.println(ex);
             payment_main.clients.remove(this);
-            client.close();
         }
     }
 
     public void send(String msg) {
-        clientout.writeUTF(msg);
+        try {
+            clientout.writeUTF(msg);
+        } catch (Exception ex) {
+            System.out.println(ex);
+        }
     }
 
     public void send_to_everyone(String msg) {
