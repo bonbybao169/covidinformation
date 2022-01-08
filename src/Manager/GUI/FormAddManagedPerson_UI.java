@@ -6,7 +6,17 @@ package Manager.GUI;
 
 import Auth.GUI.Login_UI;
 import Manager.Controller.ManagerController;
+import Patient.Controller.patient_controller;
+import Patient.GUI.patient_payment_confirm;
 import Patient.Model.Patient;
+import java.io.DataInputStream;
+import java.io.DataOutputStream;
+import java.io.UnsupportedEncodingException;
+import java.net.InetAddress;
+import java.net.Socket;
+import java.util.Base64;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 /**
  *
@@ -19,6 +29,7 @@ public class FormAddManagedPerson_UI extends javax.swing.JFrame {
      */
     ManagerController manager = new ManagerController();
     static String MNID = "";
+    static patient_controller control = new patient_controller();
 
     public FormAddManagedPerson_UI(String mnid) {
         initComponents();
@@ -292,6 +303,47 @@ public class FormAddManagedPerson_UI extends javax.swing.JFrame {
                 }
                 if (er == 1) {
                     errorText.setText("Người được quản lý mới đã được thêm vào danh sách.");
+                    String msg = "";
+
+                    msg = "addaccount " + MPID.getText() + " 1000000000 " + java.time.LocalDate.now().toString();
+                    String encodingType = "utf-8";
+                    String encodedString = null;
+                    try {
+                        encodedString = Base64.getEncoder().encodeToString(msg.getBytes(encodingType));
+                    } catch (UnsupportedEncodingException ex) {
+                        Logger.getLogger(patient_payment_confirm.class.getName()).log(Level.SEVERE, null, ex);
+                    }
+                    try {
+                        int portnumber = 4321;
+
+                        String msgrep = "";
+                        Socket client = new Socket(InetAddress.getLocalHost(), portnumber);
+                        DataInputStream clientin = new DataInputStream(client.getInputStream());
+                        DataOutputStream clientout = new DataOutputStream(client.getOutputStream());
+
+                        clientout.writeUTF(encodedString);
+                        msgrep = clientin.readUTF();
+                        byte[] decodedBytes = Base64.getDecoder().decode(msgrep);
+                        String decodedString = "";
+                        try {
+                            decodedString = new String(decodedBytes, encodingType);
+                        } catch (UnsupportedEncodingException ex) {
+                            Logger.getLogger(patient_payment_confirm.class.getName()).log(Level.SEVERE, null, ex);
+                        }
+                        client.close();
+
+                        if (decodedString.equals("1")) {
+                            errorText.setText(errorText.getText() + "/nThêm tài khoản thanh toán thành công.");
+                        }
+                        if (decodedString.equals("0")) {
+                            errorText.setText(errorText.getText() + "/nThêm tài khoản thanh toán không thành công.");
+                        }
+                        if (decodedString.equals("-1")) {
+                            errorText.setText(errorText.getText() + "/nĐã tồn tại tài khoản thanh toán.");
+                        }
+                    } catch (Exception ex) {
+                        System.out.println("Error " + ex);
+                    }
                 }
             }
 
@@ -314,6 +366,47 @@ public class FormAddManagedPerson_UI extends javax.swing.JFrame {
                 }
                 if (er == 1) {
                     errorText.setText("Người được quản lý mới đã được thêm vào danh sách.");
+                    String msg = "";
+
+                    msg = "addaccount " + MPID.getText() + " 1000000000 " + java.time.LocalDate.now().toString();
+                    String encodingType = "utf-8";
+                    String encodedString = null;
+                    try {
+                        encodedString = Base64.getEncoder().encodeToString(msg.getBytes(encodingType));
+                    } catch (UnsupportedEncodingException ex) {
+                        Logger.getLogger(patient_payment_confirm.class.getName()).log(Level.SEVERE, null, ex);
+                    }
+                    try {
+                        int portnumber = 4321;
+
+                        String msgrep = "";
+                        Socket client = new Socket(InetAddress.getLocalHost(), portnumber);
+                        DataInputStream clientin = new DataInputStream(client.getInputStream());
+                        DataOutputStream clientout = new DataOutputStream(client.getOutputStream());
+
+                        clientout.writeUTF(encodedString);
+                        msgrep = clientin.readUTF();
+                        byte[] decodedBytes = Base64.getDecoder().decode(msgrep);
+                        String decodedString = "";
+                        try {
+                            decodedString = new String(decodedBytes, encodingType);
+                        } catch (UnsupportedEncodingException ex) {
+                            Logger.getLogger(patient_payment_confirm.class.getName()).log(Level.SEVERE, null, ex);
+                        }
+                        client.close();
+
+                        if (decodedString.equals("1")) {
+                            errorText.setText(errorText.getText() + "/nThêm tài khoản thanh toán thành công.");
+                        }
+                        if (decodedString.equals("0")) {
+                            errorText.setText(errorText.getText() + "/nThêm tài khoản thanh toán không thành công.");
+                        }
+                        if (decodedString.equals("-1")) {
+                            errorText.setText(errorText.getText() + "/nĐã tồn tại tài khoản thanh toán.");
+                        }
+                    } catch (Exception ex) {
+                        System.out.println("Error " + ex);
+                    }
                 }
             }
         }
