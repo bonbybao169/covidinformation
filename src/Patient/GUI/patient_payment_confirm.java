@@ -271,10 +271,10 @@ public class patient_payment_confirm extends javax.swing.JFrame {
             clientout = new DataOutputStream(client.getOutputStream());
             clientin = new DataInputStream(client.getInputStream());
 
+            clientout.writeUTF(msg);
             msgrep = clientin.readUTF();
             client.close();
 
-            clientout.writeUTF(msg);
         } catch (Exception ex) {
             System.out.println("Error " + ex);
         }
