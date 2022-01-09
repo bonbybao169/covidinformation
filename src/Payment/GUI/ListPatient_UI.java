@@ -9,7 +9,7 @@ import java.util.*;
 import javax.swing.table.DefaultTableModel;
 
 public class ListPatient_UI extends javax.swing.JFrame {
-    
+
     static DefaultTableModel model;
     static String SelectedCCCD;
     ;
@@ -21,7 +21,7 @@ public class ListPatient_UI extends javax.swing.JFrame {
         System.out.print(list);
         model = (DefaultTableModel) jTable1.getModel();
         for (String[] element : list) {
-            model.addRow(new Object[]{element[0], element[1]});
+            model.addRow(new Object[]{element[0], Integer.parseInt(element[1])});
         }
         SelectedCCCD = "";
     }
@@ -59,11 +59,11 @@ public class ListPatient_UI extends javax.swing.JFrame {
 
             },
             new String [] {
-                "CCCD", "Họ và tên"
+                "CCCD", "Số dư"
             }
         ) {
             Class[] types = new Class [] {
-                java.lang.String.class, java.lang.String.class
+                java.lang.String.class, java.lang.Integer.class
             };
 
             public Class getColumnClass(int columnIndex) {
@@ -206,55 +206,55 @@ public class ListPatient_UI extends javax.swing.JFrame {
         model = (DefaultTableModel) jTable1.getModel();
         model.setRowCount(0);
         for (String[] element : list) {
-            model.addRow(new Object[]{element[0], element[1]});
+            model.addRow(new Object[]{element[0], Integer.parseInt(element[1])});
         }
     }//GEN-LAST:event_jButton3ActionPerformed
-    
+
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
         super.dispose();
         AdminMenu_UI.main(null);
     }//GEN-LAST:event_jButton2ActionPerformed
-    
+
     private void jButton4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton4ActionPerformed
         List<String[]> list = con.list_patient();
         model = (DefaultTableModel) jTable1.getModel();
         model.setRowCount(0);
         for (String[] element : list) {
-            model.addRow(new Object[]{element[0], element[1]});
+            model.addRow(new Object[]{element[0], Integer.parseInt(element[1])});
         }
     }//GEN-LAST:event_jButton4ActionPerformed
-    
+
     private void jTable1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jTable1MouseClicked
         DefaultTableModel tableModel = (DefaultTableModel) jTable1.getModel();
         SelectedCCCD = tableModel.getValueAt(jTable1.getSelectedRow(), 0).toString();
     }//GEN-LAST:event_jTable1MouseClicked
-    
+
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         super.dispose();
         String[] arg = new String[]{SelectedCCCD};
         AddAccount_UI.main(arg);
     }//GEN-LAST:event_jButton1ActionPerformed
-    
+
     private void jMenuItem1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem1ActionPerformed
         super.dispose();
         InfoAdmin_UI.main(null);
     }//GEN-LAST:event_jMenuItem1ActionPerformed
-    
+
     private void jMenuItem2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem2ActionPerformed
         super.dispose();
         Statement_UI.main(null);
     }//GEN-LAST:event_jMenuItem2ActionPerformed
-    
+
     private void jMenuItem3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem3ActionPerformed
         super.dispose();
         ListPatient_UI.main(null);
     }//GEN-LAST:event_jMenuItem3ActionPerformed
-    
+
     private void jMenuItem4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem4ActionPerformed
         super.dispose();
         Login_UI.main(null);
     }//GEN-LAST:event_jMenuItem4ActionPerformed
-    
+
     private void jMenu2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenu2ActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_jMenu2ActionPerformed

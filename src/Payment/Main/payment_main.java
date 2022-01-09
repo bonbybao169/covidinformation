@@ -16,7 +16,7 @@ public class payment_main {
     public static void main(String[] args) {
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                //Payment.GUI.CreateAdmin_UI.main(null);
+                Payment.GUI.CreateAdmin_UI.main(null);
             }
         });
         int portnumber = 4321;
