@@ -22,11 +22,11 @@ public class Admin_Backend {
     public List<String[]> ListManager() {
         List<String[]> list = new ArrayList<String[]>();
         try {
-            sql = "select username,state from covid_management.account where type=2;";
+            sql = "select Username,State from account where Type=2;";
             psm = conn.prepareStatement(sql);
             rs = psm.executeQuery();
             while (rs.next()) {
-                String[] temp = {rs.getString("username"), rs.getString("state")};
+                String[] temp = {rs.getString("Username"), rs.getString("State")};
                 list.add(temp);
             }
         } catch (SQLException e) {

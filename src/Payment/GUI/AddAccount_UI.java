@@ -10,7 +10,7 @@ public class AddAccount_UI extends javax.swing.JFrame {
 
     static payment_controller con = new payment_controller();
 
-    public AddAccount_UI(String args[]) {
+    public AddAccount_UI() {
         initComponents();
     }
 
@@ -227,7 +227,7 @@ public class AddAccount_UI extends javax.swing.JFrame {
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new AddAccount_UI(args).setVisible(true);
+                new AddAccount_UI().setVisible(true);
             }
         });
     }
