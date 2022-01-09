@@ -8,6 +8,7 @@ import Auth.GUI.Login_UI;
 import Manager.Controller.ManagerController;
 import static Manager.GUI.DebtStatistic_UI.MNID;
 import static Manager.GUI.DebtStatistic_UI.model;
+import static Manager.GUI.DetailInformation_UI.MNID;
 import Patient.Controller.patient_controller;
 import Patient.GUI.patient_payment_confirm;
 import Patient.Model.Patient;
@@ -20,6 +21,7 @@ import java.util.ArrayList;
 import java.util.Base64;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import static javax.swing.JOptionPane.showMessageDialog;
 import javax.swing.table.DefaultTableModel;
 
 /**
@@ -34,11 +36,16 @@ public class FormAddManagedPerson_UI extends javax.swing.JFrame {
     ManagerController manager = new ManagerController();
     static String MNID = "";
     static patient_controller control = new patient_controller();
+    ArrayList<String[]> hopitals = null;
 
     public FormAddManagedPerson_UI(String mnid) {
         initComponents();
         this.setLocationRelativeTo(null);
         MNID = mnid;
+        hopitals = manager.view_Isolation_Area_List();
+        for (String[] h : hopitals) {
+            MPPlace.add(h[1]);
+        }
         ArrayList<String> citylist = manager.getCity();
         for (String i : citylist) {
             cityChoice.add(i);
@@ -78,17 +85,15 @@ public class FormAddManagedPerson_UI extends javax.swing.JFrame {
         MPDOB = new javax.swing.JTextField();
         MPID = new javax.swing.JTextField();
         MPName = new javax.swing.JTextField();
-        MPPlace = new javax.swing.JTextField();
         MPRelatedID = new javax.swing.JTextField();
         cityChoice = new java.awt.Choice();
         districtChoice = new java.awt.Choice();
         wardChoice = new java.awt.Choice();
         jLabel9 = new javax.swing.JLabel();
         MPAddr = new javax.swing.JTextField();
+        MPPlace = new java.awt.Choice();
         jButton2 = new javax.swing.JButton();
         addButton = new javax.swing.JButton();
-        jScrollPane3 = new javax.swing.JScrollPane();
-        errorText = new javax.swing.JTextArea();
 
         jTextArea1.setColumns(20);
         jTextArea1.setRows(5);
@@ -98,7 +103,7 @@ public class FormAddManagedPerson_UI extends javax.swing.JFrame {
         setTitle("Covid Info Management - Manager");
 
         jLabel1.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
-        jLabel1.setText("BIỂU MẪU THÊM NGƯỜI LIÊN QUAN COVID");
+        jLabel1.setText("THÊM NGƯỜI LIÊN QUAN COVID");
 
         jButton1.setText("Đăng xuất");
         jButton1.addActionListener(new java.awt.event.ActionListener() {
@@ -197,7 +202,7 @@ public class FormAddManagedPerson_UI extends javax.swing.JFrame {
                         .addGap(27, 27, 27)))
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addComponent(cityChoice, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(cityChoice, javax.swing.GroupLayout.DEFAULT_SIZE, 146, Short.MAX_VALUE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(districtChoice, javax.swing.GroupLayout.PREFERRED_SIZE, 144, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
@@ -206,9 +211,9 @@ public class FormAddManagedPerson_UI extends javax.swing.JFrame {
                     .addComponent(MPDOB)
                     .addComponent(MPID)
                     .addComponent(MPName)
-                    .addComponent(MPPlace)
                     .addComponent(MPRelatedID, javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(MPAddr))
+                    .addComponent(MPAddr)
+                    .addComponent(MPPlace, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addContainerGap())
         );
         jPanel1Layout.setVerticalGroup(
@@ -241,10 +246,10 @@ public class FormAddManagedPerson_UI extends javax.swing.JFrame {
                     .addComponent(MPState, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel6))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(MPPlace, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel7))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jLabel7)
+                    .addComponent(MPPlace, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(MPRelatedID, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel8))
@@ -265,36 +270,27 @@ public class FormAddManagedPerson_UI extends javax.swing.JFrame {
             }
         });
 
-        errorText.setEditable(false);
-        errorText.setColumns(20);
-        errorText.setRows(5);
-        jScrollPane3.setViewportView(errorText);
-
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(jLabel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-            .addGroup(layout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addContainerGap()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jButton1, javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(0, 0, Short.MAX_VALUE)
+                        .addComponent(jButton1))
+                    .addComponent(jPanel1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                        .addGap(0, 0, Short.MAX_VALUE)
+                        .addComponent(jLabel1)
+                        .addGap(0, 0, Short.MAX_VALUE))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                        .addGap(0, 0, Short.MAX_VALUE)
                         .addComponent(addButton)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addGap(18, 18, 18)
                         .addComponent(jButton2)))
                 .addContainerGap())
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addContainerGap())
-            .addGroup(layout.createSequentialGroup()
-                .addGap(115, 115, 115)
-                .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 407, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(124, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -303,14 +299,12 @@ public class FormAddManagedPerson_UI extends javax.swing.JFrame {
                 .addComponent(jButton1)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 26, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addGap(36, 36, 36)
                 .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 52, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 39, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jButton2)
-                    .addComponent(addButton))
+                    .addComponent(addButton)
+                    .addComponent(jButton2))
                 .addContainerGap())
         );
 
@@ -335,29 +329,35 @@ public class FormAddManagedPerson_UI extends javax.swing.JFrame {
     private void addButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_addButtonActionPerformed
         // TODO add your handling code here:
         String relatedPerson = null;
-        if (MPState.getText().equals("")) {
+        String newHopital = MPPlace.getSelectedItem().toString();
+        for (String[] h : hopitals) {
+            if (h[1].equals(newHopital)) {
+                newHopital = h[0];
+            }
+        }
+        if (MPState.getText().equals("0")) {
             if (!MPRelatedID.getText().equals("")) {
                 relatedPerson = MPRelatedID.getText();
             }
             if (MPName.getText().equals("") || MPID.getText().equals("")
                     || MPDOB.getText().equals("") || MPAddr.getText().equals("")
-                    || MPState.getText().equals("") || MPPlace.getText().equals("")) {
-                errorText.setText("Thông tin cần thêm không đầy đủ .\nCần điền đủ thông tin cho người được quản lý mới.");
+                    || MPState.getText().equals("")) {
+                showMessageDialog(null, "Thông tin cần thêm không đầy đủ .\nCần điền đủ thông tin cho người được quản lý mới.");
             } else {
                 String addr = MPAddr.getText() + " - " + cityChoice.getSelectedItem() + " - " + districtChoice.getSelectedItem() + " - "
                         + wardChoice.getSelectedItem();
                 Patient newp = new Patient(MPName.getText(), MPID.getText(), addr,
-                        MPState.getText(), MPPlace.getText(), relatedPerson,
+                        MPState.getText(), newHopital, relatedPerson,
                         java.sql.Date.valueOf(MPDOB.getText()), 0);
                 int er = manager.add_newPatient(this.MNID, newp);
                 if (er == -1) {
-                    errorText.setText("Người được thêm đã tồn tại trong danh sách \nngười liên quan đến covid được quản lý");
+                    showMessageDialog(null, "Người được thêm đã tồn tại trong danh sách \nngười liên quan đến covid được quản lý");
                 }
                 if (er == 0) {
-                    errorText.setText("Không tồn tại nguồn lây nhiễm trong danh sách \nngười liên quan đến covid được quản lý");
+                    showMessageDialog(null, "Không tồn tại nguồn lây nhiễm trong danh sách \nngười liên quan đến covid được quản lý");
                 }
                 if (er == 1) {
-                    errorText.setText("Người được quản lý mới đã được thêm vào danh sách.");
+                    showMessageDialog(null, "Người được quản lý mới đã được thêm vào danh sách.");
                     String msg = "";
 
                     msg = "addaccount " + MPID.getText() + " 1000000000 " + java.time.LocalDate.now().toString();
@@ -388,13 +388,13 @@ public class FormAddManagedPerson_UI extends javax.swing.JFrame {
                         client.close();
 
                         if (decodedString.equals("1")) {
-                            errorText.setText(errorText.getText() + "/nThêm tài khoản thanh toán thành công.");
+                            showMessageDialog(null, "/nThêm tài khoản thanh toán thành công.");
                         }
                         if (decodedString.equals("0")) {
-                            errorText.setText(errorText.getText() + "/nThêm tài khoản thanh toán không thành công.");
+                            showMessageDialog(null, "/nThêm tài khoản thanh toán không thành công.");
                         }
                         if (decodedString.equals("-1")) {
-                            errorText.setText(errorText.getText() + "/nĐã tồn tại tài khoản thanh toán.");
+                            showMessageDialog(null, "/nĐã tồn tại tài khoản thanh toán.");
                         }
                     } catch (Exception ex) {
                         System.out.println("Error " + ex);
@@ -406,23 +406,23 @@ public class FormAddManagedPerson_UI extends javax.swing.JFrame {
             if (MPName.getText().equals("") || MPID.getText().equals("")
                     || MPDOB.getText().equals("") || MPAddr.getText().equals("")
                     || MPState.getText().equals("")
-                    || MPPlace.getText().equals("") || MPRelatedID.getText().equals("")) {
-                errorText.setText("Thông tin cần thêm không đầy đủ .\nCần điền đủ thông tin cho người được quản lý mới.");
+                    || MPRelatedID.getText().equals("")) {
+                showMessageDialog(null, "Thông tin cần thêm không đầy đủ .\nCần điền đủ thông tin cho người được quản lý mới.");
             } else {
                 String addr = MPAddr.getText() + " - " + cityChoice.getSelectedItem() + " - " + districtChoice.getSelectedItem() + " - "
                         + wardChoice.getSelectedItem();
                 Patient newp = new Patient(MPName.getText(), MPID.getText(), addr,
-                        MPState.getText(), MPPlace.getText(), MPRelatedID.getText(),
+                        MPState.getText(), newHopital, MPRelatedID.getText(),
                         java.sql.Date.valueOf(MPDOB.getText()), 0);
                 int er = manager.add_newPatient(this.MNID, newp);
                 if (er == -1) {
-                    errorText.setText("Người được thêm đã tồn tại trong danh sách \nngười liên quan đến covid được quản lý");
+                    showMessageDialog(null, "Người được thêm đã tồn tại trong danh sách \nngười liên quan đến covid được quản lý");
                 }
                 if (er == 0) {
-                    errorText.setText("Không tồn tại nguồn lây nhiễm trong danh sách \nngười liên quan đến covid được quản lý");
+                    showMessageDialog(null, "Không tồn tại nguồn lây nhiễm trong danh sách \nngười liên quan đến covid được quản lý");
                 }
                 if (er == 1) {
-                    errorText.setText("Người được quản lý mới đã được thêm vào danh sách.");
+                    showMessageDialog(null, "Người được quản lý mới đã được thêm vào danh sách.");
                     String msg = "";
 
                     msg = "addaccount " + MPID.getText() + " 1000000000 " + java.time.LocalDate.now().toString();
@@ -453,13 +453,13 @@ public class FormAddManagedPerson_UI extends javax.swing.JFrame {
                         client.close();
 
                         if (decodedString.equals("1")) {
-                            errorText.setText(errorText.getText() + "/nThêm tài khoản thanh toán thành công.");
+                            showMessageDialog(null, "/nThêm tài khoản thanh toán thành công.");
                         }
                         if (decodedString.equals("0")) {
-                            errorText.setText(errorText.getText() + "/nThêm tài khoản thanh toán không thành công.");
+                            showMessageDialog(null, "/nThêm tài khoản thanh toán không thành công.");
                         }
                         if (decodedString.equals("-1")) {
-                            errorText.setText(errorText.getText() + "/nĐã tồn tại tài khoản thanh toán.");
+                            showMessageDialog(null, "/nĐã tồn tại tài khoản thanh toán.");
                         }
                     } catch (Exception ex) {
                         System.out.println("Error " + ex);
@@ -549,13 +549,12 @@ public class FormAddManagedPerson_UI extends javax.swing.JFrame {
     private javax.swing.JTextField MPDOB;
     private javax.swing.JTextField MPID;
     private javax.swing.JTextField MPName;
-    private javax.swing.JTextField MPPlace;
+    private java.awt.Choice MPPlace;
     private javax.swing.JTextField MPRelatedID;
     private javax.swing.JTextField MPState;
     private javax.swing.JButton addButton;
     private java.awt.Choice cityChoice;
     private java.awt.Choice districtChoice;
-    private javax.swing.JTextArea errorText;
     private javax.swing.JButton jButton1;
     private javax.swing.JButton jButton2;
     private javax.swing.JLabel jLabel1;
@@ -569,7 +568,6 @@ public class FormAddManagedPerson_UI extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel9;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JScrollPane jScrollPane3;
     private javax.swing.JTextArea jTextArea1;
     private java.awt.Choice wardChoice;
     // End of variables declaration//GEN-END:variables
