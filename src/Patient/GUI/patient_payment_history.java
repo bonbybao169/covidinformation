@@ -24,7 +24,7 @@ public class patient_payment_history extends javax.swing.JFrame {
             model.addRow(new Object[]{e.getTime(), s});
         }
 
-        debtTextField.setText((int) list.get(list.size() - 1).getDebt() + "");
+        debtTextField.setText(String.valueOf(control.getDebt()));
     }
 
     @SuppressWarnings("unchecked")

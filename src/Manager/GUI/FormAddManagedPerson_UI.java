@@ -388,13 +388,13 @@ public class FormAddManagedPerson_UI extends javax.swing.JFrame {
                         client.close();
 
                         if (decodedString.equals("1")) {
-                            showMessageDialog(null, "/nThêm tài khoản thanh toán thành công.");
+                            showMessageDialog(null, "Thêm tài khoản thanh toán thành công.");
                         }
                         if (decodedString.equals("0")) {
-                            showMessageDialog(null, "/nThêm tài khoản thanh toán không thành công.");
+                            showMessageDialog(null, "Thêm tài khoản thanh toán không thành công.");
                         }
                         if (decodedString.equals("-1")) {
-                            showMessageDialog(null, "/nĐã tồn tại tài khoản thanh toán.");
+                            showMessageDialog(null, "Đã tồn tại tài khoản thanh toán.");
                         }
                     } catch (Exception ex) {
                         System.out.println("Error " + ex);
@@ -453,13 +453,13 @@ public class FormAddManagedPerson_UI extends javax.swing.JFrame {
                         client.close();
 
                         if (decodedString.equals("1")) {
-                            showMessageDialog(null, "/nThêm tài khoản thanh toán thành công.");
+                            showMessageDialog(null, "Thêm tài khoản thanh toán thành công.");
                         }
                         if (decodedString.equals("0")) {
-                            showMessageDialog(null, "/nThêm tài khoản thanh toán không thành công.");
+                            showMessageDialog(null, "Thêm tài khoản thanh toán không thành công.");
                         }
                         if (decodedString.equals("-1")) {
-                            showMessageDialog(null, "/nĐã tồn tại tài khoản thanh toán.");
+                            showMessageDialog(null, "Đã tồn tại tài khoản thanh toán.");
                         }
                     } catch (Exception ex) {
                         System.out.println("Error " + ex);

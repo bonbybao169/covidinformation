@@ -26,7 +26,7 @@ public class PackageManagement_UI extends javax.swing.JFrame {
     static DefaultTableModel model;
     ArrayList<EssentialPackage> list = null;
     patient_controller control = new patient_controller();
-
+    
     public PackageManagement_UI(String mnid) {
         initComponents();
         this.setLocationRelativeTo(null);
@@ -43,20 +43,20 @@ public class PackageManagement_UI extends javax.swing.JFrame {
         sortType.add("Giảm dần theo Gía");
         if (FilterEP_UI.filtered == false) {
             list = control.view_essential_package();
-
+            
             model = (DefaultTableModel) jTable1.getModel();
             for (EssentialPackage e : list) {
                 model.addRow(new Object[]{e.getEPID(), e.getEPName(), e.getLimitPeople(), e.getLimitDate(), e.getPrice()});
             }
         } else {
             list = control.view_filtered_EP();
-
+            
             model = (DefaultTableModel) jTable1.getModel();
             for (EssentialPackage e : list) {
                 model.addRow(new Object[]{e.getEPID(), e.getEPName(), e.getLimitPeople(), e.getLimitDate(), e.getPrice()});
             }
         }
-
+        
     }
 
     /**
@@ -343,11 +343,11 @@ public class PackageManagement_UI extends javax.swing.JFrame {
     private void priceActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_priceActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_priceActionPerformed
-
+    
     private void limitPeopleActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_limitPeopleActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_limitPeopleActionPerformed
-
+    
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {
         // TODO add your handling code here:
         super.dispose();
@@ -358,13 +358,13 @@ public class PackageManagement_UI extends javax.swing.JFrame {
         super.dispose();
         ManagerMain_UI.main(null, MNID);
     }//GEN-LAST:event_jButton2ActionPerformed
-
+    
     private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
         // TODO add your handling code here:
         super.dispose();
         FilterEP_UI.main(null, MNID);
     }//GEN-LAST:event_jButton3ActionPerformed
-
+    
     private void searchButonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_searchButonActionPerformed
         // TODO add your handling code here:
         String searchID = EPID.getText();
@@ -373,15 +373,23 @@ public class PackageManagement_UI extends javax.swing.JFrame {
         searchName = searchName.trim();
         if (!searchID.equals("")) {
             EssentialPackage e = control.view_essential_package_by_id(searchID);
-
+            
             model = (DefaultTableModel) jTable1.getModel();
             model.setRowCount(0);
-
+            
             model.addRow(new Object[]{e.getEPID(), e.getEPName(), e.getLimitPeople(), e.getLimitDate(), e.getPrice()});
-
+            
         } else if (!searchName.equals("")) {
             list = control.view_essential_package_by_name(searchName);
-
+            
+            model = (DefaultTableModel) jTable1.getModel();
+            model.setRowCount(0);
+            for (EssentialPackage e : list) {
+                model.addRow(new Object[]{e.getEPID(), e.getEPName(), e.getLimitPeople(), e.getLimitDate(), e.getPrice()});
+            }
+        } else {
+            list = control.view_essential_package();
+            
             model = (DefaultTableModel) jTable1.getModel();
             model.setRowCount(0);
             for (EssentialPackage e : list) {
@@ -389,15 +397,15 @@ public class PackageManagement_UI extends javax.swing.JFrame {
             }
         }
     }//GEN-LAST:event_searchButonActionPerformed
-
+    
     private void sortButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_sortButtonActionPerformed
         // TODO add your handling code here:
         String type = sortType.getSelectedItem().toString();
-
+        
         switch (type) {
             case "Tăng dần theo ID" -> {
                 list = control.view_essential_package_id_asc();
-
+                
                 model = (DefaultTableModel) jTable1.getModel();
                 model.setRowCount(0);
                 for (EssentialPackage e : list) {
@@ -406,7 +414,7 @@ public class PackageManagement_UI extends javax.swing.JFrame {
             }
             case "Giảm dần theo ID" -> {
                 list = control.view_essential_package_id_desc();
-
+                
                 model = (DefaultTableModel) jTable1.getModel();
                 model.setRowCount(0);
                 for (EssentialPackage e : list) {
@@ -415,7 +423,7 @@ public class PackageManagement_UI extends javax.swing.JFrame {
             }
             case "Tăng dần theo Tên gói" -> {
                 list = control.view_essential_package_name_asc();
-
+                
                 model = (DefaultTableModel) jTable1.getModel();
                 model.setRowCount(0);
                 for (EssentialPackage e : list) {
@@ -424,7 +432,7 @@ public class PackageManagement_UI extends javax.swing.JFrame {
             }
             case "Giảm dần theo Tên gói" -> {
                 list = control.view_essential_package_name_desc();
-
+                
                 model = (DefaultTableModel) jTable1.getModel();
                 model.setRowCount(0);
                 for (EssentialPackage e : list) {
@@ -433,7 +441,7 @@ public class PackageManagement_UI extends javax.swing.JFrame {
             }
             case "Tăng dần theo Mức giới hạn" -> {
                 list = control.view_essential_package_limit_people_asc();
-
+                
                 model = (DefaultTableModel) jTable1.getModel();
                 model.setRowCount(0);
                 for (EssentialPackage e : list) {
@@ -442,7 +450,7 @@ public class PackageManagement_UI extends javax.swing.JFrame {
             }
             case "Giảm dần theo Mức giới hạn" -> {
                 list = control.view_essential_package_limit_people_desc();
-
+                
                 model = (DefaultTableModel) jTable1.getModel();
                 model.setRowCount(0);
                 for (EssentialPackage e : list) {
@@ -451,7 +459,7 @@ public class PackageManagement_UI extends javax.swing.JFrame {
             }
             case "Tăng dần theo Thời hạn" -> {
                 list = control.view_essential_package_limit_time_asc();
-
+                
                 model = (DefaultTableModel) jTable1.getModel();
                 model.setRowCount(0);
                 for (EssentialPackage e : list) {
@@ -460,7 +468,7 @@ public class PackageManagement_UI extends javax.swing.JFrame {
             }
             case "Giảm dần theo Thời hạn" -> {
                 list = control.view_essential_package_limit_time_desc();
-
+                
                 model = (DefaultTableModel) jTable1.getModel();
                 model.setRowCount(0);
                 for (EssentialPackage e : list) {
@@ -469,7 +477,7 @@ public class PackageManagement_UI extends javax.swing.JFrame {
             }
             case "Tăng dần theo Gía" -> {
                 list = control.view_essential_package_price_asc();
-
+                
                 model = (DefaultTableModel) jTable1.getModel();
                 model.setRowCount(0);
                 for (EssentialPackage e : list) {
@@ -478,7 +486,7 @@ public class PackageManagement_UI extends javax.swing.JFrame {
             }
             case "Giảm dần theo Gía" -> {
                 list = control.view_essential_package_price_desc();
-
+                
                 model = (DefaultTableModel) jTable1.getModel();
                 model.setRowCount(0);
                 for (EssentialPackage e : list) {
@@ -489,7 +497,7 @@ public class PackageManagement_UI extends javax.swing.JFrame {
             }
         }
     }//GEN-LAST:event_sortButtonActionPerformed
-
+    
     private void addButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_addButtonActionPerformed
         // TODO add your handling code here:
         manager.add_NewEssentialPackage(MNID, EPID.getText(), EPName.getText(),
@@ -502,7 +510,7 @@ public class PackageManagement_UI extends javax.swing.JFrame {
             model.addRow(new Object[]{e.getEPID(), e.getEPName(), e.getLimitPeople(), e.getLimitDate(), e.getPrice()});
         }
     }//GEN-LAST:event_addButtonActionPerformed
-
+    
     private void editButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_editButtonActionPerformed
         // TODO add your handling code here:
         manager.UpdateEssentialPackage(MNID, EPID.getText(), EPName.getText(),
@@ -515,7 +523,7 @@ public class PackageManagement_UI extends javax.swing.JFrame {
             model.addRow(new Object[]{e.getEPID(), e.getEPName(), e.getLimitPeople(), e.getLimitDate(), e.getPrice()});
         }
     }//GEN-LAST:event_editButtonActionPerformed
-
+    
     private void delButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_delButtonActionPerformed
         // TODO add your handling code here:
         manager.DelEssentialPackage(MNID, EPID.getText());

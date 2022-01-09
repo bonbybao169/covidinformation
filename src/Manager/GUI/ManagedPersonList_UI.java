@@ -233,13 +233,23 @@ public class ManagedPersonList_UI extends javax.swing.JFrame {
         // TODO add your handling code here:
         String mpID = searchID.getText();
         mpID = mpID.trim();
-        Patient p = null;
-        p = manager.searchPatient(mpID);
-        if (p != null) {
+        if (mpID.equals("")) {
+            ArrayList<Patient> list = manager.view_patient_list();
             model = (DefaultTableModel) jTable1.getModel();
             model.setRowCount(0);
-            String[] temp = {p.getName(), p.getCCCD(), p.getDOB().toString(), p.getAddress(), "F" + p.getState(), p.getIsolation(), Float.toString(p.getDebt())};
-            model.addRow(temp);
+            for (Patient p : list) {
+                String[] temp = {p.getName(), p.getCCCD(), p.getDOB().toString(), p.getAddress(), "F" + p.getState(), p.getIsolation(), Float.toString(p.getDebt())};
+                model.addRow(temp);
+            }
+        } else {
+            Patient p = null;
+            p = manager.searchPatient(mpID);
+            if (p != null) {
+                model = (DefaultTableModel) jTable1.getModel();
+                model.setRowCount(0);
+                String[] temp = {p.getName(), p.getCCCD(), p.getDOB().toString(), p.getAddress(), "F" + p.getState(), p.getIsolation(), Float.toString(p.getDebt())};
+                model.addRow(temp);
+            }
         }
 
     }//GEN-LAST:event_searchButtonActionPerformed

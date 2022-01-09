@@ -18,16 +18,16 @@ public class CheckAccountAvailable {
         String temp = "";
 
         try {
-            sql = "SELECT Username FROM account where Username = ?";
+            sql = "SELECT Password FROM account where Username = ?";
             psm = conn.prepareStatement(sql);
             psm.setString(1, username);
             rs = psm.executeQuery();
 
             while (rs.next()) {
-                temp = rs.getString("Username");
+                temp = rs.getString("Password");
             }
 
-            if (temp.equals("")) {
+            if (temp == null) {
                 available = false;
             } else {
                 available = true;

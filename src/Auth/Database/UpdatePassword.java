@@ -5,21 +5,19 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.SQLException;
 
-public class CreateAccount {
+public class UpdatePassword {
 
     String sql;
     Connection conn = createConnection();
     PreparedStatement psm = null;
 
-    public void createPatientAccount(String username, String password) {
+    public void updatePasswordAccount(String username, String password) {
 
         try {
-            sql = "insert into account(Username, Password, Type, State) values (?,?,?,?)";
+            sql = "update account set Password = ? where username = ?";
             psm = conn.prepareStatement(sql);
-            psm.setString(1, username);
-            psm.setString(2, password);
-            psm.setInt(3, 3);
-            psm.setString(4, "OPEN");
+            psm.setString(1, password);
+            psm.setString(2, username);
             int executeUpdate = psm.executeUpdate();
             conn.close();
             psm.close();

@@ -116,7 +116,7 @@ public class CreatePassword_UI extends javax.swing.JFrame {
 
     private void createPassButtonMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_createPassButtonMouseClicked
         // TODO add your handling code here:
-        control.createPatientAccount(Login_UI.usernameStr, passPassField.getText());
+        control.updatePasswordAccount(Login_UI.usernameStr, passPassField.getText());
 
         super.dispose();
         Login_UI.main(null);

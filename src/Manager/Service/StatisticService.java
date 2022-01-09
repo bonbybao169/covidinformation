@@ -83,7 +83,7 @@ public class StatisticService {
         PreparedStatement psm = null;
         ArrayList<String[]> list = new ArrayList<String[]>();
         try {
-            sql = "select m.Name, m.CCCD,m.Birthday,c.Cured from mp_infor m join cured_person c on m.CCCD=c.F0";
+            sql = "select m.Name, m.CCCD,m.Birthday,c.Cured from mp_infor m left join cured_person c on m.CCCD=c.F0";
             psm = conn.prepareStatement(sql);
             rs = psm.executeQuery();
             while (rs.next()) {

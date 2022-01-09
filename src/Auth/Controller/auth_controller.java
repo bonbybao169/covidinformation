@@ -2,7 +2,7 @@ package Auth.Controller;
 
 import Auth.Database.CheckAccountAvailable;
 import Auth.Database.CheckMPInfoAvailable;
-import Auth.Database.CreateAccount;
+import Auth.Database.UpdatePassword;
 import Auth.Database.CreateAdmin;
 import Auth.Database.GetAccountByID;
 import Auth.Model.Account;
@@ -84,9 +84,9 @@ public class auth_controller {
         acc = view.getAccountByID(username);
     }
 
-    public void createPatientAccount(String username, String password) {
-        CreateAccount view = new CreateAccount();
+    public void updatePasswordAccount(String username, String password) {
+        UpdatePassword view = new UpdatePassword();
 
-        view.createPatientAccount(username, encodeString(password));
+        view.updatePasswordAccount(username, encodeString(password));
     }
 }
