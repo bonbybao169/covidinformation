@@ -33,7 +33,7 @@ public class CheckMPInfoAvailable {
                 available = true;
             }
 
-            System.out.println(available);
+            System.out.println("checkMP:" + available);
             conn.close();
             psm.close();
         } catch (SQLException e) {

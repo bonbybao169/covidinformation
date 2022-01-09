@@ -121,7 +121,7 @@ public class Login_UI extends javax.swing.JFrame {
     private void loginButtonMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_loginButtonMouseClicked
         // TODO add your handling code here:
         if (control.checkMPAvailable(usernameTextField.getText())) {
-            if (control.checkAccountAvailable(usernameTextField.getText())) {
+            if (control.checkPasswordAvailable(usernameTextField.getText())) {
                 control.getAccountByID(usernameTextField.getText());
 
                 super.dispose();

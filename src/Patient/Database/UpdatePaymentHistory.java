@@ -27,7 +27,7 @@ public class UpdatePaymentHistory {
             sql = "insert into payment_history(MPID,Content,Cash,Time) values (?,?,?,?)";
             psm = conn.prepareStatement(sql);
             psm.setString(1, MPID);
-            psm.setString(2, "Thanh toán ngày" + java.time.LocalDate.now().toString());
+            psm.setString(2, "Thanh toán ngày " + java.time.LocalDate.now().toString());
             psm.setInt(3, money);
             date = Date.valueOf(java.time.LocalDate.now());
             psm.setDate(4, date);

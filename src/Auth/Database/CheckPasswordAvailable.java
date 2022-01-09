@@ -6,34 +6,34 @@ import java.sql.PreparedStatement;
 import java.sql.SQLException;
 import java.sql.ResultSet;
 
-public class CheckAccountAvailable {
+public class CheckPasswordAvailable {
 
     String sql;
     Connection conn = createConnection();
     PreparedStatement psm = null;
     ResultSet rs;
 
-    public boolean checkAccountAvailable(String username) {
+    public boolean checkPasswordAvailable(String username) {
         boolean available = false;
         String temp = "";
 
         try {
-            sql = "SELECT Username FROM account where Username = ?";
+            sql = "SELECT Password FROM account where Username = ?";
             psm = conn.prepareStatement(sql);
             psm.setString(1, username);
             rs = psm.executeQuery();
 
             while (rs.next()) {
-                temp = rs.getString("Username");
+                temp = rs.getString("Password");
             }
 
-            if (temp.equals("")) {
+            if (temp == null) {
                 available = false;
             } else {
                 available = true;
             }
 
-            System.out.println("checkAccount:" + available);
+            System.out.println("checkPass:" + available);
             conn.close();
             psm.close();
         } catch (SQLException e) {

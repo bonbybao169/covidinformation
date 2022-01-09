@@ -266,50 +266,53 @@ public class patient_payment_confirm extends javax.swing.JFrame {
         }
         String msg = "";
         String money = msgmoney.getText();
-        msg = "addpayment " + ID + " " + money + " " + java.time.LocalDate.now().toString();
-        String encodingType = "utf-8";
-        String encodedString = null;
-        try {
-            encodedString = Base64.getEncoder().encodeToString(msg.getBytes(encodingType));
-        } catch (UnsupportedEncodingException ex) {
-            Logger.getLogger(patient_payment_confirm.class.getName()).log(Level.SEVERE, null, ex);
-        }
-        try {
-            int portnumber = 4321;
-
-            String msgrep = "";
-            Socket client = new Socket(InetAddress.getLocalHost(), portnumber);
-            DataInputStream clientin = new DataInputStream(client.getInputStream());
-            DataOutputStream clientout = new DataOutputStream(client.getOutputStream());
-
-            clientout.writeUTF(encodedString);
-            msgrep = clientin.readUTF();
-            byte[] decodedBytes = Base64.getDecoder().decode(msgrep);
-            String decodedString = "";
+        if (Integer.parseInt(msgmoney.getText()) < 50000) {
+            msgtxt.setText("Phải thanh toán từ 50000 trở lên");
+        } else {
+            msg = "addpayment " + ID + " " + money + " " + java.time.LocalDate.now().toString();
+            String encodingType = "utf-8";
+            String encodedString = null;
             try {
-                decodedString = new String(decodedBytes, encodingType);
-                System.out.println(decodedString);
+                encodedString = Base64.getEncoder().encodeToString(msg.getBytes(encodingType));
             } catch (UnsupportedEncodingException ex) {
                 Logger.getLogger(patient_payment_confirm.class.getName()).log(Level.SEVERE, null, ex);
             }
-            client.close();
+            try {
+                int portnumber = 4321;
 
-            if (decodedString.equals("1")) {
-                control.deductionDebt(ID, Integer.parseInt(money));
-                control.addPaymentHistory(ID, Integer.parseInt(money));
-                debttxt.setText(Integer.toString(control.getDebt()));
-                msgtxt.setText("Thanh toán dư nợ thành công.");
+                String msgrep = "";
+                Socket client = new Socket(InetAddress.getLocalHost(), portnumber);
+                DataInputStream clientin = new DataInputStream(client.getInputStream());
+                DataOutputStream clientout = new DataOutputStream(client.getOutputStream());
+
+                clientout.writeUTF(encodedString);
+                msgrep = clientin.readUTF();
+                byte[] decodedBytes = Base64.getDecoder().decode(msgrep);
+                String decodedString = "";
+                try {
+                    decodedString = new String(decodedBytes, encodingType);
+                    System.out.println(decodedString);
+                } catch (UnsupportedEncodingException ex) {
+                    Logger.getLogger(patient_payment_confirm.class.getName()).log(Level.SEVERE, null, ex);
+                }
+                client.close();
+
+                if (decodedString.equals("1")) {
+                    control.deductionDebt(ID, Integer.parseInt(money));
+                    control.addPaymentHistory(ID, Integer.parseInt(money));
+                    debttxt.setText(Integer.toString(control.getDebt()));
+                    msgtxt.setText("Thanh toán dư nợ thành công.");
+                }
+                if (decodedString.equals("0")) {
+                    msgtxt.setText("Thanh toán dư nợ không thành công.");
+                }
+                if (decodedString.equals("-1")) {
+                    msgtxt.setText("Người được quản lý chưa có tài khoản thanh toán.");
+                }
+            } catch (Exception ex) {
+                System.out.println("Error " + ex);
             }
-            if (decodedString.equals("0")) {
-                msgtxt.setText("Thanh toán dư nợ không thành công.");
-            }
-            if (decodedString.equals("-1")) {
-                msgtxt.setText("Người được quản lý chưa có tài khoản thanh toán.");
-            }
-        } catch (Exception ex) {
-            System.out.println("Error " + ex);
         }
-
     }// GEN-LAST:event_jButton6ActionPerformed
 
     private void jTextField1ActionPerformed(java.awt.event.ActionEvent evt) {// GEN-FIRST:event_jTextField1ActionPerformed

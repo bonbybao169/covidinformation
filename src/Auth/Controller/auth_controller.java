@@ -2,6 +2,7 @@ package Auth.Controller;
 
 import Auth.Database.CheckAccountAvailable;
 import Auth.Database.CheckMPInfoAvailable;
+import Auth.Database.CheckPasswordAvailable;
 import Auth.Database.UpdatePassword;
 import Auth.Database.CreateAdmin;
 import Auth.Database.GetAccountByID;
@@ -58,6 +59,19 @@ public class auth_controller {
         CheckAccountAvailable checkAccount = new CheckAccountAvailable();
 
         if (checkAccount.checkAccountAvailable(username)) {
+            available = true;
+        } else {
+            available = false;
+        }
+
+        return available;
+    }
+
+    public boolean checkPasswordAvailable(String username) {
+        boolean available = false;
+        CheckPasswordAvailable checkPassword = new CheckPasswordAvailable();
+
+        if (checkPassword.checkPasswordAvailable(username)) {
             available = true;
         } else {
             available = false;
