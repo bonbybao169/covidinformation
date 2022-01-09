@@ -6,6 +6,8 @@ package Manager.GUI;
 
 import Auth.GUI.Login_UI;
 import Manager.Controller.ManagerController;
+import static Manager.GUI.DebtStatistic_UI.MNID;
+import static Manager.GUI.DebtStatistic_UI.model;
 import Patient.Controller.patient_controller;
 import Patient.GUI.patient_payment_confirm;
 import Patient.Model.Patient;
@@ -14,9 +16,11 @@ import java.io.DataOutputStream;
 import java.io.UnsupportedEncodingException;
 import java.net.InetAddress;
 import java.net.Socket;
+import java.util.ArrayList;
 import java.util.Base64;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javax.swing.table.DefaultTableModel;
 
 /**
  *
@@ -35,6 +39,18 @@ public class FormAddManagedPerson_UI extends javax.swing.JFrame {
         initComponents();
         this.setLocationRelativeTo(null);
         MNID = mnid;
+        ArrayList<String> citylist = manager.getCity();
+        for (String i : citylist) {
+            cityChoice.add(i);
+        }
+        ArrayList<String> districtList = manager.getDistrictofCity(cityChoice.getSelectedItem());
+        for (String i : districtList) {
+            districtChoice.add(i);
+        }
+        ArrayList<String> wardList = manager.getDistrictofCity(districtChoice.getSelectedItem());
+        for (String i : wardList) {
+            wardChoice.add(i);
+        }
     }
 
     /**
@@ -59,12 +75,16 @@ public class FormAddManagedPerson_UI extends javax.swing.JFrame {
         jLabel7 = new javax.swing.JLabel();
         jLabel8 = new javax.swing.JLabel();
         MPState = new javax.swing.JTextField();
-        MPAddr = new javax.swing.JTextField();
         MPDOB = new javax.swing.JTextField();
         MPID = new javax.swing.JTextField();
         MPName = new javax.swing.JTextField();
         MPPlace = new javax.swing.JTextField();
         MPRelatedID = new javax.swing.JTextField();
+        cityChoice = new java.awt.Choice();
+        districtChoice = new java.awt.Choice();
+        wardChoice = new java.awt.Choice();
+        jLabel9 = new javax.swing.JLabel();
+        MPAddr = new javax.swing.JTextField();
         jButton2 = new javax.swing.JButton();
         addButton = new javax.swing.JButton();
         jScrollPane3 = new javax.swing.JScrollPane();
@@ -99,7 +119,7 @@ public class FormAddManagedPerson_UI extends javax.swing.JFrame {
         jLabel4.setText("Ngày sinh");
 
         jLabel5.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
-        jLabel5.setText("Địa chỉ:");
+        jLabel5.setText("Địa chỉ nơi ở:");
 
         jLabel6.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
         jLabel6.setText("Trạng thái hiện tại:");
@@ -137,6 +157,21 @@ public class FormAddManagedPerson_UI extends javax.swing.JFrame {
             }
         });
 
+        cityChoice.addItemListener(new java.awt.event.ItemListener() {
+            public void itemStateChanged(java.awt.event.ItemEvent evt) {
+                cityChoiceItemStateChanged(evt);
+            }
+        });
+
+        districtChoice.addItemListener(new java.awt.event.ItemListener() {
+            public void itemStateChanged(java.awt.event.ItemEvent evt) {
+                districtChoiceItemStateChanged(evt);
+            }
+        });
+
+        jLabel9.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
+        jLabel9.setText("TP/Quận /Huyện");
+
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
@@ -144,22 +179,36 @@ public class FormAddManagedPerson_UI extends javax.swing.JFrame {
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jLabel6)
-                    .addComponent(jLabel2)
-                    .addComponent(jLabel3)
-                    .addComponent(jLabel4)
-                    .addComponent(jLabel5)
-                    .addComponent(jLabel7)
-                    .addComponent(jLabel8))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(MPState)
-                    .addComponent(MPAddr)
-                    .addComponent(MPDOB, javax.swing.GroupLayout.DEFAULT_SIZE, 241, Short.MAX_VALUE)
-                    .addComponent(MPID)
-                    .addComponent(MPName)
-                    .addComponent(MPPlace)
-                    .addComponent(MPRelatedID, javax.swing.GroupLayout.Alignment.TRAILING))
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(jPanel1Layout.createSequentialGroup()
+                                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(jLabel6)
+                                    .addComponent(jLabel2)
+                                    .addComponent(jLabel3)
+                                    .addComponent(jLabel4)
+                                    .addComponent(jLabel5)
+                                    .addComponent(jLabel7))
+                                .addGap(27, 27, 27))
+                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
+                                .addComponent(jLabel8)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)))
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(MPState)
+                            .addComponent(MPDOB)
+                            .addComponent(MPID)
+                            .addComponent(MPName)
+                            .addComponent(MPPlace)
+                            .addComponent(MPRelatedID, javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addComponent(MPAddr)))
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addComponent(jLabel9, javax.swing.GroupLayout.PREFERRED_SIZE, 117, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(25, 25, 25)
+                        .addComponent(cityChoice, javax.swing.GroupLayout.DEFAULT_SIZE, 140, Short.MAX_VALUE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(districtChoice, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(12, 12, 12)
+                        .addComponent(wardChoice, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addContainerGap())
         );
         jPanel1Layout.setVerticalGroup(
@@ -181,19 +230,25 @@ public class FormAddManagedPerson_UI extends javax.swing.JFrame {
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel5)
                     .addComponent(MPAddr, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(8, 8, 8)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(districtChoice, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 24, Short.MAX_VALUE)
+                    .addComponent(wardChoice, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(cityChoice, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(jLabel9, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(MPState, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel6))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel6)
-                    .addComponent(MPState, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(MPPlace, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel7))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel7)
-                    .addComponent(MPPlace, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel8)
-                    .addComponent(MPRelatedID, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(MPRelatedID, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel8))
+                .addContainerGap())
         );
 
         jButton2.setText("Back");
@@ -220,28 +275,26 @@ public class FormAddManagedPerson_UI extends javax.swing.JFrame {
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addContainerGap(166, Short.MAX_VALUE)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(jLabel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addContainerGap(165, Short.MAX_VALUE))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
             .addGroup(layout.createSequentialGroup()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jButton1, javax.swing.GroupLayout.Alignment.TRAILING)
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(jButton1))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(117, 117, 117)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(layout.createSequentialGroup()
-                                .addGap(0, 0, Short.MAX_VALUE)
-                                .addComponent(addButton)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(jButton2))
-                            .addGroup(layout.createSequentialGroup()
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                    .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                    .addComponent(jScrollPane3))
-                                .addGap(0, 0, Short.MAX_VALUE)))))
+                        .addComponent(addButton)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(jButton2)))
                 .addContainerGap())
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addContainerGap())
+            .addGroup(layout.createSequentialGroup()
+                .addGap(115, 115, 115)
+                .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 407, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -250,11 +303,11 @@ public class FormAddManagedPerson_UI extends javax.swing.JFrame {
                 .addComponent(jButton1)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 26, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 39, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 52, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jButton2)
                     .addComponent(addButton))
@@ -291,7 +344,9 @@ public class FormAddManagedPerson_UI extends javax.swing.JFrame {
                     || MPState.getText().equals("") || MPPlace.getText().equals("")) {
                 errorText.setText("Thông tin cần thêm không đầy đủ .\nCần điền đủ thông tin cho người được quản lý mới.");
             } else {
-                Patient newp = new Patient(MPName.getText(), MPID.getText(), MPAddr.getText(),
+                String addr = MPAddr.getText() + " - " + cityChoice.getSelectedItem() + " - " + districtChoice.getSelectedItem() + " - "
+                        + wardChoice.getSelectedItem();
+                Patient newp = new Patient(MPName.getText(), MPID.getText(), addr,
                         MPState.getText(), MPPlace.getText(), relatedPerson,
                         java.sql.Date.valueOf(MPDOB.getText()), 0);
                 int er = manager.add_newPatient(this.MNID, newp);
@@ -350,11 +405,13 @@ public class FormAddManagedPerson_UI extends javax.swing.JFrame {
         } else {
             if (MPName.getText().equals("") || MPID.getText().equals("")
                     || MPDOB.getText().equals("") || MPAddr.getText().equals("")
-                    || MPState.getText().equals("") || MPPlace.getText().equals("")
-                    || MPRelatedID.getText().equals("")) {
+                    || MPState.getText().equals("")
+                    || MPPlace.getText().equals("") || MPRelatedID.getText().equals("")) {
                 errorText.setText("Thông tin cần thêm không đầy đủ .\nCần điền đủ thông tin cho người được quản lý mới.");
             } else {
-                Patient newp = new Patient(MPName.getText(), MPID.getText(), MPAddr.getText(),
+                String addr = MPAddr.getText() + " - " + cityChoice.getSelectedItem() + " - " + districtChoice.getSelectedItem() + " - "
+                        + wardChoice.getSelectedItem();
+                Patient newp = new Patient(MPName.getText(), MPID.getText(), addr,
                         MPState.getText(), MPPlace.getText(), MPRelatedID.getText(),
                         java.sql.Date.valueOf(MPDOB.getText()), 0);
                 int er = manager.add_newPatient(this.MNID, newp);
@@ -428,6 +485,29 @@ public class FormAddManagedPerson_UI extends javax.swing.JFrame {
         Login_UI.main(null);
     }//GEN-LAST:event_jButton1ActionPerformed
 
+    private void cityChoiceItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_cityChoiceItemStateChanged
+        // TODO add your handling code here:
+        ArrayList<String> districtList = manager.getDistrictofCity(cityChoice.getSelectedItem());
+        districtChoice.removeAll();
+        for (String i : districtList) {
+            districtChoice.add(i);
+        }
+        wardChoice.removeAll();
+        ArrayList<String> wardList = manager.getDistrictofCity(districtChoice.getSelectedItem());
+        for (String i : wardList) {
+            wardChoice.add(i);
+        }
+    }//GEN-LAST:event_cityChoiceItemStateChanged
+
+    private void districtChoiceItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_districtChoiceItemStateChanged
+        // TODO add your handling code here:
+        ArrayList<String> wardList = manager.getDistrictofCity(districtChoice.getSelectedItem());
+        wardChoice.removeAll();
+        for (String i : wardList) {
+            wardChoice.add(i);
+        }
+    }//GEN-LAST:event_districtChoiceItemStateChanged
+
     /**
      * @param args the command line arguments
      */
@@ -473,6 +553,8 @@ public class FormAddManagedPerson_UI extends javax.swing.JFrame {
     private javax.swing.JTextField MPRelatedID;
     private javax.swing.JTextField MPState;
     private javax.swing.JButton addButton;
+    private java.awt.Choice cityChoice;
+    private java.awt.Choice districtChoice;
     private javax.swing.JTextArea errorText;
     private javax.swing.JButton jButton1;
     private javax.swing.JButton jButton2;
@@ -484,9 +566,11 @@ public class FormAddManagedPerson_UI extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel6;
     private javax.swing.JLabel jLabel7;
     private javax.swing.JLabel jLabel8;
+    private javax.swing.JLabel jLabel9;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane3;
     private javax.swing.JTextArea jTextArea1;
+    private java.awt.Choice wardChoice;
     // End of variables declaration//GEN-END:variables
 }
