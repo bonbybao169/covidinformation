@@ -201,7 +201,7 @@ public class CreateManager_AUI extends javax.swing.JFrame {
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         String username, password;
         username = jTextField1.getText();
-        password = jPassword1.getText();
+        password = jPasswordField1.getText();
         if (username.equals("") == false && password.equals("") == false) {
             con.create_manager(username, password);
         }
