@@ -18,6 +18,7 @@ public class ManageHospital_AUI extends javax.swing.JFrame {
 
     public ManageHospital_AUI() {
         initComponents();
+        this.setLocationRelativeTo(null);
         List<String[]> list = con.list_hospital();
         model = (DefaultTableModel) jTable1.getModel();
         for (String[] element : list) {

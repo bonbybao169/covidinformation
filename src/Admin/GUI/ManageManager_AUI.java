@@ -23,6 +23,7 @@ public class ManageManager_AUI extends javax.swing.JFrame {
 
     public ManageManager_AUI() {
         initComponents();
+        this.setLocationRelativeTo(null);
         List<String[]> list = con.list_manager();
         model = (DefaultTableModel) jTable1.getModel();
         for (String[] element : list) {

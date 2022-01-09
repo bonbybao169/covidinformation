@@ -20,6 +20,7 @@ public class UpdateHostpital_AUI extends javax.swing.JFrame {
 
     public UpdateHostpital_AUI(String[] components) {
         initComponents();
+        this.setLocationRelativeTo(null);
         System.out.println(components[1]);
         jLabel6.setText(components[0]);
         jTextField1.setText(components[1]);
