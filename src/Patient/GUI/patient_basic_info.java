@@ -18,7 +18,7 @@ public class patient_basic_info extends javax.swing.JFrame {
         nameLabel.setText(patient.getName());
         CCCDLabel.setText(patient.getCCCD());
         addressLabel.setText(patient.getAddress());
-        stateLabel.setText(patient.getState());
+        stateLabel.setText("F" + patient.getState());
         isolationLabel.setText(patient.getIsolation());
         relatedLabel.setText(patient.getRelated());
         DOBLabel.setText(patient.getDOB().toString());
