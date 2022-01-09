@@ -61,6 +61,17 @@ public class Admin_Backend {
         }
     }
 
+    public void DeleteHospital(String ID) {
+        try {
+            sql = "delete from isolation_area where ID = ?;";
+            psm = conn.prepareStatement(sql);
+            psm.setString(1, ID);
+            psm.executeUpdate();
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+    }
+
     public List<String[]> HistoryManager(String username) {
         List<String[]> list = new ArrayList<String[]>();
         try {

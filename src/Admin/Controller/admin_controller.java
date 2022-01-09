@@ -56,6 +56,10 @@ public class admin_controller {
         be.AddHospital(ID, Name, MaxCapicity, PresentCapicity);
     }
 
+    public void delete_hospital(String ID) {
+        be.DeleteHospital(ID);
+    }
+
     public void update_hospital(String ID, String Name, int MaxCapicity, int PresentCapicity) {
         be.UpdateHospital(ID, Name, MaxCapicity, PresentCapicity);
     }
@@ -68,6 +72,6 @@ public class admin_controller {
     }
 
     public static void main(String args[]) {
-        //be.FindHospital("HP001");
+        be.DeleteHospital("HP100");
     }
 }
