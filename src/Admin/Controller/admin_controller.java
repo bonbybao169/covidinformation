@@ -7,13 +7,15 @@ package Admin.Controller;
 import Admin.Database.*;
 import Admin.GUI.*;
 import java.util.*;
+import Auth.Controller.auth_controller;
 
 public class admin_controller {
 
     static Admin_Backend be = new Admin_Backend();
+    static auth_controller ac = new auth_controller();
 
     public void create_manager(String username, String password) {
-        be.CreateManager(username, password);
+        be.CreateManager(username, ac.encodeString(password));
     }
 
     public List<String[]> list_manager() {
