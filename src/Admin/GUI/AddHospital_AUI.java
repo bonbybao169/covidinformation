@@ -16,6 +16,7 @@ public class AddHospital_AUI extends javax.swing.JFrame {
 
     public AddHospital_AUI() {
         initComponents();
+        this.setLocationRelativeTo(null);
     }
 
     /**
