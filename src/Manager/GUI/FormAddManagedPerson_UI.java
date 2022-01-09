@@ -47,7 +47,7 @@ public class FormAddManagedPerson_UI extends javax.swing.JFrame {
         for (String i : districtList) {
             districtChoice.add(i);
         }
-        ArrayList<String> wardList = manager.getDistrictofCity(districtChoice.getSelectedItem());
+        ArrayList<String> wardList = manager.getWardofDistrict(districtChoice.getSelectedItem());
         for (String i : wardList) {
             wardChoice.add(i);
         }
@@ -179,36 +179,36 @@ public class FormAddManagedPerson_UI extends javax.swing.JFrame {
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(jPanel1Layout.createSequentialGroup()
-                                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(jLabel6)
-                                    .addComponent(jLabel2)
-                                    .addComponent(jLabel3)
-                                    .addComponent(jLabel4)
-                                    .addComponent(jLabel5)
-                                    .addComponent(jLabel7))
-                                .addGap(27, 27, 27))
-                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                                .addComponent(jLabel8)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)))
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(MPState)
-                            .addComponent(MPDOB)
-                            .addComponent(MPID)
-                            .addComponent(MPName)
-                            .addComponent(MPPlace)
-                            .addComponent(MPRelatedID, javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addComponent(MPAddr)))
+                    .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                        .addGroup(jPanel1Layout.createSequentialGroup()
+                            .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                .addComponent(jLabel6)
+                                .addComponent(jLabel2)
+                                .addComponent(jLabel3)
+                                .addComponent(jLabel4)
+                                .addComponent(jLabel5)
+                                .addComponent(jLabel7))
+                            .addGap(27, 27, 27))
+                        .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
+                            .addComponent(jLabel8)
+                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)))
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addComponent(jLabel9, javax.swing.GroupLayout.PREFERRED_SIZE, 117, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(25, 25, 25)
-                        .addComponent(cityChoice, javax.swing.GroupLayout.DEFAULT_SIZE, 140, Short.MAX_VALUE)
+                        .addGap(27, 27, 27)))
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addComponent(cityChoice, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(districtChoice, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(12, 12, 12)
-                        .addComponent(wardChoice, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addComponent(districtChoice, javax.swing.GroupLayout.PREFERRED_SIZE, 144, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(wardChoice, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(MPState)
+                    .addComponent(MPDOB)
+                    .addComponent(MPID)
+                    .addComponent(MPName)
+                    .addComponent(MPPlace)
+                    .addComponent(MPRelatedID, javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(MPAddr))
                 .addContainerGap())
         );
         jPanel1Layout.setVerticalGroup(
@@ -294,7 +294,7 @@ public class FormAddManagedPerson_UI extends javax.swing.JFrame {
             .addGroup(layout.createSequentialGroup()
                 .addGap(115, 115, 115)
                 .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 407, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap(124, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -493,7 +493,7 @@ public class FormAddManagedPerson_UI extends javax.swing.JFrame {
             districtChoice.add(i);
         }
         wardChoice.removeAll();
-        ArrayList<String> wardList = manager.getDistrictofCity(districtChoice.getSelectedItem());
+        ArrayList<String> wardList = manager.getWardofDistrict(districtChoice.getSelectedItem());
         for (String i : wardList) {
             wardChoice.add(i);
         }
@@ -501,7 +501,7 @@ public class FormAddManagedPerson_UI extends javax.swing.JFrame {
 
     private void districtChoiceItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_districtChoiceItemStateChanged
         // TODO add your handling code here:
-        ArrayList<String> wardList = manager.getDistrictofCity(districtChoice.getSelectedItem());
+        ArrayList<String> wardList = manager.getWardofDistrict(districtChoice.getSelectedItem());
         wardChoice.removeAll();
         for (String i : wardList) {
             wardChoice.add(i);
